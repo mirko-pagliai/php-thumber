@@ -10,14 +10,14 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber;
+namespace PhpThumber;
 
 use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use RuntimeException;
-use Thumber\ThumbsPathTrait;
+use PhpThumber\ThumbsPathTrait;
 
 /**
  * Utility to create a thumb.
@@ -141,7 +141,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \Thumber\ThumbCreator
+     * @return \PhpThumber\ThumbCreator
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#crop
      * @uses $arguments
      * @uses $callbacks
@@ -170,7 +170,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \Thumber\ThumbCreator
+     * @return \PhpThumber\ThumbCreator
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#fit
      * @uses $arguments
      * @uses $callbacks
@@ -201,7 +201,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \Thumber\ThumbCreator
+     * @return \PhpThumber\ThumbCreator
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resize
      * @uses $arguments
      * @uses $callbacks
@@ -237,7 +237,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \Thumber\ThumbCreator
+     * @return \PhpThumber\ThumbCreator
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resizecanvas
      * @uses $arguments
      * @uses $callbacks

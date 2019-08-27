@@ -10,10 +10,10 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber;
+namespace PhpThumber;
 
 use Symfony\Component\Finder\Finder;
-use Thumber\ThumbsPathTrait;
+use PhpThumber\ThumbsPathTrait;
 
 /**
  * A utility to manage thumbnails

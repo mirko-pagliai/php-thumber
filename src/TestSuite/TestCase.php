@@ -10,11 +10,11 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\TestSuite;
+namespace PhpThumber\TestSuite;
 
 use Exception;
-use Thumber\ThumbCreator;
-use Thumber\ThumbsPathTrait;
+use PhpThumber\ThumbCreator;
+use PhpThumber\ThumbsPathTrait;
 use Tools\TestSuite\TestCase as BaseTestCase;
 
 /**
@@ -104,7 +104,7 @@ abstract class TestCase extends BaseTestCase
      * @param string|null $path Path of the image from which to create the
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
      *  or a remote url
-     * @return \Thumber\ThumbCreator
+     * @return \PhpThumber\ThumbCreator
      */
     protected function getThumbCreatorInstance($path = null)
     {
@@ -121,7 +121,7 @@ abstract class TestCase extends BaseTestCase
      * @param string $path Path of the image from which to create the
      *  thumbnail. It can be a full path or a remote url
      * @param array $options Options for saving
-     * @return \Thumber\ThumbCreator
+     * @return \PhpThumber\ThumbCreator
      * @uses getThumbCreatorInstance()
      */
     protected function getThumbCreatorInstanceWithSave($path = null, array $options = [])

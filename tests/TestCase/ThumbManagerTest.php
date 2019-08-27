@@ -10,10 +10,10 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace PhpThumber\Test\TestCase;
 
-use Thumber\TestSuite\TestCase;
-use Thumber\ThumbManager;
+use PhpThumber\TestSuite\TestCase;
+use PhpThumber\ThumbManager;
 
 /**
  * ThumbManagerTest class
@@ -21,7 +21,7 @@ use Thumber\ThumbManager;
 class ThumbManagerTest extends TestCase
 {
     /**
-     * @var \Thumber\ThumbManager
+     * @var \PhpThumber\ThumbManager
      */
     protected $ThumbManager;
 

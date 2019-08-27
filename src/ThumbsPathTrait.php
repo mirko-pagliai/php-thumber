@@ -10,7 +10,7 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber;
+namespace PhpThumber;
 
 /**
  * This trait provides some methods to get and resolve thumbnails paths.

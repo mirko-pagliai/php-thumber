@@ -10,12 +10,12 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace PhpThumber\Test\TestCase;
 
 use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotSupportedException;
+use PhpThumber\TestSuite\TestCase;
 use RuntimeException;
-use Thumber\TestSuite\TestCase;
 
 /**
  * ThumbCreatorSaveTest class
