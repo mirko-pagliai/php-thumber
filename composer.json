@@ -1,0 +1,30 @@
+{
+    "name": "mirko-pagliai/php-thumber",
+    "description": "A PHP library to generate thumbnails",
+    "homepage": "https://github.com/mirko-pagliai/php-thumber",
+    "license": "MIT",
+    "authors": [{
+        "name": "Mirko Pagliai",
+        "email": "mirko.pagliai@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.5.9",
+        "intervention/image": "^2.4",
+        "mirko-pagliai/php-tools": "^1.2.8"
+    },
+    "require-dev": {
+        "cakephp/cakephp-codesniffer": "^3.0",
+        "phpunit/phpunit": "^5.7.14|^6.0",
+        "symfony/var-dumper": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Thumber\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tools\\Test\\": "tests/TestCase"
+        }
+    }
+}
