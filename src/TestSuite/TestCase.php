@@ -100,18 +100,6 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Asserts for a valid thumbnail url
-     * @param string $url Thumbnail url
-     * @param string $message The failure message that will be appended to the
-     *  generated message
-     * @return void
-     */
-    public function assertThumbUrl($url, $message = '')
-    {
-        self::assertRegExp('/^(http:\/\/localhost)?\/thumb\/[\w\d]+/', $url, $message);
-    }
-
-    /**
      * Returns an instance of `ThumbCreator`
      * @param string|null $path Path of the image from which to create the
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
