@@ -10,7 +10,7 @@
     "require": {
         "php": ">=5.5.9",
         "intervention/image": "^2.4",
-        "mirko-pagliai/php-tools": "^1.2.8"
+        "mirko-pagliai/php-tools": "^1.2.10"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^3.0",
