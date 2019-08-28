@@ -16,6 +16,8 @@ use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
+use PhpThumber\Exception\NotReadableImageException;
+use PhpThumber\Exception\UnsupportedImageTypeException;
 use PhpThumber\ThumbsPathTrait;
 use RuntimeException;
 
@@ -111,7 +113,8 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \RuntimeException
+     * @throws \PhpThumber\Exception\NotReadableImageException
+     * @throws \PhpThumber\Exception\UnsupportedImageTypeException
      * @uses $ImageManager
      * @uses $path
      */
@@ -121,13 +124,11 @@ class ThumbCreator
         try {
             $imageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
-            $message = sprintf('Unable to read image from file `%s`', rtr($this->path));
-
             if ($e->getMessage() == 'Unsupported image type. GD driver is only able to decode JPG, PNG, GIF or WebP files.') {
                 $message = sprintf('Image type `%s` is not supported by this driver', mime_content_type($this->path));
+                throw new UnsupportedImageTypeException($message);
             }
-
-            throw new RuntimeException($message);
+            throw new NotReadableImageException(sprintf('Unable to read image from file `%s`', rtr($this->path)));
         }
 
         return $imageInstance;
