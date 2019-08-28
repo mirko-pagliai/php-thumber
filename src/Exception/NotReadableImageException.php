@@ -12,9 +12,42 @@
  */
 namespace PhpThumber\Exception;
 
-use RuntimeException;
+use Exception;
 
-class NotReadableImageException extends RuntimeException
+/**
+ * NotReadableImageException
+ */
+class NotReadableImageException extends Exception
 {
+    /**
+     * @var string|null
+     */
+    protected $path;
 
+    /**
+	 * Construct the exception
+	 * @param string $message The Exception message to throw
+	 * @param int $code The Exception code
+	 * @param \Throwable|null $previous The previous exception used for the exception chaining
+     * @param string|null $path Path of the not readable image
+     * @uses $path
+     */
+    public function __construct($message = '', $code = 0, Throwable $previous = null, $path = null)
+    {
+        $message = 'Unable to read image from file';
+        if ($path) {
+            $message = sprintf('Unable to read image from file `%s`', $path);
+        }
+        parent::__construct($message, $code, $previous);
+        $this->path = $path;
+    }
+
+    /**
+     * Gets the path of the not readable image
+     * @return string|null
+     */
+    public function getFilePath()
+    {
+        return $this->path;
+    }
 }

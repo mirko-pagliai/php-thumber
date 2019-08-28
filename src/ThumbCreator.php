@@ -120,15 +120,13 @@ class ThumbCreator
      */
     protected function getImageInstance()
     {
-        //Tries to create the image instance
         try {
             $imageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
-            if ($e->getMessage() == 'Unsupported image type. GD driver is only able to decode JPG, PNG, GIF or WebP files.') {
-                $message = sprintf('Image type `%s` is not supported by this driver', mime_content_type($this->path));
-                throw new UnsupportedImageTypeException($message);
+            if (string_starts_with($e->getMessage(), 'Unsupported image type')) {
+                throw new UnsupportedImageTypeException('', 0, null, mime_content_type($this->path));
             }
-            throw new NotReadableImageException(sprintf('Unable to read image from file `%s`', rtr($this->path)));
+            throw new NotReadableImageException('', 0, null, rtr($this->path));
         }
 
         return $imageInstance;

@@ -14,6 +14,7 @@ namespace PhpThumber\Test\TestCase;
 
 use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotSupportedException;
+use PhpThumber\Exception\NotReadableImageException;
 use PhpThumber\TestSuite\TestCase;
 use RuntimeException;
 
@@ -65,7 +66,7 @@ class ThumbCreatorSaveTest extends TestCase
         if (THUMBER_DRIVER != 'imagick') {
             $expectExceptionMessage = 'Image type `text/x-php` is not supported by this driver';
         }
-        $this->expectException(RuntimeException::class);
+        $this->expectException(NotReadableImageException::class);
         $this->expectExceptionMessage($expectExceptionMessage);
         $this->getThumbCreatorInstanceWithSave(TESTS . 'bootstrap.php');
     }

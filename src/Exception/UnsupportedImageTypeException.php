@@ -12,9 +12,43 @@
  */
 namespace PhpThumber\Exception;
 
-use RuntimeException;
+use Exception;
+use Throwable;
 
-class UnsupportedImageTypeException extends RuntimeException
+/**
+ * UnsupportedImageTypeException
+ */
+class UnsupportedImageTypeException extends Exception
 {
+    /**
+     * @var string|null
+     */
+    protected $imageType;
 
+    /**
+	 * Construct the exception
+	 * @param string $message The Exception message to throw
+	 * @param int $code The Exception code
+	 * @param \Throwable|null $previous The previous exception used for the exception chaining
+     * @param string|null $imageType The unsupported image type
+     * @uses $imageType
+     */
+    public function __construct($message = '', $code = 0, Throwable $previous = null, $imageType = null)
+    {
+        $message = 'Image type not supported by this driver';
+        if ($imageType) {
+            $message = sprintf('Image type `%s` is not supported by this driver', $imageType);
+        }
+        parent::__construct($message, $code, $previous);
+        $this->imageType = $imageType;
+    }
+
+    /**
+     * Gets the unsupported image type
+     * @return string|null
+     */
+    public function getImageType()
+    {
+        return $this->imageType;
+    }
 }
