@@ -12,8 +12,8 @@
  */
 namespace PhpThumber;
 
-use Symfony\Component\Finder\Finder;
 use PhpThumber\ThumbsPathTrait;
+use Symfony\Component\Finder\Finder;
 
 /**
  * A utility to manage thumbnails

@@ -16,8 +16,8 @@ use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use RuntimeException;
 use PhpThumber\ThumbsPathTrait;
+use RuntimeException;
 
 /**
  * Utility to create a thumb.
