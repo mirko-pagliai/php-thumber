@@ -29,7 +29,7 @@ trait ThumbsPathTrait
     {
         $path = add_slash_term(THUMBER_TARGET);
 
-        return $file ? $path . DS . $file : $path;
+        return $file ? $path . $file : $path;
     }
 
     /**
