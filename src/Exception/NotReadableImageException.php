@@ -34,10 +34,13 @@ class NotReadableImageException extends Exception
      */
     public function __construct($message = '', $code = 0, Throwable $previous = null, $path = null)
     {
-        $message = 'Unable to read image from file';
-        if ($path) {
-            $message = sprintf('Unable to read image from file `%s`', $path);
+        if (!$message) {
+            $message = 'Unable to read image from file';
+            if ($path) {
+                $message = sprintf('Unable to read image from file `%s`', $path);
+            }
         }
+
         parent::__construct($message, $code, $previous);
         $this->path = $path;
     }
@@ -45,6 +48,7 @@ class NotReadableImageException extends Exception
     /**
      * Gets the path of the not readable image
      * @return string|null
+     * @uses $path
      */
     public function getFilePath()
     {

@@ -14,6 +14,7 @@ namespace PhpThumber\Test\TestCase;
 
 use Intervention\Image\Exception\NotReadableException as InterventionNotReadableException;
 use Intervention\Image\ImageManager;
+use PhpThumber\Exception\NotReadableImageException;
 use PhpThumber\Exception\UnsupportedImageTypeException;
 use PhpThumber\TestSuite\TestCase;
 use Tools\Exception\NotReadableException;
@@ -31,6 +32,21 @@ class ThumbCreatorTest extends TestCase
     {
         $this->expectException(NotReadableException::class);
         $this->getThumbCreatorInstance('noExistingFile.gif');
+    }
+
+    /**
+     * Test for `getImageInstance()` method, with a not readable image
+     * @ŧest
+     */
+    public function testGetImageInstanceNotReadableImageException()
+    {
+        $expectExceptionMessage = 'Unable to read image from file `tests/bootstrap.php`';
+        if (THUMBER_DRIVER != 'imagick') {
+            $expectExceptionMessage = 'Image type `text/x-php` is not supported by this driver';
+        }
+        $this->expectException(NotReadableImageException::class);
+        $this->expectExceptionMessage($expectExceptionMessage);
+        $this->getThumbCreatorInstanceWithSave(TESTS . 'bootstrap.php');
     }
 
     /**

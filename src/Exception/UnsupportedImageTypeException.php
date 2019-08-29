@@ -35,10 +35,13 @@ class UnsupportedImageTypeException extends Exception
      */
     public function __construct($message = '', $code = 0, Throwable $previous = null, $imageType = null)
     {
-        $message = 'Image type not supported by this driver';
-        if ($imageType) {
-            $message = sprintf('Image type `%s` is not supported by this driver', $imageType);
+        if (!$message) {
+            $message = 'Image type not supported by this driver';
+            if ($imageType) {
+                $message = sprintf('Image type `%s` is not supported by this driver', $imageType);
+            }
         }
+
         parent::__construct($message, $code, $previous);
         $this->imageType = $imageType;
     }
@@ -46,6 +49,7 @@ class UnsupportedImageTypeException extends Exception
     /**
      * Gets the unsupported image type
      * @return string|null
+     * @uses $imageType
      */
     public function getImageType()
     {

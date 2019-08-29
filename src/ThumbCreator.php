@@ -12,6 +12,7 @@
  */
 namespace PhpThumber;
 
+use BadMethodCallException;
 use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
@@ -19,7 +20,9 @@ use Intervention\Image\ImageManager;
 use PhpThumber\Exception\NotReadableImageException;
 use PhpThumber\Exception\UnsupportedImageTypeException;
 use PhpThumber\ThumbsPathTrait;
-use RuntimeException;
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Filesystem\Filesystem;
+use Tools\Exception\NotWritableException;
 
 /**
  * Utility to create a thumb.
@@ -261,7 +264,8 @@ class ThumbCreator
      * @param array $options Options for saving
      * @return string Thumbnail path
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#save
-     * @throws \RuntimeException
+     * @throws \BadMethodCallException
+     * @throws \Tools\Exception\NotWritableException
      * @uses getDefaultSaveOptions()
      * @uses getImageInstance()
      * @uses $arguments
@@ -272,11 +276,9 @@ class ThumbCreator
      */
     public function save(array $options = [])
     {
-        is_true_or_fail(
-            $this->callbacks,
-            sprintf('No valid method called before the `%s` method', __FUNCTION__),
-            RuntimeException::class
-        );
+        if (!$this->callbacks) {
+            throw new BadMethodCallException(sprintf('No valid method called before the `save` method'));
+        }
 
         $options = $this->getDefaultSaveOptions($options);
         $target = $options['target'];
@@ -301,10 +303,13 @@ class ThumbCreator
                 call_user_func($callback, $imageInstance);
             }
 
-            $success = create_file($target, $imageInstance->encode($options['format'], $options['quality']));
+            $content = $imageInstance->encode($options['format'], $options['quality']);
             $imageInstance->destroy();
-
-            is_true_or_fail($success, sprintf('Unable to create file `%s`', rtr($target)), RuntimeException::class);
+            try {
+                (new Filesystem())->dumpFile($target, $content);
+            } catch (IOException $e) {
+                throw new NotWritableException(sprintf('Unable to create file `%s`', rtr($target)));
+            }
         }
 
         //Resets arguments and callbacks
