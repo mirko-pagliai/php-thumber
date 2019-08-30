@@ -8,14 +8,14 @@
         "email": "mirko.pagliai@gmail.com"
     }],
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.1",
         "intervention/image": "^2.4",
-        "mirko-pagliai/php-tools": "^1.2.10"
+        "mirko-pagliai/php-tools": "dev-php7"
     },
     "require-dev": {
-        "cakephp/cakephp-codesniffer": "^3.0",
-        "phpunit/phpunit": "^5.7.14|^6.0|^7.0",
-        "symfony/var-dumper": "^3.4|^4.3"
+        "cakephp/cakephp-codesniffer": "dev-next",
+        "phpunit/phpunit": "^5.7.14|^6.0|^7.0|^8.0",
+        "symfony/var-dumper": "^4.3"
     },
     "autoload": {
         "psr-4": {

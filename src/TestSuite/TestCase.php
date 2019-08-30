@@ -28,7 +28,7 @@ abstract class TestCase extends BaseTestCase
      * Called after every test method
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         try {
             unlink_recursive($this->getPath());
