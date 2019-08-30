@@ -308,7 +308,7 @@ class ThumbCreator
             try {
                 (new Filesystem())->dumpFile($target, $content);
             } catch (IOException $e) {
-                throw new NotWritableException(sprintf('Unable to create file `%s`', rtr($target)));
+                throw new NotWritableException(sprintf('Unable to create file `%s`', $target ? rtr($target) : ''));
             }
         }
 
