@@ -27,13 +27,13 @@ class UnsupportedImageTypeException extends Exception
 
     /**
      * Construct the exception
-     * @param string $message The Exception message to throw
+     * @param string|null $message The Exception message to throw
      * @param int $code The Exception code
      * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $imageType The unsupported image type
      * @uses $imageType
      */
-    public function __construct($message = '', $code = 0, Throwable $previous = null, $imageType = null)
+    public function __construct($message = null, $code = 0, \Throwable $previous = null, $imageType = null)
     {
         if (!$message) {
             $message = 'Image type not supported by this driver';
