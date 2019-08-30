@@ -19,7 +19,6 @@ use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use PhpThumber\Exception\NotReadableImageException;
 use PhpThumber\Exception\UnsupportedImageTypeException;
-use PhpThumber\ThumbsPathTrait;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Tools\Exception\NotWritableException;
@@ -32,8 +31,6 @@ use Tools\Exception\NotWritableException;
  */
 class ThumbCreator
 {
-    use ThumbsPathTrait;
-
     /**
      * `ImageManager` instance
      * @var \Intervention\Image\ImageManager

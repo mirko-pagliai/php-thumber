@@ -12,7 +12,6 @@
  */
 namespace PhpThumber;
 
-use PhpThumber\ThumbsPathTrait;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -20,8 +19,6 @@ use Symfony\Component\Finder\Finder;
  */
 class ThumbManager
 {
-    use ThumbsPathTrait;
-
     /**
      * Supported formats
      * @var array
