@@ -14,6 +14,7 @@ namespace PhpThumber\Test\TestCase;
 
 use PhpThumber\TestSuite\TestCase;
 use PhpThumber\ThumbManager;
+use Tools\Exception\NotReadableException;
 
 /**
  * ThumbManagerTest class
@@ -81,6 +82,11 @@ class ThumbManagerTest extends TestCase
     {
         $this->assertCount(2, $this->ThumbManager->get(THUMBER_EXAMPLE_DIR . '400x400.jpg'));
         $this->assertCount(1, $this->ThumbManager->get(THUMBER_EXAMPLE_DIR . '400x400.png'));
+
+        //With a no existing file
+        $this->expectException(NotReadableException::class);
+        $this->expectExceptionMessage('File or directory `noExisting` is not readable');
+        $this->ThumbManager->get('noExisting');
     }
 
     /**

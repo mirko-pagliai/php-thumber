@@ -94,10 +94,12 @@ class ThumbManager
      * @param string $path Path of the original image
      * @param bool $sort Whether results should be sorted
      * @return array
+     * @throws \Tools\Exception\NotReadableException
      * @uses _find()
      */
     public function get($path, $sort = false)
     {
+        is_readable_or_fail($path);
         $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
 
         return $this->_find($pattern, $sort);
