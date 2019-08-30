@@ -99,7 +99,7 @@ class ThumbCreator
      * @return array Passed options added to the default options
      * @uses $path
      */
-    protected function getDefaultSaveOptions($options, $path = null)
+    protected function getDefaultSaveOptions(array $options = [], $path = null)
     {
         $options += [
             'format' => get_extension($path ?: $this->path),
