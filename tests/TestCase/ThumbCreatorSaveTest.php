@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -75,7 +76,7 @@ class ThumbCreatorSaveTest extends TestCase
             ->setConstructorArgs([THUMBER_EXAMPLE_DIR . '400x400.jpg'])
             ->setMethods(['getPath'])
             ->getMock();
-        $ThumbCreator->method('getPath')->willReturn(null);
+        $ThumbCreator->method('getPath')->willReturn('');
         $ThumbCreator->resize(200)->save();
     }
 

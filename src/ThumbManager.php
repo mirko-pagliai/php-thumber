@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -26,14 +27,14 @@ class ThumbManager
      * Supported formats
      * @var array
      */
-    const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
+    protected const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
 
     /**
      * Internal method to clear thumbnails
      * @param array $filenames Filenames
      * @return int|bool Number of thumbnails deleted otherwise `false` in case of error
      */
-    protected function _clear($filenames)
+    protected function _clear(array $filenames)
     {
         $count = 0;
 
@@ -54,7 +55,7 @@ class ThumbManager
      * @param bool $sort Whether results should be sorted
      * @return array
      */
-    protected function _find($pattern = null, $sort = false)
+    protected function _find(?string $pattern = null, bool $sort = false): array
     {
         $pattern = $pattern ?: sprintf('/[\d\w]{32}_[\d\w]{32}\.(%s)$/', implode('|', self::SUPPORTED_FORMATS));
         $finder = (new Finder())->files()->name($pattern)->in($this->getPath());
@@ -73,7 +74,7 @@ class ThumbManager
      * @uses _clear()
      * @uses get()
      */
-    public function clear($path)
+    public function clear(string $path)
     {
         return $this->_clear($this->get($path));
     }
@@ -96,7 +97,7 @@ class ThumbManager
      * @return array
      * @uses _find()
      */
-    public function get($path, $sort = false)
+    public function get(string $path, bool $sort = false): array
     {
         $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($this->resolveFilePath($path)), implode('|', self::SUPPORTED_FORMATS));
 
@@ -109,7 +110,7 @@ class ThumbManager
      * @return array
      * @uses _find()
      */
-    public function getAll($sort = false)
+    public function getAll(bool $sort = false): array
     {
         return $this->_find(null, $sort);
     }

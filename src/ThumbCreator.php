@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -84,7 +85,7 @@ class ThumbCreator
      * @uses $driver
      * @uses $path
      */
-    public function __construct($path)
+    public function __construct(string $path)
     {
         $this->driver = THUMBER_DRIVER;
         $this->ImageManager = new ImageManager(['driver' => $this->driver]);
@@ -99,7 +100,7 @@ class ThumbCreator
      * @return array Passed options added to the default options
      * @uses $path
      */
-    protected function getDefaultSaveOptions(array $options = [], $path = null)
+    protected function getDefaultSaveOptions(array $options = [], ?string $path = null): array
     {
         $options += [
             'format' => get_extension($path ?: $this->path),
@@ -121,7 +122,7 @@ class ThumbCreator
      * @uses $ImageManager
      * @uses $path
      */
-    protected function getImageInstance()
+    protected function getImageInstance(): Image
     {
         try {
             $imageInstance = $this->ImageManager->make($this->path);
@@ -143,12 +144,12 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return self
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#crop
      * @uses $arguments
      * @uses $callbacks
      */
-    public function crop($width = null, $heigth = null, array $options = [])
+    public function crop(?int $width = null, ?int $heigth = null, array $options = []): ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $width = $width ?: $heigth;
@@ -172,12 +173,12 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return $this
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#fit
      * @uses $arguments
      * @uses $callbacks
      */
-    public function fit($width = null, $heigth = null, array $options = [])
+    public function fit(?int $width = null, ?int $heigth = null, array $options = [])
     {
         $heigth = $heigth ?: $width;
         $width = $width ?: $heigth;
@@ -203,12 +204,12 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return $this
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resize
      * @uses $arguments
      * @uses $callbacks
      */
-    public function resize($width = null, $heigth = null, array $options = [])
+    public function resize(?int $width = null, ?int $heigth = null, array $options = [])
     {
         $options += ['aspectRatio' => true, 'upsize' => true];
 
@@ -239,12 +240,12 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return $this
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resizecanvas
      * @uses $arguments
      * @uses $callbacks
      */
-    public function resizeCanvas($width, $heigth = null, array $options = [])
+    public function resizeCanvas(?int $width, ?int $heigth = null, array $options = [])
     {
         $options += ['anchor' => 'center', 'relative' => false, 'bgcolor' => '#ffffff'];
 
@@ -274,7 +275,7 @@ class ThumbCreator
      * @uses $path
      * @uses $target
      */
-    public function save(array $options = [])
+    public function save(array $options = []): string
     {
         if (!$this->callbacks) {
             throw new BadMethodCallException(sprintf('No valid method called before the `save()` method'));

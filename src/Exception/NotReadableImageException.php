@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -32,7 +33,7 @@ class NotReadableImageException extends Exception
      * @param string|null $path Path of the not readable image
      * @uses $path
      */
-    public function __construct($message = null, $code = 0, \Throwable $previous = null, $path = null)
+    public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $path = null)
     {
         if (!$message) {
             $message = 'Unable to read image from file';
@@ -50,7 +51,7 @@ class NotReadableImageException extends Exception
      * @return string|null
      * @uses $path
      */
-    public function getFilePath()
+    public function getFilePath(): ?string
     {
         return $this->path;
     }

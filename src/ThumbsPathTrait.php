@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -25,7 +26,7 @@ trait ThumbsPathTrait
      * @param string|null $file File
      * @return string
      */
-    protected function getPath($file = null)
+    protected function getPath(?string $file = null): string
     {
         $path = add_slash_term(THUMBER_TARGET);
 
@@ -37,7 +38,7 @@ trait ThumbsPathTrait
      * @param string $path Partial file path
      * @return string
      */
-    protected function resolveFilePath($path)
+    protected function resolveFilePath(string $path): string
     {
         if (!is_url($path)) {
             is_readable_or_fail($path);
