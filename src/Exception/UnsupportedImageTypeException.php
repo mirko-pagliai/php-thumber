@@ -13,7 +13,6 @@
 namespace PhpThumber\Exception;
 
 use Exception;
-use Throwable;
 
 /**
  * UnsupportedImageTypeException
