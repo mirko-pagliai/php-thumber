@@ -166,7 +166,7 @@ class ThumbCreatorSaveTest extends TestCase
 
         $this->skipIfDriverIs('gd');
         $file = $this->getThumbCreatorInstance()->resize(200)->save(['format' => 'tif']);
-        $this->assertFileExtension('tiff', $file, PATHINFO_EXTENSION);
+        $this->assertFileExtension('tiff', $file);
 
         //Using the `target` option with an invalid file
         $this->expectException(NotSupportedException::class);
@@ -180,7 +180,7 @@ class ThumbCreatorSaveTest extends TestCase
     public function testSaveWithoutCallbacks()
     {
         $this->expectException(BadMethodCallException::class);
-        $this->expectExceptionMessage('No valid method called before the `save` method');
+        $this->expectExceptionMessage('No valid method called before the `save()` method');
         $this->getThumbCreatorInstance()->save();
     }
 }
