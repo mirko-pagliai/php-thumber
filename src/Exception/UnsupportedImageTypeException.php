@@ -26,10 +26,10 @@ class UnsupportedImageTypeException extends Exception
     protected $imageType;
 
     /**
-	 * Construct the exception
-	 * @param string $message The Exception message to throw
-	 * @param int $code The Exception code
-	 * @param \Throwable|null $previous The previous exception used for the exception chaining
+     * Construct the exception
+     * @param string $message The Exception message to throw
+     * @param int $code The Exception code
+     * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $imageType The unsupported image type
      * @uses $imageType
      */
