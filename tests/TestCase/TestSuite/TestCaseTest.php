@@ -31,7 +31,7 @@ class TestCaseTest extends TestCase
             ->setMethods(['getPath'])
             ->getMock();
 
-        $test->method('getPath')->willThrowException(new Exception);
+        $test->method('getPath')->willThrowException(new Exception());
         $this->assertNull($test->tearDown());
     }
 
