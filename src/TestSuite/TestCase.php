@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
     public function tearDown()
     {
         try {
-            unlink_recursive($this->getPath());
+            unlink_recursive(THUMBER_TARGET);
         } catch (Exception $e) {
         }
 

@@ -38,7 +38,7 @@ class ThumbManager
         $count = 0;
 
         foreach ($filenames as $filename) {
-            if (!@unlink($this->getPath($filename))) {
+            if (!@unlink(add_slash_term(THUMBER_TARGET) . $filename)) {
                 return false;
             }
 
@@ -57,7 +57,7 @@ class ThumbManager
     protected function _find($pattern = null, $sort = false)
     {
         $pattern = $pattern ?: sprintf('/[\d\w]{32}_[\d\w]{32}\.(%s)$/', implode('|', self::SUPPORTED_FORMATS));
-        $finder = (new Finder())->files()->name($pattern)->in($this->getPath());
+        $finder = (new Finder())->files()->name($pattern)->in(THUMBER_TARGET);
 
         if ($sort) {
             $finder = $finder->sortByName();
