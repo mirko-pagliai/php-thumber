@@ -98,7 +98,7 @@ class ThumbManager
      */
     public function get($path, $sort = false)
     {
-        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($this->resolveFilePath($path)), implode('|', self::SUPPORTED_FORMATS));
+        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
 
         return $this->_find($pattern, $sort);
     }

@@ -86,9 +86,12 @@ class ThumbCreator
      */
     public function __construct($path)
     {
+        if (!is_url($path)) {
+            is_readable_or_fail($path);
+        }
         $this->driver = THUMBER_DRIVER;
         $this->ImageManager = new ImageManager(['driver' => $this->driver]);
-        $this->path = $this->resolveFilePath($path);
+        $this->path = $path;
         $this->arguments[] = $this->path;
     }
 

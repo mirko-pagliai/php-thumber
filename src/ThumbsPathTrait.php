@@ -31,18 +31,4 @@ trait ThumbsPathTrait
 
         return $file ? $path . $file : $path;
     }
-
-    /**
-     * Internal method to resolve a partial file path
-     * @param string $path Partial file path
-     * @return string
-     */
-    protected function resolveFilePath($path)
-    {
-        if (!is_url($path)) {
-            is_readable_or_fail($path);
-        }
-
-        return $path;
-    }
 }
