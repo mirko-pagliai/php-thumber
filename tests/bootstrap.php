@@ -24,3 +24,5 @@ require_once 'config/bootstrap.php';
 define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
 define('THUMBER_COMPARING_DIR', THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . THUMBER_DRIVER . DS);
 echo 'Running tests for "' . THUMBER_DRIVER . '" driver ' . PHP_EOL;
+
+class_alias('PHPUnit\Framework\ExpectationFailedException', '\PHPUnit_Framework_ExpectationFailedException');
