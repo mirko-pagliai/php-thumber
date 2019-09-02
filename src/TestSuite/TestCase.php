@@ -29,10 +29,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function tearDown()
     {
-        try {
-            unlink_recursive(THUMBER_TARGET);
-        } catch (Exception $e) {
-        }
+        @unlink_recursive(THUMBER_TARGET);
 
         parent::tearDown();
     }
