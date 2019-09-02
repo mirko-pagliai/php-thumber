@@ -15,6 +15,7 @@ namespace PhpThumber\Test\TestCase;
 use Exception;
 use PhpThumber\TestSuite\TestCase;
 use PhpThumber\ThumbCreator;
+use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * TestCaseTest class
@@ -33,6 +34,21 @@ class TestCaseTest extends TestCase
 
         $test->method('getPath')->willThrowException(new Exception());
         $this->assertNull($test->tearDown());
+    }
+
+    /**
+     * Test for `assertImageFileEquals()` method
+     * @test
+     */
+    public function testAssertImageFileEquals()
+    {
+        $original = THUMBER_EXAMPLE_DIR . '400x400.jpg';
+        $copy = $this->createCopy($original);
+        $this->assertImageFileEquals($original, $copy);
+        @unlink($copy);
+
+        $this->expectException(ExpectationFailedException::class);
+        $this->assertImageFileEquals($original, create_tmp_file());
     }
 
     /**
