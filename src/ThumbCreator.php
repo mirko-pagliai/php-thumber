@@ -28,6 +28,7 @@ use Tools\Exception\NotWritableException;
  *
  * Please, refer to the `README` file to know how to use the utility and to
  * see examples.
+ * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails
  */
 class ThumbCreator
 {
@@ -144,7 +145,7 @@ class ThumbCreator
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
      * @return \PhpThumber\ThumbCreator
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#crop
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop
      * @uses $arguments
      * @uses $callbacks
      */
@@ -173,7 +174,7 @@ class ThumbCreator
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
      * @return \PhpThumber\ThumbCreator
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#fit
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
      * @uses $arguments
      * @uses $callbacks
      */
@@ -204,7 +205,7 @@ class ThumbCreator
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
      * @return \PhpThumber\ThumbCreator
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resize
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize
      * @uses $arguments
      * @uses $callbacks
      */
@@ -240,7 +241,7 @@ class ThumbCreator
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
      * @return \PhpThumber\ThumbCreator
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resizecanvas
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas
      * @uses $arguments
      * @uses $callbacks
      */
@@ -263,7 +264,7 @@ class ThumbCreator
      * Saves the thumbnail and returns its path
      * @param array $options Options for saving
      * @return string Thumbnail path
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#save
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
      * @throws \BadMethodCallException
      * @throws \Tools\Exception\NotWritableException
      * @uses getDefaultSaveOptions()
