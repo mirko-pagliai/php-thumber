@@ -8,8 +8,8 @@
         "email": "mirko.pagliai@gmail.com"
     }],
     "require": {
-        "php": ">=5.5.9",
-        "intervention/image": "^2.4",
+        "php": ">=5.6",
+        "intervention/image": "^2.3",
         "mirko-pagliai/php-tools": "^1.2.10"
     },
     "require-dev": {
