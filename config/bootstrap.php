@@ -21,7 +21,8 @@ if (!in_array(THUMBER_DRIVER, ['imagick', 'gd'])) {
 
 //Default thumbnails directory
 if (!defined('THUMBER_TARGET')) {
-    define('THUMBER_TARGET', TMP . 'thumbs');
+    $tmp = defined('TMP') ? TMP : sys_get_temp_dir() . DS . 'php-thumber';
+    define('THUMBER_TARGET', add_slash_term($tmp) . 'thumbs');
 }
 @mkdir(THUMBER_TARGET, 0777, true);
 if (!is_writeable(THUMBER_TARGET)) {
