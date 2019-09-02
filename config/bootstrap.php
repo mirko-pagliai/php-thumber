@@ -13,7 +13,7 @@
 
 //Default thumbnails driver
 if (!defined('THUMBER_DRIVER')) {
-    define('THUMBER_DRIVER', 'imagick');
+    define('THUMBER_DRIVER', extension_loaded('imagick') ? 'imagick' : 'gd');
 }
 if (!in_array(THUMBER_DRIVER, ['imagick', 'gd'])) {
     trigger_error(sprintf('The driver `%s` is not supported', THUMBER_DRIVER), E_USER_ERROR);
