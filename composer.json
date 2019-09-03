@@ -9,7 +9,7 @@
     }],
     "require": {
         "php": ">=7.1",
-        "intervention/image": "^2.4",
+        "intervention/image": "^2.3",
         "mirko-pagliai/php-tools": "dev-php7"
     },
     "require-dev": {

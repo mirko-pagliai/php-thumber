@@ -20,13 +20,12 @@ define('TMP', sys_get_temp_dir() . DS . 'php-thumber' . DS);
 
 @mkdir(TMP, 0777, true);
 
-if (!getenv('THUMBER_DRIVER')) {
-    putenv('THUMBER_DRIVER=' . (extension_loaded('imagick') ? 'imagick' : 'gd'));
-}
-define('THUMBER_DRIVER', getenv('THUMBER_DRIVER'));
-define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
-define('THUMBER_COMPARING_DIR', THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . getenv('THUMBER_DRIVER') . DS);
-
 require_once 'config/bootstrap.php';
 
-echo 'Running tests for "' . getenv('THUMBER_DRIVER') . '" driver ' . PHP_EOL;
+define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
+define('THUMBER_COMPARING_DIR', THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . THUMBER_DRIVER . DS);
+echo 'Running tests for "' . THUMBER_DRIVER . '" driver ' . PHP_EOL;
+
+if (!class_exists('\PHPUnit\Framework\ExpectationFailedException')) {
+    class_alias('\PHPUnit_Framework_ExpectationFailedException', '\PHPUnit\Framework\ExpectationFailedException');
+}

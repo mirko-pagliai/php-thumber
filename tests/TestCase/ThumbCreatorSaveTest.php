@@ -17,7 +17,6 @@ use BadMethodCallException;
 use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotSupportedException;
 use PhpThumber\TestSuite\TestCase;
-use PhpThumber\ThumbCreator;
 use Tools\Exception\NotWritableException;
 
 /**
@@ -59,25 +58,23 @@ class ThumbCreatorSaveTest extends TestCase
 
             //Using `target` option
             $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['target' => 'image.' . $extension]);
-            $this->assertEquals($this->getPath('image.' . $extension), $thumb);
+            $this->assertEquals(add_slash_term(THUMBER_TARGET) . 'image.' . $extension, $thumb);
             $this->assertFileMime($expectedMimetype, $thumb);
         }
     }
 
     /**
      * Test for `save()` method, if unable to create file
+     * @requires OS Linux
      * @test
      */
     public function testSaveUnableToCreateFile()
     {
         $this->expectException(NotWritableException::class);
-        $this->expectExceptionMessage('Unable to create file ``');
-        $ThumbCreator = $this->getMockBuilder(ThumbCreator::class)
-            ->setConstructorArgs([THUMBER_EXAMPLE_DIR . '400x400.jpg'])
-            ->setMethods(['getPath'])
-            ->getMock();
-        $ThumbCreator->method('getPath')->willReturn('');
-        $ThumbCreator->resize(200)->save();
+        $this->expectExceptionMessage('Unable to create file `' . DS . 'noExisting`');
+        $this->getThumbCreatorInstance('400x400.jpg')
+            ->resize(200)
+            ->save(['target' => DS . 'noExisting']);
     }
 
     /**
@@ -148,7 +145,7 @@ class ThumbCreatorSaveTest extends TestCase
     public function testSaveWithTarget()
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['target' => 'thumb.png']);
-        $this->assertEquals($this->getPath('thumb.png'), $thumb);
+        $this->assertEquals(add_slash_term(THUMBER_TARGET) . 'thumb.png', $thumb);
         $this->assertFileMime('image/png', $thumb);
 
         //With an invalid file format

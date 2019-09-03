@@ -77,7 +77,7 @@ trait TestTrait
      */
     public function assertThumbPath(string $path, string $message = ''): void
     {
-        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote($this->getPath(), DS));
+        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote(add_slash_term(THUMBER_TARGET), DS));
         self::assertRegExp($regex, $path, $message);
     }
 

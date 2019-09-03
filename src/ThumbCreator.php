@@ -20,7 +20,6 @@ use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use PhpThumber\Exception\NotReadableImageException;
 use PhpThumber\Exception\UnsupportedImageTypeException;
-use PhpThumber\ThumbsPathTrait;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Tools\Exception\NotWritableException;
@@ -30,11 +29,10 @@ use Tools\Exception\NotWritableException;
  *
  * Please, refer to the `README` file to know how to use the utility and to
  * see examples.
+ * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails
  */
 class ThumbCreator
 {
-    use ThumbsPathTrait;
-
     /**
      * `ImageManager` instance
      * @var \Intervention\Image\ImageManager
@@ -87,9 +85,12 @@ class ThumbCreator
      */
     public function __construct(string $path)
     {
+        if (!is_url($path)) {
+            is_readable_or_fail($path);
+        }
         $this->driver = THUMBER_DRIVER;
         $this->ImageManager = new ImageManager(['driver' => $this->driver]);
-        $this->path = $this->resolveFilePath($path);
+        $this->path = $path;
         $this->arguments[] = $this->path;
     }
 
@@ -144,8 +145,13 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
+<<<<<<< HEAD
      * @return self
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#crop
+=======
+     * @return \PhpThumber\ThumbCreator
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop
+>>>>>>> master
      * @uses $arguments
      * @uses $callbacks
      */
@@ -173,8 +179,13 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
+<<<<<<< HEAD
      * @return $this
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#fit
+=======
+     * @return \PhpThumber\ThumbCreator
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
+>>>>>>> master
      * @uses $arguments
      * @uses $callbacks
      */
@@ -204,8 +215,13 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
+<<<<<<< HEAD
      * @return $this
      * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resize
+=======
+     * @return \PhpThumber\ThumbCreator
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize
+>>>>>>> master
      * @uses $arguments
      * @uses $callbacks
      */
@@ -241,7 +257,7 @@ class ThumbCreator
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
      * @return $this
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resizecanvas
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas
      * @uses $arguments
      * @uses $callbacks
      */
@@ -264,7 +280,7 @@ class ThumbCreator
      * Saves the thumbnail and returns its path
      * @param array $options Options for saving
      * @return string Thumbnail path
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#save
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
      * @throws \BadMethodCallException
      * @throws \Tools\Exception\NotWritableException
      * @uses getDefaultSaveOptions()
@@ -293,7 +309,7 @@ class ThumbCreator
             $options['format'] = $optionsFromTarget['format'];
         }
 
-        $target = is_absolute($target) ? $target : $this->getPath($target);
+        $target = is_absolute($target) ? $target : add_slash_term(THUMBER_TARGET) . $target;
 
         //Creates the thumbnail, if this does not exist
         if (!file_exists($target)) {

@@ -13,7 +13,6 @@ declare(strict_types=1);
  */
 namespace PhpThumber;
 
-use PhpThumber\ThumbsPathTrait;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -21,8 +20,6 @@ use Symfony\Component\Finder\Finder;
  */
 class ThumbManager
 {
-    use ThumbsPathTrait;
-
     /**
      * Supported formats
      * @var array
@@ -39,7 +36,7 @@ class ThumbManager
         $count = 0;
 
         foreach ($filenames as $filename) {
-            if (!@unlink($this->getPath($filename))) {
+            if (!@unlink(add_slash_term(THUMBER_TARGET) . $filename)) {
                 return false;
             }
 
@@ -58,7 +55,7 @@ class ThumbManager
     protected function _find(?string $pattern = null, bool $sort = false): array
     {
         $pattern = $pattern ?: sprintf('/[\d\w]{32}_[\d\w]{32}\.(%s)$/', implode('|', self::SUPPORTED_FORMATS));
-        $finder = (new Finder())->files()->name($pattern)->in($this->getPath());
+        $finder = (new Finder())->files()->name($pattern)->in(THUMBER_TARGET);
 
         if ($sort) {
             $finder = $finder->sortByName();
@@ -95,11 +92,13 @@ class ThumbManager
      * @param string $path Path of the original image
      * @param bool $sort Whether results should be sorted
      * @return array
+     * @throws \Tools\Exception\NotReadableException
      * @uses _find()
      */
     public function get(string $path, bool $sort = false): array
     {
-        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($this->resolveFilePath($path)), implode('|', self::SUPPORTED_FORMATS));
+        is_readable_or_fail($path);
+        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
 
         return $this->_find($pattern, $sort);
     }
