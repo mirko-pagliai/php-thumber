@@ -17,11 +17,11 @@ use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use Tools\Thumber\Exception\NotReadableImageException;
-use Tools\Thumber\Exception\UnsupportedImageTypeException;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Tools\Exception\NotWritableException;
+use Tools\Thumber\Exception\NotReadableImageException;
+use Tools\Thumber\Exception\UnsupportedImageTypeException;
 
 /**
  * Utility to create a thumb.

@@ -13,9 +13,9 @@
 namespace Tools\Thumber\Test\TestCase;
 
 use Exception;
+use PHPUnit\Framework\ExpectationFailedException;
 use Tools\Thumber\TestSuite\TestCase;
 use Tools\Thumber\ThumbCreator;
-use PHPUnit\Framework\ExpectationFailedException;
 
 /**
  * TestCaseTest class

@@ -12,9 +12,9 @@
  */
 namespace Tools\Thumber\Test\TestCase;
 
+use Tools\Exception\NotReadableException;
 use Tools\Thumber\TestSuite\TestCase;
 use Tools\Thumber\ThumbManager;
-use Tools\Exception\NotReadableException;
 
 /**
  * ThumbManagerTest class
