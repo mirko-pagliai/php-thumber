@@ -145,13 +145,8 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-<<<<<<< HEAD
      * @return self
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#crop
-=======
-     * @return \PhpThumber\ThumbCreator
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop
->>>>>>> master
      * @uses $arguments
      * @uses $callbacks
      */
@@ -179,13 +174,8 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-<<<<<<< HEAD
-     * @return $this
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#fit
-=======
-     * @return \PhpThumber\ThumbCreator
+     * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
->>>>>>> master
      * @uses $arguments
      * @uses $callbacks
      */
@@ -215,13 +205,8 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-<<<<<<< HEAD
-     * @return $this
-     * @see https://github.com/mirko-pagliai/cakephp-thumber/wiki/How-to-uses-the-ThumbCreator-utility#resize
-=======
-     * @return \PhpThumber\ThumbCreator
+     * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize
->>>>>>> master
      * @uses $arguments
      * @uses $callbacks
      */
@@ -256,7 +241,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return $this
+     * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas
      * @uses $arguments
      * @uses $callbacks
