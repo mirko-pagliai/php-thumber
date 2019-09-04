@@ -100,7 +100,7 @@ trait TestTrait
      *  `save()` methods.
      *
      * It can be called passing only the array of options as first argument.
-     * @param string|null $path Path of the image from which to create the
+     * @param string|array|null $path Path of the image from which to create the
      *  thumbnail. It can be a full path or a remote url
      * @param array $options Options for saving
      * @return \PhpThumber\ThumbCreator
