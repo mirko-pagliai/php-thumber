@@ -10,7 +10,7 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PhpThumber;
+namespace Tools\Thumber;
 
 use Symfony\Component\Finder\Finder;
 
