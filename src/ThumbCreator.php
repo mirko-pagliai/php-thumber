@@ -144,7 +144,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop
      * @uses $arguments
      * @uses $callbacks
@@ -173,7 +173,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
      * @uses $arguments
      * @uses $callbacks
@@ -204,7 +204,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize
      * @uses $arguments
      * @uses $callbacks
@@ -240,7 +240,7 @@ class ThumbCreator
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
      * @param array $options Options for the thumbnail
-     * @return \PhpThumber\ThumbCreator
+     * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas
      * @uses $arguments
      * @uses $callbacks

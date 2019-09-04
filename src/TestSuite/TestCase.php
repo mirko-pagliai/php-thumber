@@ -12,7 +12,6 @@
  */
 namespace PhpThumber\TestSuite;
 
-use Exception;
 use PhpThumber\TestSuite\TestTrait;
 use Tools\TestSuite\TestCase as BaseTestCase;
 
