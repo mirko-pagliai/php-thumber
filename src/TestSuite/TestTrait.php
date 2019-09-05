@@ -10,9 +10,9 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PhpThumber\TestSuite;
+namespace Tools\Thumber\TestSuite;
 
-use PhpThumber\ThumbCreator;
+use Tools\Thumber\ThumbCreator;
 
 /**
  * TestCase trait
@@ -85,7 +85,7 @@ trait TestTrait
      * @param string|null $path Path of the image from which to create the
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
      *  or a remote url
-     * @return \PhpThumber\ThumbCreator
+     * @return \Tools\Thumber\ThumbCreator
      */
     protected function getThumbCreatorInstance($path = null)
     {
@@ -102,7 +102,7 @@ trait TestTrait
      * @param string|null|array $path Path of the image from which to create the
      *  thumbnail. It can be a full path or a remote url
      * @param array $options Options for saving
-     * @return \PhpThumber\ThumbCreator
+     * @return \Tools\Thumber\ThumbCreator
      * @uses getThumbCreatorInstance()
      */
     protected function getThumbCreatorInstanceWithSave($path = null, array $options = [])
