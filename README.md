@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/mirko-pagliai/php-thumber.svg?branch=master)](https://travis-ci.org/mirko-pagliai/php-thumber)
 [![Build status](https://ci.appveyor.com/api/projects/status/ie7j3678w3knhfhy/branch/master?svg=true)](https://ci.appveyor.com/project/mirko-pagliai/php-thumber/branch/master)
 [![codecov](https://codecov.io/gh/mirko-pagliai/php-thumber/branch/master/graph/badge.svg)](https://codecov.io/gh/mirko-pagliai/php-thumber)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/afadd01c29e141d28b22549c030bb7f5)](https://www.codacy.com/app/mirko.pagliai/php-thumber?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mirko-pagliai/php-thumber&amp;utm_campaign=Badge_Grade)
 
 *php-thumber* is a PHP library for creating thumbnails on the fly and it implements a file cache for thumbnails.
 It uses [intervention/image](https://github.com/Intervention/image), working as wrapper.
