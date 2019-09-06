@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PhpThumber\Test\Exception;
+namespace Tools\Thumber\Test\Exception;
 
-use PhpThumber\Exception\UnsupportedImageTypeException;
-use PhpThumber\TestSuite\TestCase;
+use Tools\Thumber\Exception\UnsupportedImageTypeException;
+use Tools\Thumber\TestSuite\TestCase;
 
 /**
  * UnsupportedImageTypeExceptionTest class

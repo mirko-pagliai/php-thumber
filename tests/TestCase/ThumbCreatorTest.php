@@ -11,14 +11,14 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PhpThumber\Test;
+namespace Tools\Thumber\Test\TestCase;
 
 use Intervention\Image\Exception\NotReadableException as InterventionNotReadableException;
 use Intervention\Image\ImageManager;
-use PhpThumber\Exception\NotReadableImageException;
-use PhpThumber\Exception\UnsupportedImageTypeException;
-use PhpThumber\TestSuite\TestCase;
 use Tools\Exception\NotReadableException;
+use Tools\Thumber\Exception\NotReadableImageException;
+use Tools\Thumber\Exception\UnsupportedImageTypeException;
+use Tools\Thumber\TestSuite\TestCase;
 
 /**
  * ThumbCreatorTest class
@@ -42,13 +42,13 @@ class ThumbCreatorTest extends TestCase
     public function testGetImageInstanceNotReadableImageException()
     {
         $expectedException = NotReadableImageException::class;
-        $expectedExceptionMessage = 'Unable to read image from file `tests/bootstrap.php`';
+        $expectedMessage = 'Unable to read image from file `tests/bootstrap.php`';
         if (THUMBER_DRIVER != 'imagick') {
             $expectedException = UnsupportedImageTypeException::class;
-            $expectedExceptionMessage = 'Image type `text/x-php` is not supported by this driver';
+            $expectedMessage = 'Image type `text/x-php` is not supported by this driver';
         }
         $this->expectException($expectedException);
-        $this->expectExceptionMessage($expectedExceptionMessage);
+        $this->expectExceptionMessage($expectedMessage);
         $this->getThumbCreatorInstanceWithSave(TESTS . 'bootstrap.php');
     }
 

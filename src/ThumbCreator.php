@@ -11,18 +11,18 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PhpThumber;
+namespace Tools\Thumber;
 
 use BadMethodCallException;
 use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use PhpThumber\Exception\NotReadableImageException;
-use PhpThumber\Exception\UnsupportedImageTypeException;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Tools\Exception\NotWritableException;
+use Tools\Thumber\Exception\NotReadableImageException;
+use Tools\Thumber\Exception\UnsupportedImageTypeException;
 
 /**
  * Utility to create a thumb.
@@ -118,8 +118,8 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \PhpThumber\Exception\NotReadableImageException
-     * @throws \PhpThumber\Exception\UnsupportedImageTypeException
+     * @throws \Tools\Thumber\Exception\NotReadableImageException
+     * @throws \Tools\Thumber\Exception\UnsupportedImageTypeException
      * @uses $ImageManager
      * @uses $path
      */
@@ -284,14 +284,11 @@ class ThumbCreator
 
         $options = $this->getDefaultSaveOptions($options);
         $target = $options['target'];
+        $options['format'] = $target ? $this->getDefaultSaveOptions([], $target)['format'] : $options['format'];
 
         if (!$target) {
             $this->arguments[] = [$this->driver, $options['format'], $options['quality']];
-
             $target = sprintf('%s_%s.%s', md5($this->path), md5(serialize($this->arguments)), $options['format']);
-        } else {
-            $optionsFromTarget = $this->getDefaultSaveOptions([], $target);
-            $options['format'] = $optionsFromTarget['format'];
         }
 
         $target = is_absolute($target) ? $target : add_slash_term(THUMBER_TARGET) . $target;

@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/mirko-pagliai/php-thumber.svg?branch=master)](https://travis-ci.org/mirko-pagliai/php-thumber)
 [![Build status](https://ci.appveyor.com/api/projects/status/ie7j3678w3knhfhy/branch/master?svg=true)](https://ci.appveyor.com/project/mirko-pagliai/php-thumber/branch/master)
 [![codecov](https://codecov.io/gh/mirko-pagliai/php-thumber/branch/master/graph/badge.svg)](https://codecov.io/gh/mirko-pagliai/php-thumber)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/afadd01c29e141d28b22549c030bb7f5)](https://www.codacy.com/app/mirko.pagliai/php-thumber?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mirko-pagliai/php-thumber&amp;utm_campaign=Badge_Grade)
 
 *php-thumber* is a PHP library for creating thumbnails on the fly and it implements a file cache for thumbnails.
 It uses [intervention/image](https://github.com/Intervention/image), working as wrapper.
@@ -15,11 +16,11 @@ Please consider the possibility of making [a donation](//paypal.me/mirkopagliai)
 
 ***
 
-  * [Requirements and supported formats](#requirements-and-supported-formats)
-  * [Installation and configuration](#installation-and-configuration)
-  * [How to use](#how-to-use)
-  * [Testing](#testing)
-  * [Versioning](#versioning)
+*   [Requirements and supported formats](#requirements-and-supported-formats)
+*   [Installation and configuration](#installation-and-configuration)
+*   [How to use](#how-to-use)
+*   [Testing](#testing)
+*   [Versioning](#versioning)
 
 ## Requirements and supported formats
 *php-thumber* requires GD Library (>=2.0) **or** Imagick PHP extension 
@@ -44,8 +45,9 @@ $ composer require --prefer-dist mirko-pagliai/php-thumber
 ```
 
 Therefore, before using the library, it may be necessary to configure some constants:
-- `THUMBER_DRIVER`: the driver you want to use for the creation of thumbnails. Valid values are `imagick` or `gd`;
-- `THUMBER_TARGET`: full path directory where to create thumbnails (so you have to create this directory and make it writable).
+
+*   `THUMBER_DRIVER`: the driver you want to use for the creation of thumbnails. Valid values are `imagick` or `gd`;
+*   `THUMBER_TARGET`: full path directory where to create thumbnails (so you have to create this directory and make it writable).
 
 An example:
 ```php
@@ -57,9 +59,9 @@ Otherwise, you can include/require the [`config/bootstrap.php`](https://github.c
 
 ## How to use
 See our wiki:
-- [How to use ThumbCreator and create thumbnails](https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails).
+*   [How to use ThumbCreator and create thumbnails](https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails).
 
-## Testing    
+## Testing
 Some tests belong to the `imageEquals` group. These tests generate thubnails and compare them with pre-loaded thumbnails (inside `tests/examples/comparing_files`).  
 By default, these tests are not performed, because the images may be different if generated from different environments and systems.
 

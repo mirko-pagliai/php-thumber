@@ -11,12 +11,12 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace PhpThumber\Test\TestSuite;
+namespace Tools\Thumber\Test\TestCase;
 
 use Exception;
-use PhpThumber\TestSuite\TestCase;
-use PhpThumber\ThumbCreator;
 use PHPUnit\Framework\ExpectationFailedException;
+use Tools\Thumber\TestSuite\TestCase;
+use Tools\Thumber\ThumbCreator;
 
 /**
  * TestCaseTest class
