@@ -15,11 +15,11 @@ Please consider the possibility of making [a donation](//paypal.me/mirkopagliai)
 
 ***
 
-  * [Requirements and supported formats](#requirements-and-supported-formats)
-  * [Installation and configuration](#installation-and-configuration)
-  * [How to use](#how-to-use)
-  * [Testing](#testing)
-  * [Versioning](#versioning)
+*   [Requirements and supported formats](#requirements-and-supported-formats)
+*   [Installation and configuration](#installation-and-configuration)
+*   [How to use](#how-to-use)
+*   [Testing](#testing)
+*   [Versioning](#versioning)
 
 ## Requirements and supported formats
 *php-thumber* requires GD Library (>=2.0) **or** Imagick PHP extension 
@@ -45,8 +45,8 @@ $ composer require --prefer-dist mirko-pagliai/php-thumber
 
 Therefore, before using the library, it may be necessary to configure some constants:
 
-  * `THUMBER_DRIVER`: the driver you want to use for the creation of thumbnails. Valid values are `imagick` or `gd`;
-  * `THUMBER_TARGET`: full path directory where to create thumbnails (so you have to create this directory and make it writable).
+*   `THUMBER_DRIVER`: the driver you want to use for the creation of thumbnails. Valid values are `imagick` or `gd`;
+*   `THUMBER_TARGET`: full path directory where to create thumbnails (so you have to create this directory and make it writable).
 
 An example:
 ```php
@@ -58,7 +58,7 @@ Otherwise, you can include/require the [`config/bootstrap.php`](https://github.c
 
 ## How to use
 See our wiki:
-  * [How to use ThumbCreator and create thumbnails](https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails).
+*   [How to use ThumbCreator and create thumbnails](https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails).
 
 ## Testing
 Some tests belong to the `imageEquals` group. These tests generate thubnails and compare them with pre-loaded thumbnails (inside `tests/examples/comparing_files`).  
