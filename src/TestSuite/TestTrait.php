@@ -12,6 +12,7 @@
  */
 namespace Tools\Thumber\TestSuite;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Tools\Thumber\ThumbCreator;
 
 /**
@@ -56,7 +57,8 @@ trait TestTrait
      */
     public static function assertImageFileEquals($expected, $actual, $message = '')
     {
-        $expected = is_absolute($expected) ? $expected : THUMBER_COMPARING_DIR . $expected;
+        $isAbsolute = (new Filesystem())->isAbsolutePath($expected);
+        $expected = $isAbsolute ? $expected : THUMBER_COMPARING_DIR . $expected;
         self::assertFileExists($expected, $message);
         self::assertFileExists($actual, $message);
 
@@ -90,8 +92,9 @@ trait TestTrait
     protected function getThumbCreatorInstance($path = null)
     {
         $path = $path ?: '400x400.jpg';
+        $path = (new Filesystem())->isAbsolutePath($path) ? $path : THUMBER_EXAMPLE_DIR . $path;
 
-        return new ThumbCreator(is_absolute($path) ? $path : THUMBER_EXAMPLE_DIR . $path);
+        return new ThumbCreator($path);
     }
 
     /**
