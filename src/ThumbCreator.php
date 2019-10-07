@@ -291,7 +291,7 @@ class ThumbCreator
             $target = sprintf('%s_%s.%s', md5($this->path), md5(serialize($this->arguments)), $options['format']);
         }
 
-        $target = is_absolute($target) ? $target : add_slash_term(THUMBER_TARGET) . $target;
+        $target = (new Filesystem())->isAbsolutePath($target) ? $target : add_slash_term(THUMBER_TARGET) . $target;
 
         //Creates the thumbnail, if this does not exist
         if (!file_exists($target)) {
