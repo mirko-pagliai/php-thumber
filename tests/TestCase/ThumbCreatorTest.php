@@ -10,14 +10,14 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Tools\Thumber\Test\TestCase;
+namespace Thumber\Test\TestCase;
 
 use Intervention\Image\Exception\NotReadableException as InterventionNotReadableException;
 use Intervention\Image\ImageManager;
 use Tools\Exception\NotReadableException;
-use Tools\Thumber\Exception\NotReadableImageException;
-use Tools\Thumber\Exception\UnsupportedImageTypeException;
-use Tools\Thumber\TestSuite\TestCase;
+use Thumber\Exception\NotReadableImageException;
+use Thumber\Exception\UnsupportedImageTypeException;
+use Thumber\TestSuite\TestCase;
 
 /**
  * ThumbCreatorTest class

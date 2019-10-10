@@ -10,7 +10,7 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Tools\Thumber;
+namespace Thumber;
 
 use BadMethodCallException;
 use Intervention\Image\Constraint;
@@ -20,8 +20,8 @@ use Intervention\Image\ImageManager;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Tools\Exception\NotWritableException;
-use Tools\Thumber\Exception\NotReadableImageException;
-use Tools\Thumber\Exception\UnsupportedImageTypeException;
+use Thumber\Exception\NotReadableImageException;
+use Thumber\Exception\UnsupportedImageTypeException;
 
 /**
  * Utility to create a thumb.
@@ -117,8 +117,8 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \Tools\Thumber\Exception\NotReadableImageException
-     * @throws \Tools\Thumber\Exception\UnsupportedImageTypeException
+     * @throws \Thumber\Exception\NotReadableImageException
+     * @throws \Thumber\Exception\UnsupportedImageTypeException
      * @uses $ImageManager
      * @uses $path
      */

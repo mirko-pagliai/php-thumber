@@ -10,10 +10,10 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Tools\Thumber\TestSuite;
+namespace Thumber\TestSuite;
 
 use Tools\TestSuite\TestCase as BaseTestCase;
-use Tools\Thumber\TestSuite\TestTrait;
+use Thumber\TestSuite\TestTrait;
 
 /**
  * TestCase class
