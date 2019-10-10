@@ -14,10 +14,10 @@ namespace Thumber\Test\TestCase;
 
 use Intervention\Image\Exception\NotReadableException as InterventionNotReadableException;
 use Intervention\Image\ImageManager;
-use Tools\Exception\NotReadableException;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
 use Thumber\TestSuite\TestCase;
+use Tools\Exception\NotReadableException;
 
 /**
  * ThumbCreatorTest class

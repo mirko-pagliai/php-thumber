@@ -15,8 +15,8 @@ namespace Thumber\Test\TestCase;
 use BadMethodCallException;
 use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotSupportedException;
-use Tools\Exception\NotWritableException;
 use Thumber\TestSuite\TestCase;
+use Tools\Exception\NotWritableException;
 
 /**
  * ThumbCreatorSaveTest class

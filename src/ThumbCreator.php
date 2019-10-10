@@ -19,9 +19,9 @@ use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
-use Tools\Exception\NotWritableException;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
+use Tools\Exception\NotWritableException;
 
 /**
  * Utility to create a thumb.

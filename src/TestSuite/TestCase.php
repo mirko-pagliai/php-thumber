@@ -12,8 +12,8 @@
  */
 namespace Thumber\TestSuite;
 
-use Tools\TestSuite\TestCase as BaseTestCase;
 use Thumber\TestSuite\TestTrait;
+use Tools\TestSuite\TestCase as BaseTestCase;
 
 /**
  * TestCase class
