@@ -10,11 +10,11 @@
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Tools\Thumber\Test\TestCase;
+namespace Thumber\Test\TestCase;
 
+use Thumber\TestSuite\TestCase;
+use Thumber\ThumbManager;
 use Tools\Exception\NotReadableException;
-use Tools\Thumber\TestSuite\TestCase;
-use Tools\Thumber\ThumbManager;
 
 /**
  * ThumbManagerTest class
@@ -22,7 +22,7 @@ use Tools\Thumber\ThumbManager;
 class ThumbManagerTest extends TestCase
 {
     /**
-     * @var \Tools\Thumber\ThumbManager
+     * @var \Thumber\ThumbManager
      */
     protected $ThumbManager;
 
