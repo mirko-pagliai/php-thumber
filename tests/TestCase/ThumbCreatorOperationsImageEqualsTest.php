@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Tools\Thumber\Test\TestCase;
+namespace Thumber\Test\TestCase;
 
-use Tools\Thumber\TestSuite\TestCase;
+use Thumber\TestSuite\TestCase;
 
 /**
  * ThumbCreatorOperationsImageEqualsTest class

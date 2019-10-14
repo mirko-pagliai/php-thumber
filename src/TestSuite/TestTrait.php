@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Tools\Thumber\TestSuite;
+namespace Thumber\TestSuite;
 
 use Symfony\Component\Filesystem\Filesystem;
-use Tools\Thumber\ThumbCreator;
+use Thumber\ThumbCreator;
 
 /**
  * TestCase trait
@@ -88,7 +88,7 @@ trait TestTrait
      * @param string|null $path Path of the image from which to create the
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
      *  or a remote url
-     * @return \Tools\Thumber\ThumbCreator
+     * @return \Thumber\ThumbCreator
      */
     protected function getThumbCreatorInstance(?string $path = null): ThumbCreator
     {
@@ -106,7 +106,7 @@ trait TestTrait
      * @param string|null|array $path Path of the image from which to create the
      *  thumbnail. It can be a full path or a remote url
      * @param array $options Options for saving
-     * @return \Tools\Thumber\ThumbCreator
+     * @return \Thumber\ThumbCreator
      * @uses getThumbCreatorInstance()
      */
     protected function getThumbCreatorInstanceWithSave($path = null, array $options = []): ThumbCreator

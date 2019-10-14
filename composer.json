@@ -19,12 +19,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Tools\\Thumber\\": "src"
+            "Thumber\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tools\\Thumber\\Test\\": "tests/TestCase"
+            "Thumber\\Test\\": "tests/TestCase"
         }
     }
 }
