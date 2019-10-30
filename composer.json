@@ -4,13 +4,13 @@
     "homepage": "https://github.com/mirko-pagliai/php-thumber",
     "license": "MIT",
     "authors": [{
-        "name": "Mirko Pagliai",
-        "email": "mirko.pagliai@gmail.com"
-    }],
+            "name": "Mirko Pagliai",
+            "email": "mirko.pagliai@gmail.com"
+        }],
     "require": {
         "php": ">=5.6",
-        "intervention/image": "^2.3",
-        "mirko-pagliai/php-tools": "^1.2.10"
+        "intervention/image": "^2.3.15",
+        "mirko-pagliai/php-tools": "^1.2.12"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^3.0",
