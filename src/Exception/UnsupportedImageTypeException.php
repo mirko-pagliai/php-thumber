@@ -20,6 +20,7 @@ use Exception;
 class UnsupportedImageTypeException extends Exception
 {
     /**
+     * Image type
      * @var string|null
      */
     protected $imageType;

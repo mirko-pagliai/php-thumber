@@ -20,6 +20,7 @@ use Exception;
 class NotReadableImageException extends Exception
 {
     /**
+     * Path
      * @var string|null
      */
     protected $path;
