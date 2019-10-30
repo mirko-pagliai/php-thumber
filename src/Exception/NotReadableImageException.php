@@ -12,26 +12,19 @@
  */
 namespace Thumber\Exception;
 
-use Exception;
+use Tools\Exception\NotReadableException;
 
 /**
  * NotReadableImageException
  */
-class NotReadableImageException extends Exception
+class NotReadableImageException extends NotReadableException
 {
-    /**
-     * Path
-     * @var string|null
-     */
-    protected $path;
-
     /**
      * Construct the exception
      * @param string|null $message The Exception message to throw
      * @param int $code The Exception code
      * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $path Path of the not readable image
-     * @uses $path
      */
     public function __construct($message = null, $code = 0, \Throwable $previous = null, $path = null)
     {
@@ -42,17 +35,6 @@ class NotReadableImageException extends Exception
             }
         }
 
-        parent::__construct($message, $code, $previous);
-        $this->path = $path;
-    }
-
-    /**
-     * Gets the path of the not readable image
-     * @return string|null
-     * @uses $path
-     */
-    public function getFilePath()
-    {
-        return $this->path;
+        parent::__construct($message, $code, $previous, $path);
     }
 }
