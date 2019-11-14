@@ -9,7 +9,7 @@
 *php-thumber* is a PHP library for creating thumbnails on the fly and it implements a file cache for thumbnails.
 It uses [intervention/image](https://github.com/Intervention/image), working as wrapper.
 
-Did you like this plugin? Its development requires a lot of time for me.  
+Did you like this plugin? Its development requires a lot of time for me.
 Please consider the possibility of making [a donation](//paypal.me/mirkopagliai): even a coffee is enough! Thank you.
 
 [![Make a donation](https://www.paypalobjects.com/webstatic/mktg/logo-center/logo_paypal_carte.jpg)](//paypal.me/mirkopagliai)
@@ -23,9 +23,9 @@ Please consider the possibility of making [a donation](//paypal.me/mirkopagliai)
 *   [Versioning](#versioning)
 
 ## Requirements and supported formats
-*php-thumber* requires GD Library (>=2.0) **or** Imagick PHP extension 
-(>=6.5.7).  
-It's **highly preferable** to use Imagick, because It provides better 
+*php-thumber* requires GD Library (>=2.0) **or** Imagick PHP extension
+(>=6.5.7).
+It's **highly preferable** to use Imagick, because It provides better
 performance and a greater number of supported formats.
 
 Supported formats may vary depending on the library used.
@@ -35,7 +35,7 @@ Supported formats may vary depending on the library used.
 | GD      | Yes  | Yes | Yes | No  | No  | No  | No  |
 | Imagick | Yes  | Yes | Yes | Yes | Yes | Yes | Yes |
 
-For more information about supported format, please refer to the 
+For more information about supported format, please refer to the
 [Intervention Image documentation](http://image.intervention.io/getting_started/formats).
 
 ## Installation and configuration
@@ -61,8 +61,10 @@ Otherwise, you can include/require the [`config/bootstrap.php`](https://github.c
 See our wiki:
 *   [How to use ThumbCreator and create thumbnails](https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails).
 
+Refer to our [API](//mirko-pagliai.github.io/php-thumber).
+
 ## Testing
-Some tests belong to the `imageEquals` group. These tests generate thubnails and compare them with pre-loaded thumbnails (inside `tests/examples/comparing_files`).  
+Some tests belong to the `imageEquals` group. These tests generate thubnails and compare them with pre-loaded thumbnails (inside `tests/examples/comparing_files`).
 By default, these tests are not performed, because the images may be different if generated from different environments and systems.
 
 To exclude these tests, you should run:
@@ -71,6 +73,6 @@ vendor/bin/phpunit --exclude-group imageEquals
 ```
 
 ## Versioning
-For transparency and insight into our release cycle and to maintain backward 
-compatibility, *php-thumber* will be maintained under the 
+For transparency and insight into our release cycle and to maintain backward
+compatibility, *php-thumber* will be maintained under the
 [Semantic Versioning guidelines](http://semver.org).
