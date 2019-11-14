@@ -61,6 +61,8 @@ Otherwise, you can include/require the [`config/bootstrap.php`](https://github.c
 See our wiki:
 *   [How to use ThumbCreator and create thumbnails](https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails).
 
+Refer to our [API](//mirko-pagliai.github.io/php-thumber).
+
 ## Testing
 Some tests belong to the `imageEquals` group. These tests generate thubnails and compare them with pre-loaded thumbnails (inside `tests/examples/comparing_files`).
 By default, these tests are not performed, because the images may be different if generated from different environments and systems.
@@ -69,8 +71,6 @@ To exclude these tests, you should run:
 ```bash
 vendor/bin/phpunit --exclude-group imageEquals
 ```
-
-Refer to our [API](//mirko-pagliai.github.io/php-thumber).
 
 ## Versioning
 For transparency and insight into our release cycle and to maintain backward
