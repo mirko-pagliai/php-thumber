@@ -32,7 +32,6 @@ class UnsupportedImageTypeException extends Exception
      * @param int $code The Exception code
      * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $imageType The unsupported image type
-     * @uses $imageType
      */
     public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $imageType = null)
     {
@@ -50,7 +49,6 @@ class UnsupportedImageTypeException extends Exception
     /**
      * Gets the unsupported image type
      * @return string|null
-     * @uses $imageType
      */
     public function getImageType(): ?string
     {
