@@ -25,6 +25,9 @@ Please consider the possibility of making [a donation](//paypal.me/mirkopagliai)
 ## Requirements and supported formats
 *php-thumber* requires GD Library (>=2.0) **or** Imagick PHP extension
 (>=6.5.7).
+
+Starting from the `1.1` branch, it requires at least PHP 7.1 and `phpunit` 7 or 8.
+
 It's **highly preferable** to use Imagick, because It provides better
 performance and a greater number of supported formats.
 
