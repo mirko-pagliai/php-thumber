@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -25,7 +26,7 @@ trait TestTrait
      * @param string $path Image file path
      * @return string
      */
-    protected static function createCopy($path)
+    protected static function createCopy(string $path): string
     {
         $result = create_tmp_file();
         @copy($path, $result);
@@ -38,7 +39,7 @@ trait TestTrait
      * @return void
      * @uses getThumbCreatorInstance()
      */
-    protected function createSomeThumbs()
+    protected function createSomeThumbs(): void
     {
         $this->getThumbCreatorInstance('400x400.jpg')->resize(200)->save();
         $this->getThumbCreatorInstance('400x400.jpg')->resize(300)->save();
@@ -55,7 +56,7 @@ trait TestTrait
      * @return void
      * @uses createCopy()
      */
-    public static function assertImageFileEquals($expected, $actual, $message = '')
+    public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
         $isAbsolute = (new Filesystem())->isAbsolutePath($expected);
         $expected = $isAbsolute ? $expected : THUMBER_COMPARING_DIR . $expected;
@@ -76,7 +77,7 @@ trait TestTrait
      *  generated message
      * @return void
      */
-    public function assertThumbPath($path, $message = '')
+    public function assertThumbPath(string $path, string $message = ''): void
     {
         $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote(add_slash_term(THUMBER_TARGET), DS));
         self::assertRegExp($regex, $path, $message);
@@ -89,7 +90,7 @@ trait TestTrait
      *  or a remote url
      * @return \Thumber\ThumbCreator
      */
-    protected function getThumbCreatorInstance($path = null)
+    protected function getThumbCreatorInstance(?string $path = null): ThumbCreator
     {
         $path = $path ?: '400x400.jpg';
         $path = (new Filesystem())->isAbsolutePath($path) ? $path : THUMBER_EXAMPLE_DIR . $path;
@@ -108,10 +109,10 @@ trait TestTrait
      * @return \Thumber\ThumbCreator
      * @uses getThumbCreatorInstance()
      */
-    protected function getThumbCreatorInstanceWithSave($path = null, array $options = [])
+    protected function getThumbCreatorInstanceWithSave($path = null, array $options = []): ThumbCreator
     {
         if (is_array($path) && func_num_args() < 2) {
-            list($options, $path) = [$path, null];
+            [$options, $path] = [$path, null];
         }
 
         $thumbCreator = $this->getThumbCreatorInstance($path);
@@ -126,8 +127,8 @@ trait TestTrait
      * @param string $message The message to display
      * @return bool
      */
-    public function skipIfDriverIs($driver, $message = '')
+    public function skipIfDriverIs(string $driver, string $message = ''): bool
     {
-        return parent::skipIf(THUMBER_DRIVER == $driver, $message);
+        return parent::skipIf($driver == THUMBER_DRIVER, $message);
     }
 }

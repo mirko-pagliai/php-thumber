@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -23,20 +24,20 @@ class ThumbManager
      * Supported formats
      * @var array
      */
-    const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
+    protected const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
 
     /**
      * Internal method to clear thumbnails
      * @param array $filenames Filenames
-     * @return int|bool Number of thumbnails deleted otherwise `false` in case of error
+     * @return int|null Number of thumbnails deleted or `null` in case of error
      */
-    protected function _clear($filenames)
+    protected function _clear(array $filenames): ?int
     {
         $count = 0;
 
         foreach ($filenames as $filename) {
             if (!@unlink(add_slash_term(THUMBER_TARGET) . $filename)) {
-                return false;
+                return null;
             }
 
             $count++;
@@ -51,7 +52,7 @@ class ThumbManager
      * @param bool $sort Whether results should be sorted
      * @return array
      */
-    protected function _find($pattern = null, $sort = false)
+    protected function _find(?string $pattern = null, bool $sort = false): array
     {
         $pattern = $pattern ?: sprintf('/[\d\w]{32}_[\d\w]{32}\.(%s)$/', implode('|', self::SUPPORTED_FORMATS));
         $finder = (new Finder())->files()->name($pattern)->in(THUMBER_TARGET);
@@ -66,22 +67,22 @@ class ThumbManager
     /**
      * Clears all thumbnails that have been generated from an image path
      * @param string $path Path of the original image
-     * @return int|bool Number of thumbnails deleted otherwise `false` in case of error
+     * @return int|null Number of thumbnails deleted or `null` in case of error
      * @uses _clear()
      * @uses get()
      */
-    public function clear($path)
+    public function clear(string $path): ?int
     {
         return $this->_clear($this->get($path));
     }
 
     /**
      * Clears all thumbnails
-     * @return int|bool Number of thumbnails deleted otherwise `false` in case of error
+     * @return int|null Number of thumbnails deleted or `null` in case of error
      * @uses _clear()
      * @uses getAll()
      */
-    public function clearAll()
+    public function clearAll(): ?int
     {
         return $this->_clear($this->getAll());
     }
@@ -94,7 +95,7 @@ class ThumbManager
      * @throws \Tools\Exception\NotReadableException
      * @uses _find()
      */
-    public function get($path, $sort = false)
+    public function get(string $path, bool $sort = false): array
     {
         is_readable_or_fail($path);
         $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
@@ -108,7 +109,7 @@ class ThumbManager
      * @return array
      * @uses _find()
      */
-    public function getAll($sort = false)
+    public function getAll(bool $sort = false): array
     {
         return $this->_find(null, $sort);
     }
