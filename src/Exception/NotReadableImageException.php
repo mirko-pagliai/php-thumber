@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -26,13 +27,10 @@ class NotReadableImageException extends NotReadableException
      * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $path Path of the not readable image
      */
-    public function __construct($message = null, $code = 0, \Throwable $previous = null, $path = null)
+    public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $path = null)
     {
         if (!$message) {
-            $message = 'Unable to read image from file';
-            if ($path) {
-                $message = sprintf('Unable to read image from file `%s`', $path);
-            }
+            $message = $path ? sprintf('Unable to read image from `%s`', $path) : 'Unable to read image from file';
         }
 
         parent::__construct($message, $code, $previous, $path);

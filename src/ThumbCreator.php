@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -55,12 +56,6 @@ class ThumbCreator
     protected $callbacks = [];
 
     /**
-     * Driver name
-     * @var string
-     */
-    protected $driver;
-
-    /**
      * Path of the file from which the thumbnail will be generated
      * @var string
      */
@@ -79,18 +74,15 @@ class ThumbCreator
      *  thumbnail. It can be a full path or a remote url
      * @uses $ImageManager
      * @uses $arguments
-     * @uses $driver
      * @uses $path
      */
-    public function __construct($path)
+    public function __construct(string $path)
     {
         if (!is_url($path)) {
             is_readable_or_fail($path);
         }
-        $this->driver = THUMBER_DRIVER;
-        $this->ImageManager = new ImageManager(['driver' => $this->driver]);
-        $this->path = $path;
-        $this->arguments[] = $this->path;
+        $this->ImageManager = new ImageManager(['driver' => THUMBER_DRIVER]);
+        $this->arguments[] = $this->path = $path;
     }
 
     /**
@@ -100,7 +92,7 @@ class ThumbCreator
      * @return array Passed options added to the default options
      * @uses $path
      */
-    protected function getDefaultSaveOptions(array $options = [], $path = null)
+    protected function getDefaultSaveOptions(array $options = [], ?string $path = null): array
     {
         $options += [
             'format' => get_extension($path ?: $this->path),
@@ -122,7 +114,7 @@ class ThumbCreator
      * @uses $ImageManager
      * @uses $path
      */
-    protected function getImageInstance()
+    protected function getImageInstance(): Image
     {
         try {
             $imageInstance = $this->ImageManager->make($this->path);
@@ -149,7 +141,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function crop($width = null, $heigth = null, array $options = [])
+    public function crop(?int $width = null, ?int $heigth = null, array $options = []): ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $width = $width ?: $heigth;
@@ -178,7 +170,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function fit($width = null, $heigth = null, array $options = [])
+    public function fit(?int $width = null, ?int $heigth = null, array $options = [])
     {
         $heigth = $heigth ?: $width;
         $width = $width ?: $heigth;
@@ -209,7 +201,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function resize($width = null, $heigth = null, array $options = [])
+    public function resize(?int $width = null, ?int $heigth = null, array $options = [])
     {
         $options += ['aspectRatio' => true, 'upsize' => true];
 
@@ -245,7 +237,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function resizeCanvas($width, $heigth = null, array $options = [])
+    public function resizeCanvas(?int $width, ?int $heigth = null, array $options = [])
     {
         $options += ['anchor' => 'center', 'relative' => false, 'bgcolor' => '#ffffff'];
 
@@ -271,11 +263,10 @@ class ThumbCreator
      * @uses getImageInstance()
      * @uses $arguments
      * @uses $callbacks
-     * @uses $driver
      * @uses $path
      * @uses $target
      */
-    public function save(array $options = [])
+    public function save(array $options = []): string
     {
         if (!$this->callbacks) {
             throw new BadMethodCallException(sprintf('No valid method called before the `save()` method'));
@@ -286,7 +277,7 @@ class ThumbCreator
         $options['format'] = $target ? $this->getDefaultSaveOptions([], $target)['format'] : $options['format'];
 
         if (!$target) {
-            $this->arguments[] = [$this->driver, $options['format'], $options['quality']];
+            $this->arguments[] = [THUMBER_DRIVER, $options['format'], $options['quality']];
             $target = sprintf('%s_%s.%s', md5($this->path), md5(serialize($this->arguments)), $options['format']);
         }
 

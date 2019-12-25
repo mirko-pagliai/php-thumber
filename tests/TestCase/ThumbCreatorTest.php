@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -41,7 +42,7 @@ class ThumbCreatorTest extends TestCase
     public function testGetImageInstanceNotReadableImageException()
     {
         $expectedException = NotReadableImageException::class;
-        $expectedMessage = 'Unable to read image from file `tests/bootstrap.php`';
+        $expectedMessage = 'Unable to read image from `tests/bootstrap.php`';
         if (THUMBER_DRIVER != 'imagick') {
             $expectedException = UnsupportedImageTypeException::class;
             $expectedMessage = 'Image type `text/x-php` is not supported by this driver';

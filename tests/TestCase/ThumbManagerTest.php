@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * This file is part of php-thumber.
  *
@@ -30,7 +31,7 @@ class ThumbManagerTest extends TestCase
      * Called before every test method
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -61,7 +62,7 @@ class ThumbManagerTest extends TestCase
             ->setMethods(['get'])
             ->getMock();
         $ThumbManager->method('get')->will($this->returnValue(['noExisting']));
-        $this->assertFalse($ThumbManager->clear('noExisting'));
+        $this->assertNull($ThumbManager->clear('noExisting'));
     }
 
     /**
