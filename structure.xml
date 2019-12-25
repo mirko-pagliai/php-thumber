@@ -1,1163 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project title="php-thumber" version="2.9.1">
   <partials/>
-  <file path="config/bootstrap.php" generated-path="config.bootstrap.html" hash="78c12c3584a789a9bf4fd82262fa55e0" package="Default">
+  <file path="config/bootstrap.php" generated-path="config.bootstrap.html" hash="2f0fd9b4f04318914142932fd7a5531c" package="Default">
     <docblock line="0">
-      <description>This file is part of php-thumber.</description>
-      <long-description>Licensed under The MIT License
-For full copyright and license information, please see the LICENSE.txt
-Redistributions of files must retain the above copyright notice.</long-description>
-      <tag name="copyright" line="0" description="Copyright (c) Mirko Pagliai"/>
-      <tag name="link" line="0" description="https://github.com/mirko-pagliai/php-thumber" link="https://github.com/mirko-pagliai/php-thumber"/>
-      <tag name="license" line="0" description="MIT License" link="https://opensource.org/licenses/mit-license.php"/>
+      <description></description>
+      <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <constant namespace="" line="16" package="Default">
+    <constant namespace="" line="17" package="Default">
       <name>THUMBER_DRIVER</name>
       <full_name>\THUMBER_DRIVER</full_name>
       <value>extension_loaded('imagick') ? 'imagick' : 'gd'</value>
-      <docblock line="16">
+      <docblock line="17">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="16" description="Default"/>
+        <tag name="package" line="17" description="Default"/>
       </docblock>
     </constant>
-    <constant namespace="" line="25" package="Default">
+    <constant namespace="" line="26" package="Default">
       <name>THUMBER_TARGET</name>
       <full_name>\THUMBER_TARGET</full_name>
       <value>add_slash_term($tmp) . 'thumbs'</value>
-      <docblock line="25">
+      <docblock line="26">
         <description></description>
         <long-description></long-description>
-        <tag name="package" line="25" description="Default"/>
+        <tag name="package" line="26" description="Default"/>
       </docblock>
     </constant>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
   </file>
-  <file path="src/TestSuite/TestTrait.php" generated-path="src.TestSuite.TestTrait.html" hash="d2d41dc138cbc898ffa3653c7e13ec8b" package="Default">
+  <file path="src/TestSuite/TestTrait.php" generated-path="src.TestSuite.TestTrait.html" hash="daa06ea93a31c35e19a4a9d12f7a17d9" package="Default">
     <docblock line="0">
-      <description>This file is part of php-thumber.</description>
-      <long-description>Licensed under The MIT License
-For full copyright and license information, please see the LICENSE.txt
-Redistributions of files must retain the above copyright notice.</long-description>
-      <tag name="copyright" line="0" description="Copyright (c) Mirko Pagliai"/>
-      <tag name="link" line="0" description="https://github.com/mirko-pagliai/php-thumber" link="https://github.com/mirko-pagliai/php-thumber"/>
-      <tag name="license" line="0" description="MIT License" link="https://opensource.org/licenses/mit-license.php"/>
+      <description></description>
+      <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <namespace-alias name="Filesystem">\Symfony\Component\Filesystem\Filesystem</namespace-alias>
-    <namespace-alias name="ThumbCreator">\Thumber\ThumbCreator</namespace-alias>
-    <trait namespace="Thumber\TestSuite" line="21" package="Default">
-      <name>TestTrait</name>
-      <full_name>\Thumber\TestSuite\TestTrait</full_name>
-      <docblock line="21">
-        <description>TestCase trait</description>
-        <long-description></long-description>
-        <tag name="package" line="21" description="Default"/>
-      </docblock>
-      <method final="false" abstract="false" static="true" visibility="protected" namespace="Thumber\TestSuite" line="28" package="Default">
-        <name>createCopy</name>
-        <full_name>\Thumber\TestSuite\TestTrait::createCopy()</full_name>
-        <docblock line="28">
-          <description>Internal method to create a copy of an image file</description>
-          <long-description></long-description>
-          <tag name="param" line="28" description="&lt;p&gt;Image file path&lt;/p&gt;" type="string" variable="$path">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="28" description="" type="string">
-            <type>string</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber\TestSuite" line="41" package="Default">
-        <name>createSomeThumbs</name>
-        <full_name>\Thumber\TestSuite\TestTrait::createSomeThumbs()</full_name>
-        <docblock line="41">
-          <description>Internal method to create some thumbs</description>
-          <long-description></long-description>
-          <tag name="return" line="41" description="" type="void">
-            <type>void</type>
-          </tag>
-          <tag name="uses" line="41" description="" link="\Thumber\TestSuite\TestTrait::getThumbCreatorInstance()"/>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Thumber\TestSuite" line="58" package="Default">
-        <name>assertImageFileEquals</name>
-        <full_name>\Thumber\TestSuite\TestTrait::assertImageFileEquals()</full_name>
-        <docblock line="58">
-          <description>Asserts that the contents of one image file is equal to the contents of
- another image file</description>
-          <long-description></long-description>
-          <tag name="param" line="58" description="&lt;p&gt;Expected file&lt;/p&gt;" type="string" variable="$expected">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="58" description="&lt;p&gt;Actual file&lt;/p&gt;" type="string" variable="$actual">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="58" description="&lt;p&gt;The failure message that will be appended to the&#10; generated message&lt;/p&gt;" type="string" variable="$message">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="58" description="" type="void">
-            <type>void</type>
-          </tag>
-          <tag name="uses" line="58" description="" link="\Thumber\TestSuite\TestTrait::createCopy()"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$expected</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$actual</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>''</default>
-          <type>string</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\TestSuite" line="79" package="Default">
-        <name>assertThumbPath</name>
-        <full_name>\Thumber\TestSuite\TestTrait::assertThumbPath()</full_name>
-        <docblock line="79">
-          <description>Asserts for a valid thumbnail path</description>
-          <long-description></long-description>
-          <tag name="param" line="79" description="&lt;p&gt;Thumbnail path&lt;/p&gt;" type="string" variable="$path">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="79" description="&lt;p&gt;The failure message that will be appended to the&#10; generated message&lt;/p&gt;" type="string" variable="$message">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="79" description="" type="void">
-            <type>void</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>''</default>
-          <type>string</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber\TestSuite" line="92" package="Default">
-        <name>getThumbCreatorInstance</name>
-        <full_name>\Thumber\TestSuite\TestTrait::getThumbCreatorInstance()</full_name>
-        <docblock line="92">
-          <description>Returns an instance of `ThumbCreator`</description>
-          <long-description></long-description>
-          <tag name="param" line="92" description="&lt;p&gt;Path of the image from which to create the&#10;thumbnail. It can be a relative path (to APP/webroot/img), a full path&#10;or a remote url&lt;/p&gt;" type="string|null" variable="$path">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="return" line="92" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber\TestSuite" line="111" package="Default">
-        <name>getThumbCreatorInstanceWithSave</name>
-        <full_name>\Thumber\TestSuite\TestTrait::getThumbCreatorInstanceWithSave()</full_name>
-        <docblock line="111">
-          <description>Returns an instance of `ThumbCreator`, after calling `resize()` and
- `save()` methods.</description>
-          <long-description>It can be called passing only the array of options as first argument.</long-description>
-          <tag name="param" line="111" description="&lt;p&gt;Path of the image from which to create the&#10; thumbnail. It can be a full path or a remote url&lt;/p&gt;" type="string|null|array" variable="$path">
-            <type>string</type>
-            <type>null</type>
-            <type>array</type>
-          </tag>
-          <tag name="param" line="111" description="&lt;p&gt;Options for saving&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="111" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-          <tag name="uses" line="111" description="" link="\Thumber\TestSuite\TestTrait::getThumbCreatorInstance()"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default>null</default>
-          <type>string|null|array</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\TestSuite" line="129" package="Default">
-        <name>skipIfDriverIs</name>
-        <full_name>\Thumber\TestSuite\TestTrait::skipIfDriverIs()</full_name>
-        <docblock line="129">
-          <description>Skips the test if you running the designated driver</description>
-          <long-description></long-description>
-          <tag name="param" line="129" description="&lt;p&gt;Driver name&lt;/p&gt;" type="string" variable="$driver">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="129" description="&lt;p&gt;The message to display&lt;/p&gt;" type="string" variable="$message">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="129" description="" type="boolean">
-            <type>boolean</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$driver</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>''</default>
-          <type>string</type>
-        </argument>
-      </method>
-    </trait>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
   </file>
-  <file path="src/Exception/NotReadableImageException.php" generated-path="src.Exception.NotReadableImageException.html" hash="d850b325bf171d3297b6c8c21928cfb1" package="Default">
+  <file path="src/Exception/NotReadableImageException.php" generated-path="src.Exception.NotReadableImageException.html" hash="073bc608ee4924baff6d2fb20efff652" package="Default">
     <docblock line="0">
-      <description>This file is part of php-thumber.</description>
-      <long-description>Licensed under The MIT License
-For full copyright and license information, please see the LICENSE.txt
-Redistributions of files must retain the above copyright notice.</long-description>
-      <tag name="copyright" line="0" description="Copyright (c) Mirko Pagliai"/>
-      <tag name="link" line="0" description="https://github.com/mirko-pagliai/php-thumber" link="https://github.com/mirko-pagliai/php-thumber"/>
-      <tag name="license" line="0" description="MIT License" link="https://opensource.org/licenses/mit-license.php"/>
+      <description></description>
+      <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <namespace-alias name="NotReadableException">\Tools\Exception\NotReadableException</namespace-alias>
-    <class final="false" abstract="false" namespace="Thumber\Exception" line="20" package="Default">
-      <extends>\Tools\Exception\NotReadableException</extends>
-      <name>NotReadableImageException</name>
-      <full_name>\Thumber\Exception\NotReadableImageException</full_name>
-      <docblock line="20">
-        <description>NotReadableImageException</description>
-        <long-description></long-description>
-        <tag name="package" line="20" description="Default"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\Exception" line="29" package="Default">
-        <name>__construct</name>
-        <full_name>\Thumber\Exception\NotReadableImageException::__construct()</full_name>
-        <docblock line="29">
-          <description>Construct the exception</description>
-          <long-description></long-description>
-          <tag name="param" line="29" description="&lt;p&gt;The Exception message to throw&lt;/p&gt;" type="string|null" variable="$message">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="29" description="&lt;p&gt;The Exception code&lt;/p&gt;" type="integer" variable="$code">
-            <type>integer</type>
-          </tag>
-          <tag name="param" line="29" description="&lt;p&gt;The previous exception used for the exception chaining&lt;/p&gt;" type="\Throwable|null" variable="$previous">
-            <type>\Throwable</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="29" description="&lt;p&gt;Path of the not readable image&lt;/p&gt;" type="string|null" variable="$path">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$code</name>
-          <default>0</default>
-          <type>integer</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$previous</name>
-          <default>null</default>
-          <type>\Throwable|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-      </method>
-    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
   </file>
-  <file path="src/ThumbCreator.php" generated-path="src.ThumbCreator.html" hash="1311d8687895106e3db44c06e6dd125a" package="Default">
+  <file path="src/ThumbCreator.php" generated-path="src.ThumbCreator.html" hash="7001a1994a9680a52f4fe2e650ed0fb9" package="Default">
     <docblock line="0">
-      <description>This file is part of php-thumber.</description>
-      <long-description>Licensed under The MIT License
-For full copyright and license information, please see the LICENSE.txt
-Redistributions of files must retain the above copyright notice.</long-description>
-      <tag name="copyright" line="0" description="Copyright (c) Mirko Pagliai"/>
-      <tag name="link" line="0" description="https://github.com/mirko-pagliai/php-thumber" link="https://github.com/mirko-pagliai/php-thumber"/>
-      <tag name="license" line="0" description="MIT License" link="https://opensource.org/licenses/mit-license.php"/>
+      <description></description>
+      <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <namespace-alias name="BadMethodCallException">\BadMethodCallException</namespace-alias>
-    <namespace-alias name="Constraint">\Intervention\Image\Constraint</namespace-alias>
-    <namespace-alias name="NotReadableException">\Intervention\Image\Exception\NotReadableException</namespace-alias>
-    <namespace-alias name="Image">\Intervention\Image\Image</namespace-alias>
-    <namespace-alias name="ImageManager">\Intervention\Image\ImageManager</namespace-alias>
-    <namespace-alias name="IOException">\Symfony\Component\Filesystem\Exception\IOException</namespace-alias>
-    <namespace-alias name="Filesystem">\Symfony\Component\Filesystem\Filesystem</namespace-alias>
-    <namespace-alias name="NotReadableImageException">\Thumber\Exception\NotReadableImageException</namespace-alias>
-    <namespace-alias name="UnsupportedImageTypeException">\Thumber\Exception\UnsupportedImageTypeException</namespace-alias>
-    <namespace-alias name="NotWritableException">\Tools\Exception\NotWritableException</namespace-alias>
-    <class final="false" abstract="false" namespace="Thumber" line="33" package="Default">
-      <extends/>
-      <name>ThumbCreator</name>
-      <full_name>\Thumber\ThumbCreator</full_name>
-      <docblock line="33">
-        <description>Utility to create a thumb.</description>
-        <long-description>Please, refer to the `README` file to know how to use the utility and to
-see examples.</long-description>
-        <tag name="see" line="33" description="" link="https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails"/>
-        <tag name="package" line="33" description="Default"/>
-      </docblock>
-      <property static="false" visibility="public" namespace="Thumber" line="39" package="Default">
-        <name>$ImageManager</name>
-        <full_name>\Thumber\ThumbCreator::$ImageManager</full_name>
-        <default></default>
-        <docblock line="39">
-          <description>`ImageManager` instance</description>
-          <long-description></long-description>
-          <tag name="var" line="39" description="" type="\Intervention\Image\ImageManager" variable="">
-            <type>\Intervention\Image\ImageManager</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="protected" namespace="Thumber" line="48" package="Default">
-        <name>$arguments</name>
-        <full_name>\Thumber\ThumbCreator::$arguments</full_name>
-        <default>array()</default>
-        <docblock line="48">
-          <description>Arguments that will be used to generate the name of the thumbnail.</description>
-          <long-description>Every time you call a method that alters the final thumbnail, its
-arguments must be added to this array, including the name of that method.</long-description>
-          <tag name="var" line="48" description="" type="array" variable="">
-            <type>array</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="protected" namespace="Thumber" line="55" package="Default">
-        <name>$callbacks</name>
-        <full_name>\Thumber\ThumbCreator::$callbacks</full_name>
-        <default>array()</default>
-        <docblock line="55">
-          <description>Callbacks that will be called by the `save()` method to create the
-thumbnail</description>
-          <long-description></long-description>
-          <tag name="var" line="55" description="" type="array" variable="">
-            <type>array</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="protected" namespace="Thumber" line="61" package="Default">
-        <name>$driver</name>
-        <full_name>\Thumber\ThumbCreator::$driver</full_name>
-        <default></default>
-        <docblock line="61">
-          <description>Driver name</description>
-          <long-description></long-description>
-          <tag name="var" line="61" description="" type="string" variable="">
-            <type>string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="protected" namespace="Thumber" line="67" package="Default">
-        <name>$path</name>
-        <full_name>\Thumber\ThumbCreator::$path</full_name>
-        <default></default>
-        <docblock line="67">
-          <description>Path of the file from which the thumbnail will be generated</description>
-          <long-description></long-description>
-          <tag name="var" line="67" description="" type="string" variable="">
-            <type>string</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="protected" namespace="Thumber" line="73" package="Default">
-        <name>$target</name>
-        <full_name>\Thumber\ThumbCreator::$target</full_name>
-        <default></default>
-        <docblock line="73">
-          <description>Path of the generated thumbnail</description>
-          <long-description></long-description>
-          <tag name="var" line="73" description="" type="string" variable="">
-            <type>string</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="85" package="Default">
-        <name>__construct</name>
-        <full_name>\Thumber\ThumbCreator::__construct()</full_name>
-        <docblock line="85">
-          <description>Construct.</description>
-          <long-description>It sets the file path and extension.</long-description>
-          <tag name="param" line="85" description="&lt;p&gt;Path of the image from which to create the&#10; thumbnail. It can be a full path or a remote url&lt;/p&gt;" type="string" variable="$path">
-            <type>string</type>
-          </tag>
-          <tag name="uses" line="85" description="" link="\Thumber\ThumbCreator::$ImageManager"/>
-          <tag name="uses" line="85" description="" link="\Thumber\ThumbCreator::$arguments"/>
-          <tag name="uses" line="85" description="" link="\Thumber\ThumbCreator::$driver"/>
-          <tag name="uses" line="85" description="" link="\Thumber\ThumbCreator::$path"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber" line="103" package="Default">
-        <name>getDefaultSaveOptions</name>
-        <full_name>\Thumber\ThumbCreator::getDefaultSaveOptions()</full_name>
-        <docblock line="103">
-          <description>Internal method to get default options for the `save()` method</description>
-          <long-description></long-description>
-          <tag name="param" line="103" description="&lt;p&gt;Passed options&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="param" line="103" description="&lt;p&gt;Path to use&lt;/p&gt;" type="string|null" variable="$path">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="return" line="103" description="Passed options added to the default options" type="array">
-            <type>array</type>
-          </tag>
-          <tag name="uses" line="103" description="" link="\Thumber\ThumbCreator::$path"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber" line="125" package="Default">
-        <name>getImageInstance</name>
-        <full_name>\Thumber\ThumbCreator::getImageInstance()</full_name>
-        <docblock line="125">
-          <description>Gets an `Image` instance</description>
-          <long-description></long-description>
-          <tag name="return" line="125" description="" type="\Intervention\Image\Image">
-            <type>\Intervention\Image\Image</type>
-          </tag>
-          <tag name="throws" line="125" description="" type="\Thumber\Exception\NotReadableImageException">
-            <type>\Thumber\Exception\NotReadableImageException</type>
-          </tag>
-          <tag name="throws" line="125" description="" type="\Thumber\Exception\UnsupportedImageTypeException">
-            <type>\Thumber\Exception\UnsupportedImageTypeException</type>
-          </tag>
-          <tag name="uses" line="125" description="" link="\Thumber\ThumbCreator::$ImageManager"/>
-          <tag name="uses" line="125" description="" link="\Thumber\ThumbCreator::$path"/>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="152" package="Default">
-        <name>crop</name>
-        <full_name>\Thumber\ThumbCreator::crop()</full_name>
-        <docblock line="152">
-          <description>Crops the image, cutting out a rectangular part of the image.</description>
-          <long-description>You can define optional coordinates to move the top-left corner of the
- cutout to a certain position.</long-description>
-          <tag name="param" line="152" description="&lt;p&gt;Required width&lt;/p&gt;" type="integer|null" variable="$width">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="152" description="&lt;p&gt;Required heigth&lt;/p&gt;" type="integer|null" variable="$heigth">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="152" description="&lt;p&gt;Options for the thumbnail&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="152" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-          <tag name="see" line="152" description="" link="https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop"/>
-          <tag name="uses" line="152" description="" link="\Thumber\ThumbCreator::$arguments"/>
-          <tag name="uses" line="152" description="" link="\Thumber\ThumbCreator::$callbacks"/>
-          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$width</name>
-          <default>null</default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$heigth</name>
-          <default>null</default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="181" package="Default">
-        <name>fit</name>
-        <full_name>\Thumber\ThumbCreator::fit()</full_name>
-        <docblock line="181">
-          <description>Resizes the image, combining cropping and resizing to format image in a
- smart way. It will find the best fitting aspect ratio on the current
- image automatically, cut it out and resize it to the given dimension</description>
-          <long-description></long-description>
-          <tag name="param" line="181" description="&lt;p&gt;Required width&lt;/p&gt;" type="integer|null" variable="$width">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="181" description="&lt;p&gt;Required heigth&lt;/p&gt;" type="integer|null" variable="$heigth">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="181" description="&lt;p&gt;Options for the thumbnail&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="181" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-          <tag name="see" line="181" description="" link="https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit"/>
-          <tag name="uses" line="181" description="" link="\Thumber\ThumbCreator::$arguments"/>
-          <tag name="uses" line="181" description="" link="\Thumber\ThumbCreator::$callbacks"/>
-          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$width</name>
-          <default>null</default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$heigth</name>
-          <default>null</default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="212" package="Default">
-        <name>resize</name>
-        <full_name>\Thumber\ThumbCreator::resize()</full_name>
-        <docblock line="212">
-          <description>Resizes the image</description>
-          <long-description></long-description>
-          <tag name="param" line="212" description="&lt;p&gt;Required width&lt;/p&gt;" type="integer|null" variable="$width">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="212" description="&lt;p&gt;Required heigth&lt;/p&gt;" type="integer|null" variable="$heigth">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="212" description="&lt;p&gt;Options for the thumbnail&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="212" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-          <tag name="see" line="212" description="" link="https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize"/>
-          <tag name="uses" line="212" description="" link="\Thumber\ThumbCreator::$arguments"/>
-          <tag name="uses" line="212" description="" link="\Thumber\ThumbCreator::$callbacks"/>
-          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$width</name>
-          <default>null</default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$heigth</name>
-          <default>null</default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="248" package="Default">
-        <name>resizeCanvas</name>
-        <full_name>\Thumber\ThumbCreator::resizeCanvas()</full_name>
-        <docblock line="248">
-          <description>Resizes the boundaries of the current image to given width and height. An
- anchor can be defined to determine from what point of the image the
- resizing is going to happen. Set the mode to relative to add or subtract
- the given width or height to the actual image dimensions. You can also
- pass a background color for the emerging area of the image</description>
-          <long-description></long-description>
-          <tag name="param" line="248" description="&lt;p&gt;Required width&lt;/p&gt;" type="integer|null" variable="$width">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="248" description="&lt;p&gt;Required heigth&lt;/p&gt;" type="integer|null" variable="$heigth">
-            <type>integer</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="248" description="&lt;p&gt;Options for the thumbnail&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="248" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-          <tag name="see" line="248" description="" link="https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas"/>
-          <tag name="uses" line="248" description="" link="\Thumber\ThumbCreator::$arguments"/>
-          <tag name="uses" line="248" description="" link="\Thumber\ThumbCreator::$callbacks"/>
-          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$width</name>
-          <default></default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$heigth</name>
-          <default>null</default>
-          <type>integer|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="278" package="Default">
-        <name>save</name>
-        <full_name>\Thumber\ThumbCreator::save()</full_name>
-        <docblock line="278">
-          <description>Saves the thumbnail and returns its path</description>
-          <long-description></long-description>
-          <tag name="param" line="278" description="&lt;p&gt;Options for saving&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="278" description="Thumbnail path" type="string">
-            <type>string</type>
-          </tag>
-          <tag name="see" line="278" description="" link="https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail"/>
-          <tag name="throws" line="278" description="" type="\BadMethodCallException">
-            <type>\BadMethodCallException</type>
-          </tag>
-          <tag name="throws" line="278" description="" type="\Tools\Exception\NotWritableException">
-            <type>\Tools\Exception\NotWritableException</type>
-          </tag>
-          <tag name="uses" line="278" description="" link="\Thumber\ThumbCreator::getDefaultSaveOptions()"/>
-          <tag name="uses" line="278" description="" link="\Thumber\ThumbCreator::getImageInstance()"/>
-          <tag name="uses" line="278" description="" link="\Thumber\ThumbCreator::$arguments"/>
-          <tag name="uses" line="278" description="" link="\Thumber\ThumbCreator::$callbacks"/>
-          <tag name="uses" line="278" description="" link="\Thumber\ThumbCreator::$driver"/>
-          <tag name="uses" line="278" description="" link="\Thumber\ThumbCreator::$path"/>
-          <tag name="uses" line="278" description="" link="\Thumber\ThumbCreator::$target"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-      </method>
-    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
   </file>
-  <file path="src/Exception/UnsupportedImageTypeException.php" generated-path="src.Exception.UnsupportedImageTypeException.html" hash="e6e7a82c8372f4059980d66654245f8f" package="Default">
+  <file path="src/Exception/UnsupportedImageTypeException.php" generated-path="src.Exception.UnsupportedImageTypeException.html" hash="30255cb3f5a4b47a38503553ed0aa8cb" package="Default">
     <docblock line="0">
-      <description>This file is part of php-thumber.</description>
-      <long-description>Licensed under The MIT License
-For full copyright and license information, please see the LICENSE.txt
-Redistributions of files must retain the above copyright notice.</long-description>
-      <tag name="copyright" line="0" description="Copyright (c) Mirko Pagliai"/>
-      <tag name="link" line="0" description="https://github.com/mirko-pagliai/php-thumber" link="https://github.com/mirko-pagliai/php-thumber"/>
-      <tag name="license" line="0" description="MIT License" link="https://opensource.org/licenses/mit-license.php"/>
+      <description></description>
+      <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <namespace-alias name="Exception">\Exception</namespace-alias>
-    <class final="false" abstract="false" namespace="Thumber\Exception" line="20" package="Default">
-      <extends>\Exception</extends>
-      <name>UnsupportedImageTypeException</name>
-      <full_name>\Thumber\Exception\UnsupportedImageTypeException</full_name>
-      <docblock line="20">
-        <description>UnsupportedImageTypeException</description>
-        <long-description></long-description>
-        <tag name="package" line="20" description="Default"/>
-      </docblock>
-      <property static="false" visibility="protected" namespace="Thumber\Exception" line="26" package="Default">
-        <name>$imageType</name>
-        <full_name>\Thumber\Exception\UnsupportedImageTypeException::$imageType</full_name>
-        <default></default>
-        <docblock line="26">
-          <description>Image type</description>
-          <long-description></long-description>
-          <tag name="var" line="26" description="" type="string|null" variable="">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\Exception" line="36" package="Default">
-        <name>__construct</name>
-        <full_name>\Thumber\Exception\UnsupportedImageTypeException::__construct()</full_name>
-        <docblock line="36">
-          <description>Construct the exception</description>
-          <long-description></long-description>
-          <tag name="param" line="36" description="&lt;p&gt;The Exception message to throw&lt;/p&gt;" type="string|null" variable="$message">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="36" description="&lt;p&gt;The Exception code&lt;/p&gt;" type="integer" variable="$code">
-            <type>integer</type>
-          </tag>
-          <tag name="param" line="36" description="&lt;p&gt;The previous exception used for the exception chaining&lt;/p&gt;" type="\Throwable|null" variable="$previous">
-            <type>\Throwable</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="36" description="&lt;p&gt;The unsupported image type&lt;/p&gt;" type="string|null" variable="$imageType">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="uses" line="36" description="" link="\Thumber\Exception\UnsupportedImageTypeException::$imageType"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$code</name>
-          <default>0</default>
-          <type>integer</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$previous</name>
-          <default>null</default>
-          <type>\Throwable|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$imageType</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\Exception" line="54" package="Default">
-        <name>getImageType</name>
-        <full_name>\Thumber\Exception\UnsupportedImageTypeException::getImageType()</full_name>
-        <docblock line="54">
-          <description>Gets the unsupported image type</description>
-          <long-description></long-description>
-          <tag name="return" line="54" description="" type="string|null">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="uses" line="54" description="" link="\Thumber\Exception\UnsupportedImageTypeException::$imageType"/>
-        </docblock>
-      </method>
-    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
   </file>
-  <file path="src/ThumbManager.php" generated-path="src.ThumbManager.html" hash="8300654ce17fb0828ec318c8b7be33c3" package="Default">
+  <file path="src/ThumbManager.php" generated-path="src.ThumbManager.html" hash="e7d0b4896183dc94dc7510e02fc76496" package="Default">
     <docblock line="0">
-      <description>This file is part of php-thumber.</description>
-      <long-description>Licensed under The MIT License
-For full copyright and license information, please see the LICENSE.txt
-Redistributions of files must retain the above copyright notice.</long-description>
-      <tag name="copyright" line="0" description="Copyright (c) Mirko Pagliai"/>
-      <tag name="link" line="0" description="https://github.com/mirko-pagliai/php-thumber" link="https://github.com/mirko-pagliai/php-thumber"/>
-      <tag name="license" line="0" description="MIT License" link="https://opensource.org/licenses/mit-license.php"/>
+      <description></description>
+      <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
-    <namespace-alias name="Finder">\Symfony\Component\Finder\Finder</namespace-alias>
-    <class final="false" abstract="false" namespace="Thumber" line="20" package="Default">
-      <extends/>
-      <name>ThumbManager</name>
-      <full_name>\Thumber\ThumbManager</full_name>
-      <docblock line="20">
-        <description>A utility to manage thumbnails</description>
-        <long-description></long-description>
-        <tag name="package" line="20" description="Default"/>
-      </docblock>
-      <constant namespace="Thumber" line="26" package="Default">
-        <name>SUPPORTED_FORMATS</name>
-        <full_name>\Thumber\ThumbManager::SUPPORTED_FORMATS</full_name>
-        <value>array('bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff')</value>
-        <docblock line="26">
-          <description>Supported formats</description>
-          <long-description></long-description>
-          <tag name="var" line="26" description="" type="array" variable="">
-            <type>array</type>
-          </tag>
-        </docblock>
-      </constant>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber" line="33" package="Default">
-        <name>_clear</name>
-        <full_name>\Thumber\ThumbManager::_clear()</full_name>
-        <docblock line="33">
-          <description>Internal method to clear thumbnails</description>
-          <long-description></long-description>
-          <tag name="param" line="33" description="&lt;p&gt;Filenames&lt;/p&gt;" type="array" variable="$filenames">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="33" description="Number of thumbnails deleted otherwise `false` in case of error" type="integer|boolean">
-            <type>integer</type>
-            <type>boolean</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$filenames</name>
-          <default></default>
-          <type>array</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber" line="54" package="Default">
-        <name>_find</name>
-        <full_name>\Thumber\ThumbManager::_find()</full_name>
-        <docblock line="54">
-          <description>Internal method to find thumbnails</description>
-          <long-description></long-description>
-          <tag name="param" line="54" description="&lt;p&gt;A pattern (a regexp, a glob, or a string)&lt;/p&gt;" type="string|null" variable="$pattern">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="param" line="54" description="&lt;p&gt;Whether results should be sorted&lt;/p&gt;" type="boolean" variable="$sort">
-            <type>boolean</type>
-          </tag>
-          <tag name="return" line="54" description="" type="array">
-            <type>array</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$pattern</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$sort</name>
-          <default>false</default>
-          <type>boolean</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="73" package="Default">
-        <name>clear</name>
-        <full_name>\Thumber\ThumbManager::clear()</full_name>
-        <docblock line="73">
-          <description>Clears all thumbnails that have been generated from an image path</description>
-          <long-description></long-description>
-          <tag name="param" line="73" description="&lt;p&gt;Path of the original image&lt;/p&gt;" type="string" variable="$path">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="73" description="Number of thumbnails deleted otherwise `false` in case of error" type="integer|boolean">
-            <type>integer</type>
-            <type>boolean</type>
-          </tag>
-          <tag name="uses" line="73" description="" link="\Thumber\ThumbManager::_clear()"/>
-          <tag name="uses" line="73" description="" link="\Thumber\ThumbManager::get()"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="84" package="Default">
-        <name>clearAll</name>
-        <full_name>\Thumber\ThumbManager::clearAll()</full_name>
-        <docblock line="84">
-          <description>Clears all thumbnails</description>
-          <long-description></long-description>
-          <tag name="return" line="84" description="Number of thumbnails deleted otherwise `false` in case of error" type="integer|boolean">
-            <type>integer</type>
-            <type>boolean</type>
-          </tag>
-          <tag name="uses" line="84" description="" link="\Thumber\ThumbManager::_clear()"/>
-          <tag name="uses" line="84" description="" link="\Thumber\ThumbManager::getAll()"/>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="97" package="Default">
-        <name>get</name>
-        <full_name>\Thumber\ThumbManager::get()</full_name>
-        <docblock line="97">
-          <description>Gets all thumbnails that have been generated from an image path</description>
-          <long-description></long-description>
-          <tag name="param" line="97" description="&lt;p&gt;Path of the original image&lt;/p&gt;" type="string" variable="$path">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="97" description="&lt;p&gt;Whether results should be sorted&lt;/p&gt;" type="boolean" variable="$sort">
-            <type>boolean</type>
-          </tag>
-          <tag name="return" line="97" description="" type="array">
-            <type>array</type>
-          </tag>
-          <tag name="throws" line="97" description="" type="\Tools\Exception\NotReadableException">
-            <type>\Tools\Exception\NotReadableException</type>
-          </tag>
-          <tag name="uses" line="97" description="" link="\Thumber\ThumbManager::_find()"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$sort</name>
-          <default>false</default>
-          <type>boolean</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber" line="111" package="Default">
-        <name>getAll</name>
-        <full_name>\Thumber\ThumbManager::getAll()</full_name>
-        <docblock line="111">
-          <description>Gets all thumbnails</description>
-          <long-description></long-description>
-          <tag name="param" line="111" description="&lt;p&gt;Whether results should be sorted&lt;/p&gt;" type="boolean" variable="$sort">
-            <type>boolean</type>
-          </tag>
-          <tag name="return" line="111" description="" type="array">
-            <type>array</type>
-          </tag>
-          <tag name="uses" line="111" description="" link="\Thumber\ThumbManager::_find()"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$sort</name>
-          <default>false</default>
-          <type>boolean</type>
-        </argument>
-      </method>
-    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
   </file>
-  <file path="src/TestSuite/TestCase.php" generated-path="src.TestSuite.TestCase.html" hash="33355f1fb8901bf6a9d804a7a0f36eba" package="Default">
+  <file path="src/TestSuite/TestCase.php" generated-path="src.TestSuite.TestCase.html" hash="ee004fe2537ec3d7a6dd893bc6af0f45" package="Default">
     <docblock line="0">
-      <description>This file is part of php-thumber.</description>
-      <long-description>Licensed under The MIT License
-For full copyright and license information, please see the LICENSE.txt
-Redistributions of files must retain the above copyright notice.</long-description>
-      <tag name="copyright" line="0" description="Copyright (c) Mirko Pagliai"/>
-      <tag name="link" line="0" description="https://github.com/mirko-pagliai/php-thumber" link="https://github.com/mirko-pagliai/php-thumber"/>
-      <tag name="license" line="0" description="MIT License" link="https://opensource.org/licenses/mit-license.php"/>
+      <description></description>
+      <long-description></long-description>
       <tag name="package" line="0" description="Default"/>
     </docblock>
     <namespace-alias name="TestTrait">\Thumber\TestSuite\TestTrait</namespace-alias>
     <namespace-alias name="BaseTestCase">\Tools\TestSuite\TestCase</namespace-alias>
-    <class final="false" abstract="true" namespace="Thumber\TestSuite" line="21" package="Default">
+    <class final="false" abstract="true" namespace="Thumber\TestSuite" line="22" package="Default">
       <extends>\Tools\TestSuite\TestCase</extends>
       <name>TestCase</name>
       <full_name>\Thumber\TestSuite\TestCase</full_name>
-      <docblock line="21">
+      <docblock line="22">
         <description>TestCase class</description>
         <long-description></long-description>
-        <tag name="package" line="21" description="Default"/>
+        <tag name="package" line="22" description="Default"/>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\TestSuite" line="29" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\TestSuite" line="30" package="Default">
         <name>tearDown</name>
         <full_name>\Thumber\TestSuite\TestCase::tearDown()</full_name>
-        <docblock line="29">
+        <docblock line="30">
           <description>Called after every test method</description>
           <long-description></long-description>
-          <tag name="return" line="29" description="" type="void">
+          <tag name="return" line="30" description="" type="void">
             <type>void</type>
           </tag>
         </docblock>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="protected" namespace="Thumber\TestSuite" line="28" package="Default">
-        <name>createCopy</name>
-        <full_name>\Thumber\TestSuite\TestTrait::createCopy()</full_name>
-        <docblock line="28">
-          <description>Internal method to create a copy of an image file</description>
-          <long-description></long-description>
-          <tag name="param" line="28" description="&lt;p&gt;Image file path&lt;/p&gt;" type="string" variable="$path">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="28" description="" type="string">
-            <type>string</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <inherited_from>\Thumber\TestSuite\TestTrait</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber\TestSuite" line="41" package="Default">
-        <name>createSomeThumbs</name>
-        <full_name>\Thumber\TestSuite\TestTrait::createSomeThumbs()</full_name>
-        <docblock line="41">
-          <description>Internal method to create some thumbs</description>
-          <long-description></long-description>
-          <tag name="return" line="41" description="" type="void">
-            <type>void</type>
-          </tag>
-          <tag name="uses" line="41" description="" link="\Thumber\TestSuite\TestTrait::getThumbCreatorInstance()"/>
-        </docblock>
-        <inherited_from>\Thumber\TestSuite\TestTrait</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Thumber\TestSuite" line="58" package="Default">
-        <name>assertImageFileEquals</name>
-        <full_name>\Thumber\TestSuite\TestTrait::assertImageFileEquals()</full_name>
-        <docblock line="58">
-          <description>Asserts that the contents of one image file is equal to the contents of
- another image file</description>
-          <long-description></long-description>
-          <tag name="param" line="58" description="&lt;p&gt;Expected file&lt;/p&gt;" type="string" variable="$expected">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="58" description="&lt;p&gt;Actual file&lt;/p&gt;" type="string" variable="$actual">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="58" description="&lt;p&gt;The failure message that will be appended to the&#10; generated message&lt;/p&gt;" type="string" variable="$message">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="58" description="" type="void">
-            <type>void</type>
-          </tag>
-          <tag name="uses" line="58" description="" link="\Thumber\TestSuite\TestTrait::createCopy()"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$expected</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$actual</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>''</default>
-          <type>string</type>
-        </argument>
-        <inherited_from>\Thumber\TestSuite\TestTrait</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\TestSuite" line="79" package="Default">
-        <name>assertThumbPath</name>
-        <full_name>\Thumber\TestSuite\TestTrait::assertThumbPath()</full_name>
-        <docblock line="79">
-          <description>Asserts for a valid thumbnail path</description>
-          <long-description></long-description>
-          <tag name="param" line="79" description="&lt;p&gt;Thumbnail path&lt;/p&gt;" type="string" variable="$path">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="79" description="&lt;p&gt;The failure message that will be appended to the&#10; generated message&lt;/p&gt;" type="string" variable="$message">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="79" description="" type="void">
-            <type>void</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>''</default>
-          <type>string</type>
-        </argument>
-        <inherited_from>\Thumber\TestSuite\TestTrait</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber\TestSuite" line="92" package="Default">
-        <name>getThumbCreatorInstance</name>
-        <full_name>\Thumber\TestSuite\TestTrait::getThumbCreatorInstance()</full_name>
-        <docblock line="92">
-          <description>Returns an instance of `ThumbCreator`</description>
-          <long-description></long-description>
-          <tag name="param" line="92" description="&lt;p&gt;Path of the image from which to create the&#10;thumbnail. It can be a relative path (to APP/webroot/img), a full path&#10;or a remote url&lt;/p&gt;" type="string|null" variable="$path">
-            <type>string</type>
-            <type>null</type>
-          </tag>
-          <tag name="return" line="92" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default>null</default>
-          <type>string|null</type>
-        </argument>
-        <inherited_from>\Thumber\TestSuite\TestTrait</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="Thumber\TestSuite" line="111" package="Default">
-        <name>getThumbCreatorInstanceWithSave</name>
-        <full_name>\Thumber\TestSuite\TestTrait::getThumbCreatorInstanceWithSave()</full_name>
-        <docblock line="111">
-          <description>Returns an instance of `ThumbCreator`, after calling `resize()` and
- `save()` methods.</description>
-          <long-description>It can be called passing only the array of options as first argument.</long-description>
-          <tag name="param" line="111" description="&lt;p&gt;Path of the image from which to create the&#10; thumbnail. It can be a full path or a remote url&lt;/p&gt;" type="string|null|array" variable="$path">
-            <type>string</type>
-            <type>null</type>
-            <type>array</type>
-          </tag>
-          <tag name="param" line="111" description="&lt;p&gt;Options for saving&lt;/p&gt;" type="array" variable="$options">
-            <type>array</type>
-          </tag>
-          <tag name="return" line="111" description="" type="\Thumber\ThumbCreator">
-            <type>\Thumber\ThumbCreator</type>
-          </tag>
-          <tag name="uses" line="111" description="" link="\Thumber\TestSuite\TestTrait::getThumbCreatorInstance()"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$path</name>
-          <default>null</default>
-          <type>string|null|array</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$options</name>
-          <default>array()</default>
-          <type>array</type>
-        </argument>
-        <inherited_from>\Thumber\TestSuite\TestTrait</inherited_from>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Thumber\TestSuite" line="129" package="Default">
-        <name>skipIfDriverIs</name>
-        <full_name>\Thumber\TestSuite\TestTrait::skipIfDriverIs()</full_name>
-        <docblock line="129">
-          <description>Skips the test if you running the designated driver</description>
-          <long-description></long-description>
-          <tag name="param" line="129" description="&lt;p&gt;Driver name&lt;/p&gt;" type="string" variable="$driver">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="129" description="&lt;p&gt;The message to display&lt;/p&gt;" type="string" variable="$message">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="129" description="" type="boolean">
-            <type>boolean</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$driver</name>
-          <default></default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$message</name>
-          <default>''</default>
-          <type>string</type>
-        </argument>
-        <inherited_from>\Thumber\TestSuite\TestTrait</inherited_from>
       </method>
     </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="global" full_name="global"/>
   <namespace name="global" full_name="global"/>
   <namespace name="Thumber" full_name="Thumber">
-    <namespace name="Exception" full_name="Thumber\Exception"/>
     <namespace name="TestSuite" full_name="Thumber\TestSuite"/>
   </namespace>
   <deprecated count="0"/>
