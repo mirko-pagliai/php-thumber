@@ -30,10 +30,7 @@ class NotReadableImageException extends NotReadableException
     public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $path = null)
     {
         if (!$message) {
-            $message = 'Unable to read image from file';
-            if ($path) {
-                $message = sprintf('Unable to read image from file `%s`', $path);
-            }
+            $message = $path ? sprintf('Unable to read image from `%s`', $path) : 'Unable to read image from file';
         }
 
         parent::__construct($message, $code, $previous, $path);

@@ -11,6 +11,7 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
+
 require_once 'vendor/autoload.php';
 
 define('DS', DIRECTORY_SEPARATOR);
@@ -25,7 +26,3 @@ require_once 'config/bootstrap.php';
 define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
 define('THUMBER_COMPARING_DIR', THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . THUMBER_DRIVER . DS);
 echo 'Running tests for "' . THUMBER_DRIVER . '" driver ' . PHP_EOL;
-
-if (!class_exists('\PHPUnit\Framework\ExpectationFailedException')) {
-    class_alias('\PHPUnit_Framework_ExpectationFailedException', '\PHPUnit\Framework\ExpectationFailedException');
-}

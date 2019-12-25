@@ -37,7 +37,7 @@ class NotReadableImageExceptionTest extends TestCase
         try {
             throw new NotReadableImageException('', 0, null, 'example_file');
         } catch (NotReadableImageException $e) {
-            $this->assertSame('Unable to read image from file `example_file`', $e->getMessage());
+            $this->assertSame('Unable to read image from `example_file`', $e->getMessage());
             $this->assertSame('example_file', $e->getFilePath());
         }
     }

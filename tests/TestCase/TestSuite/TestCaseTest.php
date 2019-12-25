@@ -13,7 +13,6 @@ declare(strict_types=1);
  */
 namespace Thumber\Test\TestCase;
 
-use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use Thumber\TestSuite\TestCase;
 use Thumber\ThumbCreator;
@@ -23,20 +22,6 @@ use Thumber\ThumbCreator;
  */
 class TestCaseTest extends TestCase
 {
-    /**
-     * Test for `tearDown()` method
-     * @test
-     */
-    public function testTearDown()
-    {
-        $test = $this->getMockBuilder(TestCaseTest::class)
-            ->setMethods(['getPath'])
-            ->getMock();
-
-        $test->method('getPath')->willThrowException(new Exception());
-        $this->assertNull($test->tearDown());
-    }
-
     /**
      * Test for `assertImageFileEquals()` method
      * @test

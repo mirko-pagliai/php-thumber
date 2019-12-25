@@ -129,6 +129,6 @@ trait TestTrait
      */
     public function skipIfDriverIs(string $driver, string $message = ''): bool
     {
-        return parent::skipIf(THUMBER_DRIVER == $driver, $message);
+        return parent::skipIf($driver == THUMBER_DRIVER, $message);
     }
 }

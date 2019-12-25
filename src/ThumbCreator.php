@@ -56,12 +56,6 @@ class ThumbCreator
     protected $callbacks = [];
 
     /**
-     * Driver name
-     * @var string
-     */
-    protected $driver;
-
-    /**
      * Path of the file from which the thumbnail will be generated
      * @var string
      */
@@ -80,7 +74,6 @@ class ThumbCreator
      *  thumbnail. It can be a full path or a remote url
      * @uses $ImageManager
      * @uses $arguments
-     * @uses $driver
      * @uses $path
      */
     public function __construct(string $path)
@@ -88,10 +81,8 @@ class ThumbCreator
         if (!is_url($path)) {
             is_readable_or_fail($path);
         }
-        $this->driver = THUMBER_DRIVER;
-        $this->ImageManager = new ImageManager(['driver' => $this->driver]);
-        $this->path = $path;
-        $this->arguments[] = $this->path;
+        $this->ImageManager = new ImageManager(['driver' => THUMBER_DRIVER]);
+        $this->arguments[] = $this->path = $path;
     }
 
     /**
@@ -272,7 +263,6 @@ class ThumbCreator
      * @uses getImageInstance()
      * @uses $arguments
      * @uses $callbacks
-     * @uses $driver
      * @uses $path
      * @uses $target
      */
@@ -287,7 +277,7 @@ class ThumbCreator
         $options['format'] = $target ? $this->getDefaultSaveOptions([], $target)['format'] : $options['format'];
 
         if (!$target) {
-            $this->arguments[] = [$this->driver, $options['format'], $options['quality']];
+            $this->arguments[] = [THUMBER_DRIVER, $options['format'], $options['quality']];
             $target = sprintf('%s_%s.%s', md5($this->path), md5(serialize($this->arguments)), $options['format']);
         }
 
