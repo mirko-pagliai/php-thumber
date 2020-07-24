@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.1 branch
+### 1.1.1
+* little fixes.
+
 ### 1.1.0
 * `ThumbManager::clear()` and `ThumbManager::clearAll()` can return `null`;
 * updated for `php` 7.1 and `phpunit` 8.
