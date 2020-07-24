@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>php-thumber-                 Class
+     Thumber\ThumbCreator
+</title>
+        <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/highlight/default.css">
+        <script src="assets/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
+    <body>
+        <nav class="navbar sticky-top navbar-dark bg-dark">
+            <a class="navbar-brand mb-0 h1" href="index.html">php-thumber</a>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 col-lg-4 p-3">
+                    <ul class="list-unstyled m-0">
+    <li class="text-truncate">
+        <a href="Class-Thumber-Exception-NotReadableImageException.html" title="Thumber\Exception\NotReadableImageException">Thumber\Exception\NotReadableImageException</a>
+    </li>
+    <li class="text-truncate">
+        <a href="Class-Thumber-Exception-UnsupportedImageTypeException.html" title="Thumber\Exception\UnsupportedImageTypeException">Thumber\Exception\UnsupportedImageTypeException</a>
+    </li>
+    <li class="text-truncate">
+        <a href="Class-Thumber-TestSuite-TestCase.html" title="Thumber\TestSuite\TestCase">Thumber\TestSuite\TestCase</a>
+    </li>
+    <li class="text-truncate">
+        <a href="Class-Thumber-TestSuite-TestTrait.html" title="Thumber\TestSuite\TestTrait">Thumber\TestSuite\TestTrait</a>
+    </li>
+    <li class="text-truncate">
+        <a href="Class-Thumber-ThumbCreator.html" title="Thumber\ThumbCreator">Thumber\ThumbCreator</a>
+    </li>
+    <li class="text-truncate">
+        <a href="Class-Thumber-ThumbManager.html" title="Thumber\ThumbManager">Thumber\ThumbManager</a>
+    </li>
+</ul>
+                </div>
+                <div class="col p-3">
+                        <h2>            Class
+     <em>ThumbCreator</em></h2>
+
+    <p>Utility to create a thumb.
+Please, refer to the `README` file to know how to use the utility and to
+see examples.</p>
+
+    
+    
+    
+    <div class="p-3 mb-2 bg-light text-dark">
+        <div><strong>Namespace:</strong> Thumber</div>
+        <div><strong>Location:</strong> /home/mirko/Libs/php-thumber/src/ThumbCreator.php</div>
+    </div>
+
+    
+            <h4>Properties summary</h4>
+        <ul>
+                            <li>
+                    <div>
+    <code>$ImageManager</code> <span class="badge badge-light">public</span>
+</div>
+<div><span class="badge badge-light">Intervention\Image\ImageManager</span></div>
+<div><p><code>ImageManager</code> instance</p></div>
+                </li>
+                            <li>
+                    <div>
+    <code>$arguments</code> <span class="badge badge-light">protected</span>
+</div>
+<div><span class="badge badge-light">array</span></div>
+<div><p>Arguments that will be used to generate the name of the thumbnail.
+Every time you call a method that alters the final thumbnail, its
+arguments must be added to this array, including the name of that method.</p></div>
+                </li>
+                            <li>
+                    <div>
+    <code>$callbacks</code> <span class="badge badge-light">protected</span>
+</div>
+<div><span class="badge badge-light">array</span></div>
+<div><p>Callbacks that will be called by the <code>save()</code> method to create the
+thumbnail</p></div>
+                </li>
+                            <li>
+                    <div>
+    <code>$path</code> <span class="badge badge-light">protected</span>
+</div>
+<div><span class="badge badge-light">string</span></div>
+<div><p>Path of the file from which the thumbnail will be generated</p></div>
+                </li>
+                            <li>
+                    <div>
+    <code>$target</code> <span class="badge badge-light">protected</span>
+</div>
+<div><span class="badge badge-light">string</span></div>
+<div><p>Path of the generated thumbnail</p></div>
+                </li>
+                    </ul>
+    
+            <h4>Methods summary</h4>
+        <ul>
+                            <li>
+                    <div>
+    <code>
+        <a href="#__construct">__construct()</a>
+    </code> <span class="badge badge-light">public</span>
+    <div><p>Construct.</p></div>
+</div>                </li>
+                            <li>
+                    <div>
+    <code>
+        <a href="#getDefaultSaveOptions">getDefaultSaveOptions()</a>
+    </code> <span class="badge badge-light">protected</span>
+    <div><p>Internal method to get default options for the <code>save()</code> method</p></div>
+</div>                </li>
+                            <li>
+                    <div>
+    <code>
+        <a href="#getImageInstance">getImageInstance()</a>
+    </code> <span class="badge badge-light">protected</span>
+    <div><p>Gets an <code>Image</code> instance</p></div>
+</div>                </li>
+                            <li>
+                    <div>
+    <code>
+        <a href="#crop">crop()</a>
+    </code> <span class="badge badge-light">public</span>
+    <div><p>Crops the image, cutting out a rectangular part of the image.</p></div>
+</div>                </li>
+                            <li>
+                    <div>
+    <code>
+        <a href="#fit">fit()</a>
+    </code> <span class="badge badge-light">public</span>
+    <div><p>Resizes the image, combining cropping and resizing to format image in a
+smart way. It will find the best fitting aspect ratio on the current
+image automatically, cut it out and resize it to the given dimension</p></div>
+</div>                </li>
+                            <li>
+                    <div>
+    <code>
+        <a href="#resize">resize()</a>
+    </code> <span class="badge badge-light">public</span>
+    <div><p>Resizes the image</p></div>
+</div>                </li>
+                            <li>
+                    <div>
+    <code>
+        <a href="#resizeCanvas">resizeCanvas()</a>
+    </code> <span class="badge badge-light">public</span>
+    <div><p>Resizes the boundaries of the current image to given width and height. An
+anchor can be defined to determine from what point of the image the
+resizing is going to happen. Set the mode to relative to add or subtract
+the given width or height to the actual image dimensions. You can also
+pass a background color for the emerging area of the image</p></div>
+</div>                </li>
+                            <li>
+                    <div>
+    <code>
+        <a href="#save">save()</a>
+    </code> <span class="badge badge-light">public</span>
+    <div><p>Saves the thumbnail and returns its path</p></div>
+</div>                </li>
+                    </ul>
+    
+            <h4>Methods detail</h4>
+                    <div class="mb-4">
+                <a name="__construct"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>__construct()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">__construct(string $path)</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Construct.
+It sets the file path and extension.</p></small>
+    </blockquote>
+
+    <h6>Parameters</h6>
+    <div class="mb-3">
+        <code class="language-php">string $path</code> <p>Path of the image from which to create the
+thumbnail. It can be a full path or a remote url</p>
+    </div></div>            </div>
+                    <div class="mb-4">
+                <a name="getDefaultSaveOptions"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>getDefaultSaveOptions()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">getDefaultSaveOptions(array $options = [], string|null $path = null)</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Internal method to get default options for the <code>save()</code> method</p></small>
+    </blockquote>
+
+    <h6>Parameters</h6>
+    <div class="mb-3">
+        <code class="language-php">array $options = []</code> <p>Passed options</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">string|null $path = null</code> <p>Path to use</p>
+    </div>
+
+    <h6>Return</h6>
+    <div class="mb-3">
+        <div><code>array</code></div>
+        <div><p>Passed options added to the default options</p></div>
+    </div></div>            </div>
+                    <div class="mb-4">
+                <a name="getImageInstance"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>getImageInstance()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">getImageInstance()</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Gets an <code>Image</code> instance</p></small>
+    </blockquote>
+
+    <h6>Return</h6>
+    <div class="mb-3">
+        <div><code>Intervention\Image\Image</code></div>
+    </div>
+
+    <h6>Throws</h6>
+    <div class="mb-3">
+        <div><code>Thumber\Exception\NotReadableImageException</code></div>
+    </div>
+    <div class="mb-3">
+        <div><code>Thumber\Exception\UnsupportedImageTypeException</code></div>
+    </div>
+</div>            </div>
+                    <div class="mb-4">
+                <a name="crop"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>crop()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">crop(integer|null $width = null, integer|null $heigth = null, array $options = [])</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Crops the image, cutting out a rectangular part of the image.
+You can define optional coordinates to move the top-left corner of the
+cutout to a certain position.</p></small>
+    </blockquote>
+
+    <h6>Parameters</h6>
+    <div class="mb-3">
+        <code class="language-php">integer|null $width = null</code> <p>Required width</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">integer|null $heigth = null</code> <p>Required heigth</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">array $options = []</code> <p>Options for the thumbnail</p>
+    </div>
+
+    <h6>Return</h6>
+    <div class="mb-3">
+        <div><code>self</code></div>
+    </div>
+
+    <h6>See</h6>
+    <div class="mb-3">
+        <div>https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop</div>
+    </div></div>            </div>
+                    <div class="mb-4">
+                <a name="fit"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>fit()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">fit(integer|null $width = null, integer|null $heigth = null, array $options = [])</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Resizes the image, combining cropping and resizing to format image in a
+smart way. It will find the best fitting aspect ratio on the current
+image automatically, cut it out and resize it to the given dimension</p></small>
+    </blockquote>
+
+    <h6>Parameters</h6>
+    <div class="mb-3">
+        <code class="language-php">integer|null $width = null</code> <p>Required width</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">integer|null $heigth = null</code> <p>Required heigth</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">array $options = []</code> <p>Options for the thumbnail</p>
+    </div>
+
+    <h6>Return</h6>
+    <div class="mb-3">
+        <div><code>self</code></div>
+    </div>
+
+    <h6>See</h6>
+    <div class="mb-3">
+        <div>https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit</div>
+    </div></div>            </div>
+                    <div class="mb-4">
+                <a name="resize"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>resize()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">resize(integer|null $width = null, integer|null $heigth = null, array $options = [])</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Resizes the image</p></small>
+    </blockquote>
+
+    <h6>Parameters</h6>
+    <div class="mb-3">
+        <code class="language-php">integer|null $width = null</code> <p>Required width</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">integer|null $heigth = null</code> <p>Required heigth</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">array $options = []</code> <p>Options for the thumbnail</p>
+    </div>
+
+    <h6>Return</h6>
+    <div class="mb-3">
+        <div><code>self</code></div>
+    </div>
+
+    <h6>See</h6>
+    <div class="mb-3">
+        <div>https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize</div>
+    </div></div>            </div>
+                    <div class="mb-4">
+                <a name="resizeCanvas"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>resizeCanvas()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">resizeCanvas(integer|null $width, integer|null $heigth = null, array $options = [])</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Resizes the boundaries of the current image to given width and height. An
+anchor can be defined to determine from what point of the image the
+resizing is going to happen. Set the mode to relative to add or subtract
+the given width or height to the actual image dimensions. You can also
+pass a background color for the emerging area of the image</p></small>
+    </blockquote>
+
+    <h6>Parameters</h6>
+    <div class="mb-3">
+        <code class="language-php">integer|null $width</code> <p>Required width</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">integer|null $heigth = null</code> <p>Required heigth</p>
+    </div>
+    <div class="mb-3">
+        <code class="language-php">array $options = []</code> <p>Options for the thumbnail</p>
+    </div>
+
+    <h6>Return</h6>
+    <div class="mb-3">
+        <div><code>self</code></div>
+    </div>
+
+    <h6>See</h6>
+    <div class="mb-3">
+        <div>https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas</div>
+    </div></div>            </div>
+                    <div class="mb-4">
+                <a name="save"></a>
+<div class="pb-1 pt-2 px-2 mb-3 bg-info text-white"><h5>save()</h5></div>
+<div class="ml-3">
+    <pre><code class="language-php">save(array $options = [])</code></pre>
+    <blockquote class="blockquote">
+        <small class="font-weight-light"><p>Saves the thumbnail and returns its path</p></small>
+    </blockquote>
+
+    <h6>Parameters</h6>
+    <div class="mb-3">
+        <code class="language-php">array $options = []</code> <p>Options for saving</p>
+    </div>
+
+    <h6>Return</h6>
+    <div class="mb-3">
+        <div><code>string</code></div>
+        <div><p>Thumbnail path</p></div>
+    </div>
+
+    <h6>See</h6>
+    <div class="mb-3">
+        <div>https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail</div>
+    </div>
+
+    <h6>Throws</h6>
+    <div class="mb-3">
+        <div><code>BadMethodCallException</code></div>
+    </div>
+    <div class="mb-3">
+        <div><code>Tools\Exception\NotWritableException</code></div>
+    </div>
+</div>            </div>
+            
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+    <p class="bg-light m-0 p-3 small text-center">
+        This documentation was built automatically thanks to <a href="https://github.com/mirko-pagliai/php-doc-maker" target="_blank">php-doc-maker</a>
+    </p>
+</div>
+    </body>
+</html>
