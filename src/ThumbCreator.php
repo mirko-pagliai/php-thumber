@@ -23,6 +23,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
 use Tools\Exception\NotWritableException;
+use Tools\Exceptionist;
 
 /**
  * Utility to create a thumb.
@@ -72,6 +73,8 @@ class ThumbCreator
      * It sets the file path and extension.
      * @param string $path Path of the image from which to create the
      *  thumbnail. It can be a full path or a remote url
+     * @throws \Tools\Exception\FileNotExistsException
+     * @throws \Tools\Exception\NotReadableException
      * @uses $ImageManager
      * @uses $arguments
      * @uses $path
@@ -79,7 +82,7 @@ class ThumbCreator
     public function __construct(string $path)
     {
         if (!is_url($path)) {
-            is_readable_or_fail($path);
+            Exceptionist::isReadable($path);
         }
         $this->ImageManager = new ImageManager(['driver' => THUMBER_DRIVER]);
         $this->arguments[] = $this->path = $path;

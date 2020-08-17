@@ -86,7 +86,7 @@ class ThumbManagerTest extends TestCase
 
         //With a no existing file
         $this->expectException(NotReadableException::class);
-        $this->expectExceptionMessage('File or directory `noExisting` is not readable');
+        $this->expectExceptionMessage('File or directory `noExisting` does not exist');
         $this->ThumbManager->get('noExisting');
     }
 
