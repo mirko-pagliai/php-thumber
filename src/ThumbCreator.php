@@ -275,11 +275,11 @@ class ThumbCreator
 
         $options = $this->getDefaultSaveOptions($options);
         $target = $options['target'];
-        $options['format'] = $target ? $this->getDefaultSaveOptions([], $target)['format'] : $options['format'];
+        $format = $target ? $this->getDefaultSaveOptions([], $target)['format'] : $options['format'];
 
         if (!$target) {
-            $this->arguments[] = [THUMBER_DRIVER, $options['format'], $options['quality']];
-            $target = sprintf('%s_%s.%s', md5($this->path), md5(serialize($this->arguments)), $options['format']);
+            $this->arguments[] = [THUMBER_DRIVER, $format, $options['quality']];
+            $target = sprintf('%s_%s.%s', md5($this->path), md5(serialize($this->arguments)), $format);
         }
 
         $target = (new Filesystem())->isAbsolutePath($target) ? $target : add_slash_term(THUMBER_TARGET) . $target;
@@ -293,7 +293,7 @@ class ThumbCreator
                 call_user_func($callback, $imageInstance);
             }
 
-            $content = $imageInstance->encode($options['format'], $options['quality']);
+            $content = $imageInstance->encode($format, $options['quality']);
             $imageInstance->destroy();
             try {
                 (new Filesystem())->dumpFile($target, $content);
