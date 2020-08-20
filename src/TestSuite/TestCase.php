@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 /**
  * This file is part of php-thumber.
@@ -28,7 +27,7 @@ abstract class TestCase extends BaseTestCase
      * Called after every test method
      * @return void
      */
-    public function tearDown(): void
+    public function tearDown()
     {
         @unlink_recursive(THUMBER_TARGET);
 

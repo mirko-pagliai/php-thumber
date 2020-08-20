@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+
 /**
  * This file is part of php-thumber.
  *
@@ -79,7 +79,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $path
      */
-    public function __construct(string $path)
+    public function __construct($path)
     {
         if (!is_url($path)) {
             Exceptionist::isReadable($path);
@@ -95,7 +95,7 @@ class ThumbCreator
      * @return array Passed options added to the default options
      * @uses $path
      */
-    protected function getDefaultSaveOptions(array $options = [], ?string $path = null): array
+    protected function getDefaultSaveOptions(array $options = [], $path = null)
     {
         $options += [
             'format' => get_extension($path ?: $this->path),
@@ -117,7 +117,7 @@ class ThumbCreator
      * @uses $ImageManager
      * @uses $path
      */
-    protected function getImageInstance(): Image
+    protected function getImageInstance()
     {
         try {
             $imageInstance = $this->ImageManager->make($this->path);
@@ -144,7 +144,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function crop(?int $width = null, ?int $heigth = null, array $options = []): ThumbCreator
+    public function crop($width = null, $heigth = null, array $options = [])
     {
         $heigth = $heigth ?: $width;
         $width = $width ?: $heigth;
@@ -173,7 +173,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function fit(?int $width = null, ?int $heigth = null, array $options = [])
+    public function fit($width = null, $heigth = null, array $options = [])
     {
         $heigth = $heigth ?: $width;
         $width = $width ?: $heigth;
@@ -204,7 +204,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function resize(?int $width = null, ?int $heigth = null, array $options = [])
+    public function resize($width = null, $heigth = null, array $options = [])
     {
         $options += ['aspectRatio' => true, 'upsize' => true];
 
@@ -240,7 +240,7 @@ class ThumbCreator
      * @uses $arguments
      * @uses $callbacks
      */
-    public function resizeCanvas(?int $width, ?int $heigth = null, array $options = [])
+    public function resizeCanvas($width, $heigth = null, array $options = [])
     {
         $options += ['anchor' => 'center', 'relative' => false, 'bgcolor' => '#ffffff'];
 
@@ -269,7 +269,7 @@ class ThumbCreator
      * @uses $path
      * @uses $target
      */
-    public function save(array $options = []): string
+    public function save(array $options = [])
     {
         Exceptionist::isTrue($this->callbacks, 'No valid method called before the `save()` method', BadMethodCallException::class);
 

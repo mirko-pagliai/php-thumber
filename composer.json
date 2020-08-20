@@ -11,13 +11,13 @@
         }
     ],
     "require": {
-        "php": ">=7.2.5",
+        "php": ">=5.6",
         "intervention/image": "^2.4",
-        "mirko-pagliai/php-tools": "^1.4.1"
+        "mirko-pagliai/php-tools": "dev-php5.6"
     },
     "require-dev": {
-        "cakephp/cakephp-codesniffer": "^4.0",
-        "phpunit/phpunit": "^7.0|^8.0"
+        "cakephp/cakephp-codesniffer": "^3.0|^4.0",
+        "phpunit/phpunit": "^5.7.15|^6.0|^7.0"
     },
     "autoload": {
         "psr-4": {

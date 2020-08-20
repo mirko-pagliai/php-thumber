@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 /**
  * This file is part of php-thumber.
@@ -28,7 +27,7 @@ class UnsupportedImageTypeException extends InvalidValueException
      * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $imageType The unsupported image type
      */
-    public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $imageType = null)
+    public function __construct($message = null, $code = 0, $previous = null, $imageType = null)
     {
         if (!$message) {
             $message = $imageType ? sprintf('Image type `%s` is not supported by this driver', $imageType) : 'Image type not supported by this driver';
@@ -42,7 +41,7 @@ class UnsupportedImageTypeException extends InvalidValueException
      * @return string|null
      * @deprecated use `getValue()` instead
      */
-    public function getImageType(): ?string
+    public function getImageType()
     {
         deprecationWarning('Use `getValue()` instead');
 

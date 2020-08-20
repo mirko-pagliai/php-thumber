@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 /**
  * This file is part of php-thumber.
@@ -26,14 +25,14 @@ class ThumbManager
      * Supported formats
      * @var array
      */
-    protected const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
+    const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
 
     /**
      * Internal method to clear thumbnails
      * @param array $filenames Filenames
      * @return int|null Number of thumbnails deleted or `null` in case of error
      */
-    protected function _clear(array $filenames): ?int
+    protected function _clear(array $filenames)
     {
         $count = 0;
 
@@ -54,7 +53,7 @@ class ThumbManager
      * @param bool $sort Whether results should be sorted
      * @return array
      */
-    protected function _find(?string $pattern = null, bool $sort = false): array
+    protected function _find($pattern = null, $sort = false)
     {
         $pattern = $pattern ?: sprintf('/[\d\w]{32}_[\d\w]{32}\.(%s)$/', implode('|', self::SUPPORTED_FORMATS));
         $finder = (new Finder())->files()->name($pattern)->in(THUMBER_TARGET);
@@ -73,7 +72,7 @@ class ThumbManager
      * @uses _clear()
      * @uses get()
      */
-    public function clear(string $path): ?int
+    public function clear($path)
     {
         return $this->_clear($this->get($path));
     }
@@ -84,7 +83,7 @@ class ThumbManager
      * @uses _clear()
      * @uses getAll()
      */
-    public function clearAll(): ?int
+    public function clearAll()
     {
         return $this->_clear($this->getAll());
     }
@@ -98,7 +97,7 @@ class ThumbManager
      * @throws \Tools\Exception\NotReadableException
      * @uses _find()
      */
-    public function get(string $path, bool $sort = false): array
+    public function get($path, $sort = false)
     {
         Exceptionist::isReadable($path);
         $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
@@ -112,7 +111,7 @@ class ThumbManager
      * @return array
      * @uses _find()
      */
-    public function getAll(bool $sort = false): array
+    public function getAll($sort = false)
     {
         return $this->_find(null, $sort);
     }
