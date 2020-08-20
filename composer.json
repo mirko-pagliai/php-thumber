@@ -2,6 +2,7 @@
     "name": "mirko-pagliai/php-thumber",
     "description": "A PHP library to generate thumbnails",
     "homepage": "https://github.com/mirko-pagliai/php-thumber",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -10,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2.5",
         "intervention/image": "^2.4",
         "mirko-pagliai/php-tools": "^1.4.1"
     },

@@ -1,10 +1,12 @@
 # 1.x branch
-## 1.1 branch
-### 1.1.2
+## 1.2 branch
+### 1.2.0
+* requires at least PHP 7.2.5;
 * `UnsupportedImageTypeException` extends now `InvalidValueException`. The
     `getImageType()` method is deprecated, use `getValue()` instead;
 * updated for `php-tools` 1.4.1.
 
+## 1.1 branch
 ### 1.1.1
 * little fixes.
 
