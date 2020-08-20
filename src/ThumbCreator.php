@@ -271,9 +271,7 @@ class ThumbCreator
      */
     public function save(array $options = []): string
     {
-        if (!$this->callbacks) {
-            throw new BadMethodCallException(sprintf('No valid method called before the `save()` method'));
-        }
+        Exceptionist::isTrue($this->callbacks, 'No valid method called before the `save()` method', BadMethodCallException::class);
 
         $options = $this->getDefaultSaveOptions($options);
         $target = $options['target'];
