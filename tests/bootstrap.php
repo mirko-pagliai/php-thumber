@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 /**
  * This file is part of php-thumber.
@@ -27,3 +26,8 @@ require_once 'config/bootstrap.php';
 define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
 define('THUMBER_COMPARING_DIR', THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . THUMBER_DRIVER . DS);
 echo 'Running tests for "' . THUMBER_DRIVER . '" driver ' . PHP_EOL;
+
+if (!class_exists('PHPUnit\Runner\Version')) {
+    class_alias('PHPUnit_Framework_Error_Deprecated', 'PHPUnit\Framework\Error\Deprecated');
+    class_alias('PHPUnit_Framework_ExpectationFailedException', 'PHPUnit\Framework\ExpectationFailedException');
+}
