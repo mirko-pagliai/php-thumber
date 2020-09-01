@@ -47,7 +47,7 @@
     <p>UnsupportedImageTypeException</p>
 
             <p>
-            Extends <code>Exception</code>.
+            Extends <code>Tools\InvalidValueException</code>.
         </p>
     
     
@@ -58,16 +58,6 @@
     </div>
 
     
-            <h4>Properties summary</h4>
-        <ul>
-                            <li>
-                    <div>
-    <code>$imageType</code> <span class="badge badge-light">protected</span>
-</div>
-<div><span class="badge badge-light">string|null</span></div>
-<div><p>Image type</p></div>
-                </li>
-                    </ul>
     
             <h4>Methods summary</h4>
         <ul>
@@ -81,8 +71,9 @@
                             <li>
                     <div>
     <code>
-        <a href="#getImageType">getImageType()</a>
+        <a href="#getImageType"><del>getImageType()</del></a>
     </code> <span class="badge badge-light">public</span>
+    <span class="badge badge-light">deprecated</span>
     <div><p>Gets the unsupported image type</p></div>
 </div>                </li>
                     </ul>
@@ -122,6 +113,11 @@
     <h6>Return</h6>
     <div class="mb-3">
         <div><code>string|null</code></div>
+    </div>
+
+    <h6>Deprecated</h6>
+    <div class="mb-3">
+        <div><p>Use <code>getValue()</code> instead</p></div>
     </div></div>            </div>
             
                 </div>
