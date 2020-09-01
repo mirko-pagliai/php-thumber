@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 /**
  * This file is part of php-thumber.
  *
@@ -14,6 +15,7 @@ declare(strict_types=1);
 namespace Thumber;
 
 use Symfony\Component\Finder\Finder;
+use Tools\Exceptionist;
 
 /**
  * A utility to manage thumbnails
@@ -92,12 +94,13 @@ class ThumbManager
      * @param string $path Path of the original image
      * @param bool $sort Whether results should be sorted
      * @return array
+     * @throws \Tools\Exception\FileNotExistsException
      * @throws \Tools\Exception\NotReadableException
      * @uses _find()
      */
     public function get(string $path, bool $sort = false): array
     {
-        is_readable_or_fail($path);
+        Exceptionist::isReadable($path);
         $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
 
         return $this->_find($pattern, $sort);

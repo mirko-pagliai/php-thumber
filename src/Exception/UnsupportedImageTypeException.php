@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 /**
  * This file is part of php-thumber.
  *
@@ -13,19 +14,13 @@ declare(strict_types=1);
  */
 namespace Thumber\Exception;
 
-use Exception;
+use Tools\InvalidValueException;
 
 /**
  * UnsupportedImageTypeException
  */
-class UnsupportedImageTypeException extends Exception
+class UnsupportedImageTypeException extends InvalidValueException
 {
-    /**
-     * Image type
-     * @var string|null
-     */
-    protected $imageType;
-
     /**
      * Construct the exception
      * @param string|null $message The Exception message to throw
@@ -36,22 +31,21 @@ class UnsupportedImageTypeException extends Exception
     public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $imageType = null)
     {
         if (!$message) {
-            $message = 'Image type not supported by this driver';
-            if ($imageType) {
-                $message = sprintf('Image type `%s` is not supported by this driver', $imageType);
-            }
+            $message = $imageType ? sprintf('Image type `%s` is not supported by this driver', $imageType) : 'Image type not supported by this driver';
         }
 
-        parent::__construct($message, $code, $previous);
-        $this->imageType = $imageType;
+        parent::__construct($message, $code, $previous, $imageType);
     }
 
     /**
      * Gets the unsupported image type
      * @return string|null
+     * @deprecated use `getValue()` instead
      */
     public function getImageType(): ?string
     {
-        return $this->imageType;
+        deprecationWarning('Use `getValue()` instead');
+
+        return $this->getValue();
     }
 }
