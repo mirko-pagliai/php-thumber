@@ -12,6 +12,8 @@
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
 
+use Tools\Filesystem;
+
 //Default thumbnails driver
 if (!defined('THUMBER_DRIVER')) {
     define('THUMBER_DRIVER', extension_loaded('imagick') ? 'imagick' : 'gd');
@@ -22,8 +24,9 @@ if (!in_array(THUMBER_DRIVER, ['imagick', 'gd'])) {
 
 //Default thumbnails directory
 if (!defined('THUMBER_TARGET')) {
-    $tmp = defined('TMP') ? TMP : sys_get_temp_dir() . DS . 'php-thumber';
-    define('THUMBER_TARGET', add_slash_term($tmp) . 'thumbs');
+    $Filesystem = new Filesystem();
+    $tmp = $Filesystem->concatenate(defined('TMP') ? TMP : sys_get_temp_dir(), 'php-thumber');
+    define('THUMBER_TARGET', $Filesystem->concatenate($tmp, 'thumbs'));
 }
 @mkdir(THUMBER_TARGET, 0777, true);
 if (!is_writeable(THUMBER_TARGET)) {

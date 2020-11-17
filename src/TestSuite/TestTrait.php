@@ -13,8 +13,8 @@
  */
 namespace Thumber\TestSuite;
 
-use Symfony\Component\Filesystem\Filesystem;
 use Thumber\ThumbCreator;
+use Tools\Filesystem;
 
 /**
  * TestCase trait
@@ -28,8 +28,9 @@ trait TestTrait
      */
     protected static function createCopy($path)
     {
-        $result = create_tmp_file();
-        @copy($path, $result);
+        $Filesystem = new Filesystem();
+        $result = $Filesystem->createTmpFile();
+        $Filesystem->copy($path, $result, true);
 
         return $result;
     }
@@ -79,7 +80,7 @@ trait TestTrait
      */
     public function assertThumbPath($path, $message = '')
     {
-        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote(add_slash_term(THUMBER_TARGET), DS));
+        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote((new Filesystem())->addSlashTerm(THUMBER_TARGET), DS));
         self::assertRegExp($regex, $path, $message);
     }
 

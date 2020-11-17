@@ -18,6 +18,7 @@ use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotSupportedException;
 use Thumber\TestSuite\TestCase;
 use Tools\Exception\NotWritableException;
+use Tools\Filesystem;
 
 /**
  * ThumbCreatorSaveTest class
@@ -58,7 +59,7 @@ class ThumbCreatorSaveTest extends TestCase
 
             //Using `target` option
             $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['target' => 'image.' . $extension]);
-            $this->assertEquals(add_slash_term(THUMBER_TARGET) . 'image.' . $extension, $thumb);
+            $this->assertEquals((new Filesystem())->concatenate(THUMBER_TARGET, 'image.' . $extension), $thumb);
             $this->assertFileMime($expectedMimetype, $thumb);
         }
     }
@@ -145,7 +146,7 @@ class ThumbCreatorSaveTest extends TestCase
     public function testSaveWithTarget()
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['target' => 'thumb.png']);
-        $this->assertEquals(add_slash_term(THUMBER_TARGET) . 'thumb.png', $thumb);
+        $this->assertEquals((new Filesystem())->concatenate(THUMBER_TARGET, 'thumb.png'), $thumb);
         $this->assertFileMime('image/png', $thumb);
 
         //With an invalid file format

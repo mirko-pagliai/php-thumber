@@ -16,6 +16,7 @@ namespace Thumber\Test\TestCase;
 use PHPUnit\Framework\ExpectationFailedException;
 use Thumber\TestSuite\TestCase;
 use Thumber\ThumbCreator;
+use Tools\Filesystem;
 
 /**
  * TestCaseTest class
@@ -34,7 +35,7 @@ class TestCaseTest extends TestCase
         @unlink($copy);
 
         $this->expectException(ExpectationFailedException::class);
-        $this->assertImageFileEquals($original, create_tmp_file());
+        $this->assertImageFileEquals($original, (new Filesystem())->createTmpFile());
     }
 
     /**
