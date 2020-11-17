@@ -16,6 +16,7 @@ namespace Thumber;
 
 use Symfony\Component\Finder\Finder;
 use Tools\Exceptionist;
+use Tools\Filesystem;
 
 /**
  * A utility to manage thumbnails
@@ -38,7 +39,7 @@ class ThumbManager
         $count = 0;
 
         foreach ($filenames as $filename) {
-            if (!@unlink(add_slash_term(THUMBER_TARGET) . $filename)) {
+            if (!@unlink((new Filesystem())->concatenate(THUMBER_TARGET, $filename))) {
                 return null;
             }
 
