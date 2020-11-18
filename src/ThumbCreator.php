@@ -161,7 +161,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->crop($width, $heigth, $options['x'], $options['y']);
         };
 
@@ -190,7 +190,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->fit($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['upsize']) {
                     $constraint->upsize();
@@ -219,7 +219,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->resize($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['aspectRatio']) {
                     $constraint->aspectRatio();
@@ -255,7 +255,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->resizeCanvas($width, $heigth, $options['anchor'], $options['relative'], $options['bgcolor']);
         };
 
@@ -302,7 +302,7 @@ class ThumbCreator
             $content = $imageInstance->encode($format, $options['quality']);
             $imageInstance->destroy();
             try {
-                $this->Filesystem->dumpFile($target, $content);
+                $this->Filesystem->dumpFile($target, (string)$content);
             } catch (IOException $e) {
                 throw new NotWritableException(sprintf('Unable to create file `%s`', $target ? $this->Filesystem->rtr($target) : ''));
             }

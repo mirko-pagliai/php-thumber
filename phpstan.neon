@@ -1,0 +1,22 @@
+parameters:
+    level: 6
+
+    paths:
+        - config
+        - src
+        - tests
+
+    bootstrapFiles:
+        - tests/bootstrap.php
+
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
+
+    excludes_analyse:
+        -  tests/test_app/
+
+    ignoreErrors:
+        -
+            message: '#^Method [\w\\]+Test::test\w+\(\) has no return typehint specified\.$#'
+            path:  tests/TestCase
