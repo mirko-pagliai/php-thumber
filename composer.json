@@ -36,6 +36,7 @@
             "@test",
             "@composer update",
             "@test",
+            "@stan-setup",
             "@stan"
         ],
         "cs-check": "phpcs --standard=phpcs.xml.dist",
