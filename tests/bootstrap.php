@@ -15,7 +15,9 @@ declare(strict_types=1);
 
 require_once 'vendor/autoload.php';
 
-define('DS', DIRECTORY_SEPARATOR);
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
 define('ROOT', dirname(__DIR__) . DS);
 define('TESTS', ROOT . 'tests' . DS);
 define('TMP', sys_get_temp_dir() . DS . 'php-thumber' . DS);

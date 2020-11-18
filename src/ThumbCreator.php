@@ -20,11 +20,11 @@ use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use Symfony\Component\Filesystem\Exception\IOException;
-use Symfony\Component\Filesystem\Filesystem;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
 use Tools\Exception\NotWritableException;
 use Tools\Exceptionist;
+use Tools\Filesystem;
 
 /**
  * Utility to create a thumb.
@@ -35,6 +35,11 @@ use Tools\Exceptionist;
  */
 class ThumbCreator
 {
+    /**
+     * @var \Tools\Filesystem
+     */
+    protected $Filesystem;
+
     /**
      * `ImageManager` instance
      * @var \Intervention\Image\ImageManager
@@ -85,6 +90,7 @@ class ThumbCreator
         if (!is_url($path)) {
             Exceptionist::isReadable($path);
         }
+        $this->Filesystem = new Filesystem();
         $this->ImageManager = new ImageManager(['driver' => THUMBER_DRIVER]);
         $this->arguments[] = $this->path = $path;
     }
@@ -99,7 +105,7 @@ class ThumbCreator
     protected function getDefaultSaveOptions(array $options = [], ?string $path = null): array
     {
         $options += [
-            'format' => get_extension($path ?: $this->path),
+            'format' => $this->Filesystem->getExtension($path ?: $this->path),
             'quality' => 90,
             'target' => false,
         ];
@@ -126,7 +132,7 @@ class ThumbCreator
             if (string_starts_with($e->getMessage(), 'Unsupported image type')) {
                 throw new UnsupportedImageTypeException('', 0, null, mime_content_type($this->path));
             }
-            throw new NotReadableImageException('', 0, null, rtr($this->path));
+            throw new NotReadableImageException('', 0, null, $this->Filesystem->rtr($this->path));
         }
 
         return $imageInstance;
@@ -155,7 +161,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->crop($width, $heigth, $options['x'], $options['y']);
         };
 
@@ -184,7 +190,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->fit($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['upsize']) {
                     $constraint->upsize();
@@ -213,7 +219,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->resize($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['aspectRatio']) {
                     $constraint->aspectRatio();
@@ -249,7 +255,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->resizeCanvas($width, $heigth, $options['anchor'], $options['relative'], $options['bgcolor']);
         };
 
@@ -283,9 +289,8 @@ class ThumbCreator
             $target = sprintf('%s_%s.%s', md5($this->path), md5(serialize($this->arguments)), $format);
         }
 
-        $target = (new Filesystem())->isAbsolutePath($target) ? $target : add_slash_term(THUMBER_TARGET) . $target;
-
         //Creates the thumbnail, if this does not exist
+        $target = $this->Filesystem->makePathAbsolute($target, THUMBER_TARGET);
         if (!file_exists($target)) {
             $imageInstance = $this->getImageInstance();
 
@@ -297,9 +302,9 @@ class ThumbCreator
             $content = $imageInstance->encode($format, $options['quality']);
             $imageInstance->destroy();
             try {
-                (new Filesystem())->dumpFile($target, $content);
+                $this->Filesystem->dumpFile($target, (string)$content);
             } catch (IOException $e) {
-                throw new NotWritableException(sprintf('Unable to create file `%s`', $target ? rtr($target) : ''));
+                throw new NotWritableException(sprintf('Unable to create file `%s`', $target ? $this->Filesystem->rtr($target) : ''));
             }
         }
 

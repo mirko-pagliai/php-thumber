@@ -1,5 +1,9 @@
 # 1.x branch
 ## 1.2 branch
+### 1.2.1
+* updated for `php-tools` 1.4.5;
+* added `phpstan`, so fixed some code.
+
 ### 1.2.0
 * requires at least PHP 7.2.5;
 * `UnsupportedImageTypeException` extends now `InvalidValueException`. The
