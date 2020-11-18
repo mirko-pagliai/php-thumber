@@ -1,0 +1,24 @@
+parameters:
+    level: 6
+
+    paths:
+        - config
+        - src
+        - tests
+
+    bootstrapFiles:
+        - tests/bootstrap.php
+
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    treatPhpDocTypesAsCertain: false
+
+    excludes_analyse:
+        -  tests/test_app/
+
+    ignoreErrors:
+        - '#does not accept PHPUnit\\Framework\\MockObject\\MockObject\.$#'
+        - '#^Call to an undefined method PHPUnit\\Framework\\MockObject\\MockObject#'
+        -
+            message: '#^Method [\w\\]+Test::test\w+\(\) has no return typehint specified\.$#'
+            path:  tests/TestCase
