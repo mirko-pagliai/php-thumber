@@ -60,8 +60,7 @@ trait TestTrait
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
-        $isAbsolute = (new Filesystem())->isAbsolutePath($expected);
-        $expected = $isAbsolute ? $expected : THUMBER_COMPARING_DIR . $expected;
+        $expected = (new Filesystem())->makePathAbsolute($expected, THUMBER_COMPARING_DIR);
         self::assertFileExists($expected, $message);
         self::assertFileExists($actual, $message);
 
@@ -94,8 +93,7 @@ trait TestTrait
      */
     protected function getThumbCreatorInstance(?string $path = null): ThumbCreator
     {
-        $path = $path ?: '400x400.jpg';
-        $path = (new Filesystem())->isAbsolutePath($path) ? $path : THUMBER_EXAMPLE_DIR . $path;
+        $path = (new Filesystem())->makePathAbsolute($path ?: '400x400.jpg', THUMBER_EXAMPLE_DIR);
 
         return new ThumbCreator($path);
     }
