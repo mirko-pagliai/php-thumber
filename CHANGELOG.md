@@ -1,6 +1,8 @@
 # 1.x branch
 ## 1.2 branch
 ### 1.2.2
+* `TestTrait::getThumbCreatorInstanceWithSave()` only takes a string as its first
+    argument, no longer `null` or an array;
 * ready for `phpunit` 9.
 
 ### 1.2.1

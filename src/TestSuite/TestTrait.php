@@ -103,18 +103,14 @@ trait TestTrait
      *  `save()` methods.
      *
      * It can be called passing only the array of options as first argument.
-     * @param string|null|array $path Path of the image from which to create the
-     *  thumbnail. It can be a full path or a remote url
+     * @param string $path Path of the image from which to create the thumbnail.
+     *  It can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
      * @uses getThumbCreatorInstance()
      */
-    protected function getThumbCreatorInstanceWithSave($path = null, array $options = []): ThumbCreator
+    protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
-        if (is_array($path) && func_num_args() < 2) {
-            [$options, $path] = [$path, null];
-        }
-
         $thumbCreator = $this->getThumbCreatorInstance($path);
         $thumbCreator->resize(200)->save($options);
 

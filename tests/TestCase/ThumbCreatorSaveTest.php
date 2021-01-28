@@ -126,7 +126,7 @@ class ThumbCreatorSaveTest extends TestCase
 
         //With an invalid value
         $this->expectException(InvalidArgumentException::class);
-        $this->getThumbCreatorInstanceWithSave(['quality' => 101]);
+        $this->getThumbCreatorInstanceWithSave('', ['quality' => 101]);
     }
 
     /**
@@ -152,7 +152,7 @@ class ThumbCreatorSaveTest extends TestCase
 
         //With an invalid file format
         $this->expectException(NotSupportedException::class);
-        $this->getThumbCreatorInstanceWithSave(['format' => 'txt']);
+        $this->getThumbCreatorInstanceWithSave('', ['format' => 'txt']);
     }
 
     /**
@@ -170,7 +170,7 @@ class ThumbCreatorSaveTest extends TestCase
 
         //Using the `target` option with an invalid file
         $this->expectException(NotSupportedException::class);
-        $this->getThumbCreatorInstanceWithSave(['target' => 'image.txt']);
+        $this->getThumbCreatorInstanceWithSave('', ['target' => 'image.txt']);
     }
 
     /**
