@@ -86,12 +86,12 @@ trait TestTrait
 
     /**
      * Returns an instance of `ThumbCreator`
-     * @param string|null $path Path of the image from which to create the
+     * @param string $path Path of the image from which to create the
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
      *  or a remote url
      * @return \Thumber\ThumbCreator
      */
-    protected function getThumbCreatorInstance(?string $path = null): ThumbCreator
+    protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
         $path = (new Filesystem())->makePathAbsolute($path ?: '400x400.jpg', THUMBER_EXAMPLE_DIR);
 
