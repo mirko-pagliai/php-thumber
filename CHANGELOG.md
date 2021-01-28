@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.2 branch
+### 1.2.2
+* ready for `phpunit` 9.
+
 ### 1.2.1
 * updated for `php-tools` 1.4.5;
 * added `phpstan`, so fixed some code.
