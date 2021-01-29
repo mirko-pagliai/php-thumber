@@ -86,22 +86,20 @@ class ThumbCreator
      */
     public function __construct($path)
     {
-        if (!is_url($path)) {
-            Exceptionist::isReadable($path);
-        }
+        $this->path = is_url($path) ? $path : Exceptionist::isReadable($path);
         $this->Filesystem = new Filesystem();
         $this->ImageManager = new ImageManager(['driver' => THUMBER_DRIVER]);
-        $this->arguments[] = $this->path = $path;
+        $this->arguments[] = $path;
     }
 
     /**
      * Internal method to get default options for the `save()` method
      * @param array $options Passed options
-     * @param string|null $path Path to use
-     * @return array Passed options added to the default options
+     * @param string $path Path to use
+     * @return array Passed options with default options
      * @uses $path
      */
-    protected function getDefaultSaveOptions(array $options = [], $path = null)
+    protected function getDefaultSaveOptions(array $options = [], $path = '')
     {
         $options += [
             'format' => $this->Filesystem->getExtension($path ?: $this->path),
@@ -129,9 +127,9 @@ class ThumbCreator
             $imageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
             if (string_starts_with($e->getMessage(), 'Unsupported image type')) {
-                throw new UnsupportedImageTypeException('', 0, null, mime_content_type($this->path));
+                throw new UnsupportedImageTypeException('', 0, E_ERROR, __FILE__, __LINE__, null, mime_content_type($this->path) ?: null);
             }
-            throw new NotReadableImageException('', 0, null, $this->Filesystem->rtr($this->path));
+            throw new NotReadableImageException('', 0, E_ERROR, __FILE__, __LINE__, null, $this->Filesystem->rtr($this->path));
         }
 
         return $imageInstance;
@@ -160,7 +158,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
             return $imageInstance->crop($width, $heigth, $options['x'], $options['y']);
         };
 
@@ -189,7 +187,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
             return $imageInstance->fit($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['upsize']) {
                     $constraint->upsize();
@@ -218,7 +216,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
             return $imageInstance->resize($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['aspectRatio']) {
                     $constraint->aspectRatio();
@@ -254,7 +252,7 @@ class ThumbCreator
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
 
         //Adds the callback
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
+        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options) {
             return $imageInstance->resizeCanvas($width, $heigth, $options['anchor'], $options['relative'], $options['bgcolor']);
         };
 

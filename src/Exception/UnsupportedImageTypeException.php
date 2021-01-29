@@ -21,19 +21,22 @@ use Tools\InvalidValueException;
 class UnsupportedImageTypeException extends InvalidValueException
 {
     /**
-     * Construct the exception
-     * @param string|null $message The Exception message to throw
-     * @param int $code The Exception code
-     * @param \Throwable|null $previous The previous exception used for the exception chaining
-     * @param string|null $imageType The unsupported image type
+     * Constructor
+     * @param string|null $message The string of the error message
+     * @param int $code The exception code
+     * @param int $severity The severity level of the exception
+     * @param string $filename The filename where the exception is thrown
+     * @param int $lineno The line number where the exception is thrown
+     * @param \Exception|null $previous The previous exception used for the exception chaining
+     * @param mixed $value The value that throwed the exception
      */
-    public function __construct($message = null, $code = 0, $previous = null, $imageType = null)
+    public function __construct($message = '', $code = 0, $severity = E_ERROR, $filename = '__FILE__', $lineno = __LINE__, \Exception $previous = null, $value = null)
     {
         if (!$message) {
-            $message = $imageType ? sprintf('Image type `%s` is not supported by this driver', $imageType) : 'Image type not supported by this driver';
+            $message = $value ? sprintf('Image type `%s` is not supported by this driver', $value) : 'Image type not supported by this driver';
         }
 
-        parent::__construct($message, $code, $previous, $imageType);
+        parent::__construct($message, $code, $severity, $filename, $lineno, $previous, $value);
     }
 
     /**

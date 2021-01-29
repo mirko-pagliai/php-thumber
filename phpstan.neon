@@ -1,5 +1,5 @@
 parameters:
-    level: 6
+    level: 7
 
     paths:
         - config
@@ -18,7 +18,7 @@ parameters:
 
     ignoreErrors:
         - '#does not accept PHPUnit\\Framework\\MockObject\\MockObject\.$#'
-        - '#^Call to an undefined method PHPUnit\\Framework\\MockObject\\MockObject#'
+        - '#^Ternary operator condition is always true\.$#'
         -
             message: '#^Method [\w\\]+Test::test\w+\(\) has no return typehint specified\.$#'
             path:  tests/TestCase

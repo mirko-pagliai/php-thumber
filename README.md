@@ -26,8 +26,6 @@ Please consider the possibility of making [a donation](//paypal.me/mirkopagliai)
 *php-thumber* requires GD Library (>=2.0) **or** Imagick PHP extension
 (>=6.5.7).
 
-Starting from the `1.2` branch, it requires at least PHP 7.2.5 and `phpunit` 7 or 8.
-
 It's **highly preferable** to use Imagick, because It provides better
 performance and a greater number of supported formats.
 
@@ -45,6 +43,15 @@ For more information about supported format, please refer to the
 You can install the plugin via composer:
 ```bash
 $ composer require --prefer-dist mirko-pagliai/php-thumber
+```
+
+Starting from the `1.2` branch, it requires at least PHP 7.2.5 and `phpunit` 7.
+Instead, the [php5.6](//github.com/mirko-pagliai/php-thumber/tree/php5.6)
+branch requires at least PHP 5.6 and `phpunit` 5.7.15.
+
+In this case, you can install the package as well:
+```bash
+$ composer require --prefer-dist mirko-pagliai/php-thumber:php5.6
 ```
 
 Therefore, before using the library, it may be necessary to configure some constants:
