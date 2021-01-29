@@ -30,13 +30,15 @@ class TestCaseTest extends TestCase
      */
     public function testAssertImageFileEquals()
     {
+        $Filesystem = new Filesystem();
+
         $original = THUMBER_EXAMPLE_DIR . '400x400.jpg';
         $copy = $this->createCopy($original);
         $this->assertImageFileEquals($original, $copy);
-        @unlink($copy);
 
+        $Filesystem->remove($copy);
         $this->expectException(ExpectationFailedException::class);
-        $this->assertImageFileEquals($original, (new Filesystem())->createTmpFile());
+        $this->assertImageFileEquals($original, $Filesystem->createTmpFile());
     }
 
     /**

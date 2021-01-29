@@ -87,22 +87,20 @@ class ThumbCreator
      */
     public function __construct(string $path)
     {
-        if (!is_url($path)) {
-            Exceptionist::isReadable($path);
-        }
+        $this->path = is_url($path) ? $path : Exceptionist::isReadable($path);
         $this->Filesystem = new Filesystem();
         $this->ImageManager = new ImageManager(['driver' => THUMBER_DRIVER]);
-        $this->arguments[] = $this->path = $path;
+        $this->arguments[] = $path;
     }
 
     /**
      * Internal method to get default options for the `save()` method
      * @param array $options Passed options
-     * @param string|null $path Path to use
-     * @return array Passed options added to the default options
+     * @param string $path Path to use
+     * @return array Passed options with default options
      * @uses $path
      */
-    protected function getDefaultSaveOptions(array $options = [], ?string $path = null): array
+    protected function getDefaultSaveOptions(array $options = [], string $path = ''): array
     {
         $options += [
             'format' => $this->Filesystem->getExtension($path ?: $this->path),
@@ -130,7 +128,7 @@ class ThumbCreator
             $imageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
             if (string_starts_with($e->getMessage(), 'Unsupported image type')) {
-                throw new UnsupportedImageTypeException('', 0, null, mime_content_type($this->path));
+                throw new UnsupportedImageTypeException('', 0, null, mime_content_type($this->path) ?: null);
             }
             throw new NotReadableImageException('', 0, null, $this->Filesystem->rtr($this->path));
         }

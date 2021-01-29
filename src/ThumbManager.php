@@ -31,61 +31,54 @@ class ThumbManager
 
     /**
      * Internal method to clear thumbnails
-     * @param array $filenames Filenames
-     * @return int|null Number of thumbnails deleted or `null` in case of error
+     * @param array<string> $filenames Filenames
+     * @return int Number of thumbnails deleted
+     * @throws \Tools\Exception\FileNotExistsException
+     * @throws \Tools\Exception\NotReadableException
      */
-    protected function _clear(array $filenames): ?int
+    protected function _clear(array $filenames): int
     {
-        $count = 0;
+        $Filesystem = new Filesystem();
+        array_walk($filenames, function (string $filename) use ($Filesystem): void {
+            $Filesystem->remove(Exceptionist::isReadable($Filesystem->concatenate(THUMBER_TARGET, $filename)));
+        });
 
-        foreach ($filenames as $filename) {
-            if (!@unlink((new Filesystem())->concatenate(THUMBER_TARGET, $filename))) {
-                return null;
-            }
-
-            $count++;
-        }
-
-        return $count;
+        return count($filenames);
     }
 
     /**
      * Internal method to find thumbnails
-     * @param string|null $pattern A pattern (a regexp, a glob, or a string)
+     * @param string $pattern A pattern (a regexp, a glob, or a string)
      * @param bool $sort Whether results should be sorted
-     * @return array
+     * @return array<string, string> Filenames
      */
-    protected function _find(?string $pattern = null, bool $sort = false): array
+    protected function _find(string $pattern = '', bool $sort = false): array
     {
         $pattern = $pattern ?: sprintf('/[\d\w]{32}_[\d\w]{32}\.(%s)$/', implode('|', self::SUPPORTED_FORMATS));
         $finder = (new Finder())->files()->name($pattern)->in(THUMBER_TARGET);
 
-        if ($sort) {
-            $finder = $finder->sortByName();
-        }
-
-        return objects_map(iterator_to_array($finder), 'getFilename');
+        return objects_map(iterator_to_array($sort ? $finder->sortByName() : $finder), 'getFilename');
     }
 
     /**
      * Clears all thumbnails that have been generated from an image path
      * @param string $path Path of the original image
-     * @return int|null Number of thumbnails deleted or `null` in case of error
-     * @uses _clear()
-     * @uses get()
+     * @return int Number of thumbnails deleted
+     * @throws \Tools\Exception\FileNotExistsException
+     * @throws \Tools\Exception\NotReadableException
      */
-    public function clear(string $path): ?int
+    public function clear(string $path): int
     {
         return $this->_clear($this->get($path));
     }
 
     /**
      * Clears all thumbnails
-     * @return int|null Number of thumbnails deleted or `null` in case of error
-     * @uses _clear()
-     * @uses getAll()
+     * @return int Number of thumbnails deleted
+     * @throws \Tools\Exception\FileNotExistsException
+     * @throws \Tools\Exception\NotReadableException
      */
-    public function clearAll(): ?int
+    public function clearAll(): int
     {
         return $this->_clear($this->getAll());
     }
@@ -94,15 +87,13 @@ class ThumbManager
      * Gets all thumbnails that have been generated from an image path
      * @param string $path Path of the original image
      * @param bool $sort Whether results should be sorted
-     * @return array
+     * @return array<string, string>
      * @throws \Tools\Exception\FileNotExistsException
      * @throws \Tools\Exception\NotReadableException
-     * @uses _find()
      */
     public function get(string $path, bool $sort = false): array
     {
-        Exceptionist::isReadable($path);
-        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
+        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5(Exceptionist::isReadable($path)), implode('|', self::SUPPORTED_FORMATS));
 
         return $this->_find($pattern, $sort);
     }
@@ -110,11 +101,10 @@ class ThumbManager
     /**
      * Gets all thumbnails
      * @param bool $sort Whether results should be sorted
-     * @return array
-     * @uses _find()
+     * @return array<string, string>
      */
     public function getAll(bool $sort = false): array
     {
-        return $this->_find(null, $sort);
+        return $this->_find('', $sort);
     }
 }

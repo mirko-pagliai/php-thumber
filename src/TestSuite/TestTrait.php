@@ -60,7 +60,8 @@ trait TestTrait
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
-        $expected = (new Filesystem())->makePathAbsolute($expected, THUMBER_COMPARING_DIR);
+        $Filesystem = new Filesystem();
+        $expected = $Filesystem->makePathAbsolute($expected, THUMBER_COMPARING_DIR);
         self::assertFileExists($expected, $message);
         self::assertFileExists($actual, $message);
 
@@ -68,7 +69,7 @@ trait TestTrait
         $actualCopy = self::createCopy($actual);
         self::assertFileEquals($expectedCopy, $actualCopy, $message);
 
-        @array_map('unlink', [$expectedCopy, $actualCopy]);
+        $Filesystem->remove([$expectedCopy, $actualCopy]);
     }
 
     /**
@@ -80,7 +81,7 @@ trait TestTrait
      */
     public function assertThumbPath(string $path, string $message = ''): void
     {
-        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote((new Filesystem())->addSlashTerm(THUMBER_TARGET), DS));
+        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote(Filesystem::instance()->addSlashTerm(THUMBER_TARGET), DS));
         self::assertMatchesRegularExpression($regex, $path, $message);
     }
 
@@ -93,7 +94,7 @@ trait TestTrait
      */
     protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
-        $path = (new Filesystem())->makePathAbsolute($path ?: '400x400.jpg', THUMBER_EXAMPLE_DIR);
+        $path = Filesystem::instance()->makePathAbsolute($path ?: '400x400.jpg', THUMBER_EXAMPLE_DIR);
 
         return new ThumbCreator($path);
     }

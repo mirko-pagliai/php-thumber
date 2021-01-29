@@ -4,7 +4,8 @@
 * `getThumbCreatorInstanceWithSave()` and `getThumbCreatorInstance()` methods
     provides by `TestTrait` only take a string as first argument, no longer `null`
     or an array;
-* ready for `phpunit` 9.
+* ready for `phpunit` 9;
+* extensive improvement of function descriptions and tags.
 
 ### 1.2.1
 * updated for `php-tools` 1.4.5;
