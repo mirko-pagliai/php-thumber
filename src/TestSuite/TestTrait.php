@@ -60,7 +60,8 @@ trait TestTrait
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
-        $expected = (new Filesystem())->makePathAbsolute($expected, THUMBER_COMPARING_DIR);
+        $Filesystem = new Filesystem();
+        $expected = $Filesystem->makePathAbsolute($expected, THUMBER_COMPARING_DIR);
         self::assertFileExists($expected, $message);
         self::assertFileExists($actual, $message);
 
@@ -68,7 +69,7 @@ trait TestTrait
         $actualCopy = self::createCopy($actual);
         self::assertFileEquals($expectedCopy, $actualCopy, $message);
 
-        @array_map('unlink', [$expectedCopy, $actualCopy]);
+        $Filesystem->remove([$expectedCopy, $actualCopy]);
     }
 
     /**
@@ -80,20 +81,20 @@ trait TestTrait
      */
     public function assertThumbPath(string $path, string $message = ''): void
     {
-        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote((new Filesystem())->addSlashTerm(THUMBER_TARGET), DS));
-        self::assertRegExp($regex, $path, $message);
+        $regex = sprintf('/^%s[\w\d_]+\.\w{3,4}/', preg_quote(Filesystem::instance()->addSlashTerm(THUMBER_TARGET), DS));
+        self::assertMatchesRegularExpression($regex, $path, $message);
     }
 
     /**
      * Returns an instance of `ThumbCreator`
-     * @param string|null $path Path of the image from which to create the
+     * @param string $path Path of the image from which to create the
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
      *  or a remote url
      * @return \Thumber\ThumbCreator
      */
-    protected function getThumbCreatorInstance(?string $path = null): ThumbCreator
+    protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
-        $path = (new Filesystem())->makePathAbsolute($path ?: '400x400.jpg', THUMBER_EXAMPLE_DIR);
+        $path = Filesystem::instance()->makePathAbsolute($path ?: '400x400.jpg', THUMBER_EXAMPLE_DIR);
 
         return new ThumbCreator($path);
     }
@@ -103,18 +104,14 @@ trait TestTrait
      *  `save()` methods.
      *
      * It can be called passing only the array of options as first argument.
-     * @param string|null|array $path Path of the image from which to create the
-     *  thumbnail. It can be a full path or a remote url
+     * @param string $path Path of the image from which to create the thumbnail.
+     *  It can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
      * @uses getThumbCreatorInstance()
      */
-    protected function getThumbCreatorInstanceWithSave($path = null, array $options = []): ThumbCreator
+    protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
-        if (is_array($path) && func_num_args() < 2) {
-            [$options, $path] = [$path, null];
-        }
-
         $thumbCreator = $this->getThumbCreatorInstance($path);
         $thumbCreator->resize(200)->save($options);
 

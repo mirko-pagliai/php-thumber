@@ -36,7 +36,7 @@ class ThumbManagerTest extends TestCase
     {
         parent::setUp();
 
-        $this->ThumbManager = new ThumbManager();
+        $this->ThumbManager = $this->ThumbManager ?: new ThumbManager();
 
         $this->createSomeThumbs();
     }
@@ -51,19 +51,6 @@ class ThumbManagerTest extends TestCase
 
         $this->createSomeThumbs();
         $this->assertEquals(1, $this->ThumbManager->clear(THUMBER_EXAMPLE_DIR . '400x400.png'));
-    }
-
-    /**
-     * Test for `clear()` method, with error
-     * @ŧest
-     */
-    public function testClearWithError()
-    {
-        $ThumbManager = $this->getMockBuilder(ThumbManager::class)
-            ->setMethods(['get'])
-            ->getMock();
-        $ThumbManager->method('get')->will($this->returnValue(['noExisting']));
-        $this->assertNull($ThumbManager->clear('noExisting'));
     }
 
     /**

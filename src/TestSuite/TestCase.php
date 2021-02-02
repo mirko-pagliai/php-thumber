@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
      */
     public function tearDown(): void
     {
-        (new Filesystem())->unlinkRecursive(THUMBER_TARGET);
+        Filesystem::instance()->unlinkRecursive(THUMBER_TARGET);
 
         parent::tearDown();
     }

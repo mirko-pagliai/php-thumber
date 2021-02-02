@@ -25,9 +25,7 @@ if (!in_array(THUMBER_DRIVER, ['imagick', 'gd'])) {
 
 //Default thumbnails directory
 if (!defined('THUMBER_TARGET')) {
-    $Filesystem = new Filesystem();
-    $tmp = $Filesystem->concatenate(defined('TMP') ? TMP : sys_get_temp_dir(), 'php-thumber');
-    define('THUMBER_TARGET', $Filesystem->concatenate($tmp, 'thumbs'));
+    define('THUMBER_TARGET', Filesystem::instance()->concatenate(defined('TMP') ? TMP : sys_get_temp_dir(), 'php-thumber', 'thumbs'));
 }
 @mkdir(THUMBER_TARGET, 0777, true);
 if (!is_writeable(THUMBER_TARGET)) {

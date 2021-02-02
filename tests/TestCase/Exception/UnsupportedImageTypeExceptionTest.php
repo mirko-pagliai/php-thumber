@@ -14,7 +14,6 @@ declare(strict_types=1);
  */
 namespace Thumber\Test\Exception;
 
-use PHPUnit\Framework\Error\Deprecated;
 use Thumber\Exception\UnsupportedImageTypeException;
 use Thumber\TestSuite\TestCase;
 
@@ -47,7 +46,7 @@ class UnsupportedImageTypeExceptionTest extends TestCase
         $e->getImageType();
         error_reporting($current);
 
-        $this->expectException(Deprecated::class);
+        $this->expectDeprecation();
         $e->getImageType();
     }
 }
