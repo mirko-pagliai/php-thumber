@@ -46,6 +46,9 @@ class ThumbCreatorSaveTest extends TestCase
             'tif' => 'image/tiff',
             'tiff' => 'image/tiff',
         ] : [];
+        if (version_compare(PHP_VERSION, '7.4', '>=')) {
+            $extensions['ico'] = 'image/vnd.microsoft.icon';
+        }
 
         foreach ($extensions as $extension => $expectedMimetype) {
             $thumb = $this->getThumbCreatorInstance('400x400.' . $extension)->resize(200)->save();

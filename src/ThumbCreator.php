@@ -102,7 +102,7 @@ class ThumbCreator
     protected function getDefaultSaveOptions(array $options = [], $path = '')
     {
         $options += [
-            'format' => $this->Filesystem->getExtension($path ?: $this->path),
+            'format' => $this->Filesystem->getExtension($path ?: $this->path) ?: '',
             'quality' => 90,
             'target' => false,
         ];
