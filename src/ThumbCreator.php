@@ -129,7 +129,7 @@ class ThumbCreator
             if (string_starts_with($e->getMessage(), 'Unsupported image type')) {
                 throw new UnsupportedImageTypeException('', 0, E_ERROR, __FILE__, __LINE__, null, mime_content_type($this->path) ?: null);
             }
-            throw new NotReadableImageException('', 0, E_ERROR, __FILE__, __LINE__, null, $this->Filesystem->rtr($this->path));
+            throw new NotReadableImageException('', 0, E_ERROR, __FILE__, __LINE__, null, $this->Filesystem->rtr($this->path) ?: null);
         }
 
         return $imageInstance;
