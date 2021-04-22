@@ -26,7 +26,8 @@ matrix:
       env: COVERAGE=1
 
 install:
-  - git clone https://github.com/Imagick/imagick
+  - pwd
+  - cd /tmp && git clone https://github.com/Imagick/imagick
   - cd imagick
   - phpize && ./configure
   - make
