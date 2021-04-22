@@ -48,7 +48,7 @@ class ThumbCreatorSaveTest extends TestCase
             'tiff' => 'image/tiff',
         ] : [];
         if (version_compare(PHP_VERSION, '7.4', '>=')) {
-            $extensions['ico'] = 'image/vnd.microsoft.icon';
+            unset($extensions['ico']);
         }
 
         foreach ($extensions as $extension => $expectedMimetype) {
