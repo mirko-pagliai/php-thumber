@@ -45,15 +45,6 @@ You can install the plugin via composer:
 $ composer require --prefer-dist mirko-pagliai/php-thumber
 ```
 
-Starting from the `1.2` branch, it requires at least PHP 7.2.5 and `phpunit` 7.
-Instead, the [php5.6](//github.com/mirko-pagliai/php-thumber/tree/php5.6)
-branch requires at least PHP 5.6 and `phpunit` 5.7.15.
-
-In this case, you can install the package as well:
-```bash
-$ composer require --prefer-dist mirko-pagliai/php-thumber:php5.6
-```
-
 Therefore, before using the library, it may be necessary to configure some constants:
 
 *   `THUMBER_DRIVER`: the driver you want to use for the creation of thumbnails. Valid values are `imagick` or `gd`;
@@ -66,6 +57,20 @@ define('THUMBER_TARGET', '/tmp/php-thumber');
 ```
 
 Otherwise, you can include/require the [`config/bootstrap.php`](https://github.com/mirko-pagliai/php-thumber/blob/master/config/bootstrap.php) file, which will auto-determine the driver to use and set a temporary directory where to create thumbnails (on Unix environment, it will be `/tmp/php-thumber`).
+
+### Installation on older PHP versions
+Recent packages and the master branch require at least PHP 7.
+Instead, the [php5.6](//github.com/mirko-pagliai/php-thumber/tree/php5.6) branch
+requires at least PHP 5.6.
+
+In this case, you can install the package as well:
+```bash
+$ composer require --prefer-dist mirko-pagliai/php-thumber:dev-php5.6
+```
+
+Note that the `php5.6` branch will no longer be updated as of April 22, 2021,
+except for security patches, and it matches the
+[1.2.3](https://github.com/mirko-pagliai/php-thumber/releases/tag/1.2.3) version.
 
 ## How to use
 See our wiki:
