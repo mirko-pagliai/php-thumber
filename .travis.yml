@@ -24,6 +24,7 @@ matrix:
       env: THUMBER_DRIVER=gd
     - php: 7.2
       env: COVERAGE=1
+      env: THUMBER_DRIVER=gd
 
 install:
   - home="$PWD"
