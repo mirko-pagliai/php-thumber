@@ -23,9 +23,12 @@ class NotReadableImageException extends NotReadableException
 {
     /**
      * Construct the exception
-     * @param string|null $message The Exception message to throw
-     * @param int $code The Exception code
-     * @param \Throwable|null $previous The previous exception used for the exception chaining
+     * @param string|null $message The string of the error message
+     * @param int $code The exception code
+     * @param int $severity The severity level of the exception
+     * @param string $filename The filename where the exception is thrown
+     * @param int $lineno The line number where the exception is thrown
+     * @param \Exception|null $previous The previous exception used for the exception chaining
      * @param string|null $path Path of the not readable image
      */
     public function __construct(?string $message = '', int $code = 0, int $severity = E_ERROR, string $filename = '__FILE__', int $lineno = __LINE__, ?Exception $previous = null, ?string $path = null)
