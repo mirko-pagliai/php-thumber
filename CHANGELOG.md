@@ -1,7 +1,7 @@
 # 1.x branch
 ## 1.2 branch
 ### 1.2.3
-* read for `php` 8;
+* ready for `php` 8;
 * some little fixes.
 
 ### 1.2.2
