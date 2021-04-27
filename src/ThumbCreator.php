@@ -103,7 +103,7 @@ class ThumbCreator
     protected function getDefaultSaveOptions(array $options = [], string $path = ''): array
     {
         $options += [
-            'format' => $this->Filesystem->getExtension($path ?: $this->path),
+            'format' => $this->Filesystem->getExtension($path ?: $this->path) ?: '',
             'quality' => 90,
             'target' => false,
         ];
@@ -127,10 +127,13 @@ class ThumbCreator
         try {
             $imageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
+            $newE = NotReadableImageException::class;
+            $value = $this->Filesystem->rtr($this->path) ?: null;
             if (string_starts_with($e->getMessage(), 'Unsupported image type')) {
-                throw new UnsupportedImageTypeException('', 0, null, mime_content_type($this->path) ?: null);
+                $newE = UnsupportedImageTypeException::class;
+                $value = mime_content_type($this->path) ?: null;
             }
-            throw new NotReadableImageException('', 0, null, $this->Filesystem->rtr($this->path));
+            throw new $newE('', 0, null, $value);
         }
 
         return $imageInstance;

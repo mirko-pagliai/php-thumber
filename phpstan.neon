@@ -17,7 +17,8 @@ parameters:
         -  tests/test_app/
 
     ignoreErrors:
-        - '#^Ternary operator condition is always true\.$#'
+        - '#^(Ternary operator condition|Else branch is unreachable because ternary operator condition) is always true\.$#'
+
         -
             message: '#^Method [\w\\]+Test::test\w+\(\) has no return typehint specified\.$#'
             path:  tests/TestCase

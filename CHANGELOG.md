@@ -1,5 +1,9 @@
 # 1.x branch
 ## 1.2 branch
+### 1.2.3
+* ready for `php` 8;
+* some little fixes.
+
 ### 1.2.2
 * `getThumbCreatorInstanceWithSave()` and `getThumbCreatorInstance()` methods
     provides by `TestTrait` only take a string as first argument, no longer `null`
