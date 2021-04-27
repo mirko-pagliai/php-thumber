@@ -18,7 +18,8 @@ parameters:
 
     ignoreErrors:
         - '#does not accept PHPUnit\\Framework\\MockObject\\MockObject\.$#'
-        - '#^Ternary operator condition is always true\.$#'
+        - '#^(Ternary operator condition|Else branch is unreachable because ternary operator condition) is always true\.$#'
+
         -
             message: '#^Method [\w\\]+Test::test\w+\(\) has no return typehint specified\.$#'
             path:  tests/TestCase
