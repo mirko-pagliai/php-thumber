@@ -28,13 +28,13 @@ class UnsupportedImageTypeException extends InvalidValueException
      * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $imageType The unsupported image type
      */
-    public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $imageType = null)
+    public function __construct(string $message = '', int $code = 0, int $severity = E_ERROR, string $filename = '__FILE__', int $lineno = __LINE__, ?Exception $previous = null, ?string $imageType = null)
     {
         if (!$message) {
             $message = $imageType ? sprintf('Image type `%s` is not supported by this driver', $imageType) : 'Image type not supported by this driver';
         }
 
-        parent::__construct($message, $code, $previous, $imageType);
+        parent::__construct($message, $code, $severity, $filename, $lineno, $previous, $imageType);
     }
 
     /**

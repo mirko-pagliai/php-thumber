@@ -28,12 +28,12 @@ class NotReadableImageException extends NotReadableException
      * @param \Throwable|null $previous The previous exception used for the exception chaining
      * @param string|null $path Path of the not readable image
      */
-    public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $path = null)
+    public function __construct(?string $message = '', int $code = 0, int $severity = E_ERROR, string $filename = '__FILE__', int $lineno = __LINE__, ?Exception $previous = null, ?string $path = null)
     {
         if (!$message) {
             $message = $path ? sprintf('Unable to read image from `%s`', $path) : 'Unable to read image from file';
         }
 
-        parent::__construct($message, $code, $previous, $path);
+        parent::__construct($message, $code, $severity, $filename, $lineno, $previous, $path);
     }
 }
