@@ -36,16 +36,4 @@ class UnsupportedImageTypeException extends InvalidValueException
 
         parent::__construct($message, $code, $severity, $filename, $lineno, $previous, $imageType);
     }
-
-    /**
-     * Gets the unsupported image type
-     * @return string|null
-     * @deprecated use `getValue()` instead
-     */
-    public function getImageType(): ?string
-    {
-        deprecationWarning('Use `getValue()` instead');
-
-        return $this->getValue();
-    }
 }
