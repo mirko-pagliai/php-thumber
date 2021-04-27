@@ -51,9 +51,6 @@ class ThumbCreatorSaveTest extends TestCase
         }
 
         foreach ($extensions as $extension => $expectedMimetype) {
-            if ($extension === 'ico') {
-                debug($expectedMimetype);
-            }
             $thumb = $this->getThumbCreatorInstance('400x400.' . $extension)->resize(200)->save();
             $this->assertThumbPath($thumb);
             $this->assertFileMime($expectedMimetype, $thumb);
