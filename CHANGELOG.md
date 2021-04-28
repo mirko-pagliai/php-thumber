@@ -1,4 +1,10 @@
 # 1.x branch
+## 1.3 branch
+### 1.3.0
+* `UnsupportedImageTypeException::getImageType()` was deprecated and has now been
+    removed. Use `getValue()` instead;
+* updated for `php-tools` 1.5.
+
 ## 1.2 branch
 ### 1.2.3
 * ready for `php` 8;
