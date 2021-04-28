@@ -14,6 +14,7 @@ declare(strict_types=1);
  */
 namespace Thumber\Exception;
 
+use Exception;
 use Tools\InvalidValueException;
 
 /**
@@ -23,29 +24,20 @@ class UnsupportedImageTypeException extends InvalidValueException
 {
     /**
      * Construct the exception
-     * @param string|null $message The Exception message to throw
-     * @param int $code The Exception code
-     * @param \Throwable|null $previous The previous exception used for the exception chaining
+     * @param string $message The string of the error message
+     * @param int $code The exception code
+     * @param int $severity The severity level of the exception
+     * @param string $filename The filename where the exception is thrown
+     * @param int $lineno The line number where the exception is thrown
+     * @param \Exception|null $previous The previous exception used for the exception chaining
      * @param string|null $imageType The unsupported image type
      */
-    public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $imageType = null)
+    public function __construct(string $message = '', int $code = 0, int $severity = E_ERROR, string $filename = '__FILE__', int $lineno = __LINE__, ?Exception $previous = null, ?string $imageType = null)
     {
         if (!$message) {
             $message = $imageType ? sprintf('Image type `%s` is not supported by this driver', $imageType) : 'Image type not supported by this driver';
         }
 
-        parent::__construct($message, $code, $previous, $imageType);
-    }
-
-    /**
-     * Gets the unsupported image type
-     * @return string|null
-     * @deprecated use `getValue()` instead
-     */
-    public function getImageType(): ?string
-    {
-        deprecationWarning('Use `getValue()` instead');
-
-        return $this->getValue();
+        parent::__construct($message, $code, $severity, $filename, $lineno, $previous, $imageType);
     }
 }

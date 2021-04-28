@@ -133,7 +133,7 @@ class ThumbCreator
                 $newE = UnsupportedImageTypeException::class;
                 $value = mime_content_type($this->path) ?: null;
             }
-            throw new $newE('', 0, null, $value);
+            throw new $newE('', 0, E_ERROR, __FILE__, __LINE__, null, $value);
         }
 
         return $imageInstance;

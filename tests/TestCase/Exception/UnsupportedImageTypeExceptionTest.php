@@ -36,17 +36,10 @@ class UnsupportedImageTypeExceptionTest extends TestCase
         }
 
         try {
-            throw new UnsupportedImageTypeException('', 0, null, 'example');
+            throw new UnsupportedImageTypeException('', 0, E_ERROR, __FILE__, __LINE__, null, 'example');
         } catch (UnsupportedImageTypeException $e) {
             $this->assertSame('Image type `example` is not supported by this driver', $e->getMessage());
             $this->assertSame('example', $e->getValue());
         }
-
-        $current = error_reporting(E_ALL & ~E_USER_DEPRECATED);
-        $e->getImageType();
-        error_reporting($current);
-
-        $this->expectDeprecation();
-        $e->getImageType();
     }
 }
