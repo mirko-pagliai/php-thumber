@@ -47,9 +47,11 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //With invalid `x` or `y` options
         $this->assertException(function () {
+            //@phpstan-ignore-next-line
             $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 'string'])->save();
         }, InvalidArgumentException::class, 'The `x` option must be an integer');
         $this->assertException(function () {
+            //@phpstan-ignore-next-line
             $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 50, 'y' => 'string'])->save();
         }, InvalidArgumentException::class, 'The `y` option must be an integer');
 
