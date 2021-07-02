@@ -19,6 +19,7 @@ use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
+use InvalidArgumentException;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
@@ -147,7 +148,7 @@ class ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $options += ['x' => 0, 'y' => 0];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), \InvalidArgumentException::class);
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
 
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
@@ -171,7 +172,7 @@ class ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $options += ['position' => 'center', 'upsize' => true];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), \InvalidArgumentException::class);
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
 
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
@@ -197,7 +198,7 @@ class ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $options += ['aspectRatio' => true, 'upsize' => true];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), \InvalidArgumentException::class);
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
 
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
@@ -230,7 +231,7 @@ class ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $options += ['anchor' => 'center', 'relative' => false, 'bgcolor' => '#ffffff'];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), \InvalidArgumentException::class);
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
 
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
