@@ -1,6 +1,10 @@
 # 1.x branch
 ## 1.3 branch
 ### 1.3.1
+* all methods from `ThumbCreator` (`crop()`, `fit()`, `resize()`, `resizeCanvas()`)
+    now only accept integers for width and height (and no longer `null`). The
+    height is still optional;
+* increased the level of `phpstan`;
 * fixed bootstrap, `mkdir` errors are no longer suppressed
     (see [issue 18](//github.com/mirko-pagliai/php-thumber/issues/18));
 * some little fixes, improvement of descriptions and tags.

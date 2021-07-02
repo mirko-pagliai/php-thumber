@@ -73,11 +73,6 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
         //In this case, the thumbnail will exceed the original size
         $thumb = $this->getThumbCreatorInstance()->fit(450, 450, ['upsize' => false])->save();
         $this->assertImageFileEquals('fit_w450_h450_noUpsize.jpg', $thumb);
-
-        //Using the `upsize` option
-        //In this case, the thumbnail will exceed the original size
-        $thumb = $this->getThumbCreatorInstance()->fit(null, 450, ['upsize' => false])->save();
-        $this->assertImageFileEquals('fit_w450_h450_noUpsize.jpg', $thumb);
     }
 
     /**
@@ -88,9 +83,6 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
     public function testResize(): void
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save();
-        $this->assertImageFileEquals('resize_w200_h200.jpg', $thumb);
-
-        $thumb = $this->getThumbCreatorInstance()->resize(null, 200)->save();
         $this->assertImageFileEquals('resize_w200_h200.jpg', $thumb);
 
         //Using the `aspectRatio` option
@@ -113,11 +105,6 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
         $thumb = $this->getThumbCreatorInstance()->resize(450, 450, ['upsize' => false])->save();
         $this->assertImageFileEquals('resize_w450_h450_noUpsize.jpg', $thumb);
 
-        //Using the `upsize` option
-        //In this case, the thumbnail will exceed the original size
-        $thumb = $this->getThumbCreatorInstance()->resize(null, 450, ['upsize' => false])->save();
-        $this->assertImageFileEquals('resize_w450_h450_noUpsize.jpg', $thumb);
-
         //Using `aspectRatio` and `upsize` options
         //In this case, the thumbnail will keep the ratio and the original dimensions
         $thumb = $this->getThumbCreatorInstance()->resize(500, 600, [
@@ -133,14 +120,6 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
             'upsize' => false,
         ])->save();
         $this->assertImageFileEquals('resize_w500_h600_noAspectRatio_noUpsize.jpg', $thumb);
-
-        //Using `aspectRatio` and `upsize` options
-        //In this case, the thumbnail will not keep the ratio and the original dimensions
-        $thumb = $this->getThumbCreatorInstance()->resize(null, 600, [
-            'aspectRatio' => false,
-            'upsize' => false,
-        ])->save();
-        $this->assertImageFileEquals('resize_w400_h600_noAspectRatio_noUpsize.jpg', $thumb);
     }
 
     /**
@@ -153,7 +132,7 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
         $thumb = $this->getThumbCreatorInstance()->resizeCanvas(300, 200)->save();
         $this->assertImageFileEquals('resize_canvas_w300_h200.jpg', $thumb);
 
-        $thumb = $this->getThumbCreatorInstance()->resizeCanvas(null, 100)->save();
+        $thumb = $this->getThumbCreatorInstance()->resizeCanvas(400, 100)->save();
         $this->assertImageFileEquals('resize_canvas_w400_h100.jpg', $thumb);
 
         //Using the `anchor` option
