@@ -28,7 +28,7 @@ class TestCaseTest extends TestCase
      * Test for `assertImageFileEquals()` method
      * @test
      */
-    public function testAssertImageFileEquals()
+    public function testAssertImageFileEquals(): void
     {
         $Filesystem = new Filesystem();
 
@@ -45,7 +45,7 @@ class TestCaseTest extends TestCase
      * Test for `getThumbCreatorInstance()` method
      * @test
      */
-    public function testGetThumbCreatorInstance()
+    public function testGetThumbCreatorInstance(): void
     {
         $this->assertInstanceOf(ThumbCreator::class, $this->getThumbCreatorInstance());
     }
@@ -54,7 +54,7 @@ class TestCaseTest extends TestCase
      * Test for `getThumbCreatorInstanceWithSave()` method
      * @test
      */
-    public function testGetThumbCreatorInstanceWithSave()
+    public function testGetThumbCreatorInstanceWithSave(): void
     {
         $this->assertInstanceOf(ThumbCreator::class, $this->getThumbCreatorInstanceWithSave());
     }

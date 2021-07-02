@@ -26,7 +26,7 @@ class TestTraitTest extends TestCase
      * Test for `skipIfDriverIs()` method
      * @test
      */
-    public function testSkipIfDriverIs()
+    public function testSkipIfDriverIs(): void
     {
         $expected = THUMBER_DRIVER === 'imagick' ? ['gd' => 0, 'imagick' => 1] : ['imagick' => 0, 'gd' => 1];
 

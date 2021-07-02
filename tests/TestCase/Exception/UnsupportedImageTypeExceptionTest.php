@@ -26,7 +26,7 @@ class UnsupportedImageTypeExceptionTest extends TestCase
      * Test for the exception
      * @ŧest
      */
-    public function testException()
+    public function testException(): void
     {
         try {
             throw new UnsupportedImageTypeException();

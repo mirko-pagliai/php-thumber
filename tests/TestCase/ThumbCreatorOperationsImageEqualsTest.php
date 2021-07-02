@@ -26,7 +26,7 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
      * @group imageEquals
      * @test
      */
-    public function testCrop()
+    public function testCrop(): void
     {
         $thumb = $this->getThumbCreatorInstance()->crop(200, 200)->save();
         $this->assertImageFileEquals('crop_w200_h200.jpg', $thumb);
@@ -45,7 +45,7 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
      * @group imageEquals
      * @test
      */
-    public function testFit()
+    public function testFit(): void
     {
         $thumb = $this->getThumbCreatorInstance('example_pic.jpg')->fit(200)->save();
         $this->assertImageFileEquals('fit_w200_h200.jpg', $thumb);
@@ -85,7 +85,7 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
      * @group imageEquals
      * @test
      */
-    public function testResize()
+    public function testResize(): void
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save();
         $this->assertImageFileEquals('resize_w200_h200.jpg', $thumb);
@@ -148,7 +148,7 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
      * @group imageEquals
      * @test
      */
-    public function testResizeCanvas()
+    public function testResizeCanvas(): void
     {
         $thumb = $this->getThumbCreatorInstance()->resizeCanvas(300, 200)->save();
         $this->assertImageFileEquals('resize_canvas_w300_h200.jpg', $thumb);
@@ -173,7 +173,7 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
      * @group imageEquals
      * @test
      */
-    public function testSeveralMethods()
+    public function testSeveralMethods(): void
     {
         $thumb = $this->getThumbCreatorInstance('example_pic.jpg')->crop(600)->resize(200)->save();
         $this->assertImageFileEquals('crop_and_resize_w600_h200.jpg', $thumb);

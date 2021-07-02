@@ -30,7 +30,7 @@ class ThumbCreatorTest extends TestCase
      * Test for `__construct()` method, passing a no existing file
      * @test
      */
-    public function testConstructNoExistingFile()
+    public function testConstructNoExistingFile(): void
     {
         $this->expectException(NotReadableException::class);
         $this->getThumbCreatorInstance('noExistingFile.gif');
@@ -40,7 +40,7 @@ class ThumbCreatorTest extends TestCase
      * Test for `getImageInstance()` method, with a not readable image
      * @ŧest
      */
-    public function testGetImageInstanceNotReadableImageException()
+    public function testGetImageInstanceNotReadableImageException(): void
     {
         $expectedException = NotReadableImageException::class;
         $expectedMessage = 'Unable to read image from `tests/bootstrap.php`';
@@ -57,7 +57,7 @@ class ThumbCreatorTest extends TestCase
      * Test for `getImageInstance()` method, with unsupported image type for GD driver
      * @ŧest
      */
-    public function testGetImageInstanceUnsupportedImageType()
+    public function testGetImageInstanceUnsupportedImageType(): void
     {
         $this->expectException(UnsupportedImageTypeException::class);
         $this->expectExceptionMessage('Image type `image/jpeg` is not supported by this driver');
@@ -74,7 +74,7 @@ class ThumbCreatorTest extends TestCase
      * Test for `$path` property
      * @ŧest
      */
-    public function testPath()
+    public function testPath(): void
     {
         //From remote
         $file = 'http://example.com.png';

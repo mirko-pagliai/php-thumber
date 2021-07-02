@@ -26,7 +26,7 @@ class ThumbCreatorOperationsTest extends TestCase
      * Test for `crop()` method
      * @ŧest
      */
-    public function testCrop()
+    public function testCrop(): void
     {
         $thumb = $this->getThumbCreatorInstance()->crop(200, 200)->save();
         $this->assertImageSize(200, 200, $thumb);
@@ -52,7 +52,7 @@ class ThumbCreatorOperationsTest extends TestCase
      * Test for `fit()` method
      * @ŧest
      */
-    public function testFit()
+    public function testFit(): void
     {
         $thumb = $this->getThumbCreatorInstance()->fit(200)->save();
         $this->assertImageSize(200, 200, $thumb);
@@ -88,7 +88,7 @@ class ThumbCreatorOperationsTest extends TestCase
      * Test for `resize()` method
      * @ŧest
      */
-    public function testResize()
+    public function testResize(): void
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save();
         $this->assertImageSize(200, 200, $thumb);
@@ -154,7 +154,7 @@ class ThumbCreatorOperationsTest extends TestCase
      * Test for `resizeCanvas()` method
      * @ŧest
      */
-    public function testResizeCanvas()
+    public function testResizeCanvas(): void
     {
         $thumb = $this->getThumbCreatorInstance()->resizeCanvas(200, 100)->save();
         $this->assertImageSize(200, 100, $thumb);
@@ -178,7 +178,7 @@ class ThumbCreatorOperationsTest extends TestCase
      *  `crop()` and `resize()`
      * @test
      */
-    public function testSeveralMethods()
+    public function testSeveralMethods(): void
     {
         $thumb = $this->getThumbCreatorInstance()->crop(600)->resize(200)->save();
         $this->assertImageSize(200, 200, $thumb);

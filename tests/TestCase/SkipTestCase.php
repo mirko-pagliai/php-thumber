@@ -25,7 +25,7 @@ class SkipTestCase extends TestCase
      * Test that a test is marked as skipped if the driver is `gd`
      * @return void
      */
-    public function testSkipIfDriverIsGd()
+    public function testSkipIfDriverIsGd(): void
     {
         $this->skipIfDriverIs('gd');
     }
@@ -34,7 +34,7 @@ class SkipTestCase extends TestCase
      * Test that a test is marked as skipped if the driver is `imagick`
      * @return void
      */
-    public function testSkipIfDriverIsImagick()
+    public function testSkipIfDriverIsImagick(): void
     {
         $this->skipIfDriverIs('imagick');
     }
