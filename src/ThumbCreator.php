@@ -152,6 +152,9 @@ class ThumbCreator
 
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
+            Exceptionist::isInt($options['x'], 'The `x` option must be an integer', InvalidArgumentException::class);
+            Exceptionist::isInt($options['y'], 'The `y` option must be an integer', InvalidArgumentException::class);
+
             return $imageInstance->crop($width, $heigth, $options['x'], $options['y']);
         };
 
