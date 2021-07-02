@@ -2,7 +2,8 @@
 ## 1.3 branch
 ### 1.3.1
 * fixed bootstrap, `mkdir` errors are no longer suppressed
-    (see [issue 18](//github.com/mirko-pagliai/php-thumber/issues/18)).
+    (see [issue 18](//github.com/mirko-pagliai/php-thumber/issues/18));
+* some little fixes, improvement of descriptions and tags.
 
 ### 1.3.0
 * `UnsupportedImageTypeException::getImageType()` was deprecated and has now been

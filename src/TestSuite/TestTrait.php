@@ -39,7 +39,6 @@ trait TestTrait
     /**
      * Internal method to create some thumbs
      * @return void
-     * @uses getThumbCreatorInstance()
      */
     protected function createSomeThumbs(): void
     {
@@ -56,7 +55,6 @@ trait TestTrait
      * @param string $message The failure message that will be appended to the
      *  generated message
      * @return void
-     * @uses createCopy()
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
@@ -108,7 +106,6 @@ trait TestTrait
      *  It can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
-     * @uses getThumbCreatorInstance()
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {

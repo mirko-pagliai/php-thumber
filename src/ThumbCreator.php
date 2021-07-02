@@ -41,7 +41,6 @@ class ThumbCreator
     protected $Filesystem;
 
     /**
-     * `ImageManager` instance
      * @var \Intervention\Image\ImageManager
      */
     public $ImageManager;
@@ -58,7 +57,7 @@ class ThumbCreator
     /**
      * Callbacks that will be called by the `save()` method to create the
      * thumbnail
-     * @var array
+     * @var array<callable>
      */
     protected $callbacks = [];
 
@@ -81,9 +80,6 @@ class ThumbCreator
      *  thumbnail. It can be a full path or a remote url
      * @throws \Tools\Exception\FileNotExistsException
      * @throws \Tools\Exception\NotReadableException
-     * @uses $ImageManager
-     * @uses $arguments
-     * @uses $path
      */
     public function __construct(string $path)
     {
@@ -95,10 +91,9 @@ class ThumbCreator
 
     /**
      * Internal method to get default options for the `save()` method
-     * @param array $options Passed options
+     * @param array<string, mixed> $options Passed options
      * @param string $path Path to use
-     * @return array Passed options with default options
-     * @uses $path
+     * @return array<string, mixed> Passed options with default options
      */
     protected function getDefaultSaveOptions(array $options = [], string $path = ''): array
     {
@@ -119,8 +114,6 @@ class ThumbCreator
      * @return \Intervention\Image\Image
      * @throws \Thumber\Exception\NotReadableImageException
      * @throws \Thumber\Exception\UnsupportedImageTypeException
-     * @uses $ImageManager
-     * @uses $path
      */
     protected function getImageInstance(): Image
     {
@@ -146,11 +139,9 @@ class ThumbCreator
      *  cutout to a certain position.
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
-     * @param array $options Options for the thumbnail
+     * @param array<string, int> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop
-     * @uses $arguments
-     * @uses $callbacks
      */
     public function crop(?int $width = null, ?int $heigth = null, array $options = []): ThumbCreator
     {
@@ -158,10 +149,7 @@ class ThumbCreator
         $width = $width ?: $heigth;
         $options += ['x' => null, 'y' => null];
 
-        //Adds arguments
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-
-        //Adds the callback
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->crop($width, $heigth, $options['x'], $options['y']);
         };
@@ -175,11 +163,9 @@ class ThumbCreator
      *  image automatically, cut it out and resize it to the given dimension
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
-     * @param array $options Options for the thumbnail
+     * @param array<string, mixed> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
-     * @uses $arguments
-     * @uses $callbacks
      */
     public function fit(?int $width = null, ?int $heigth = null, array $options = [])
     {
@@ -187,10 +173,7 @@ class ThumbCreator
         $width = $width ?: $heigth;
         $options += ['position' => 'center', 'upsize' => true];
 
-        //Adds arguments
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-
-        //Adds the callback
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->fit($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['upsize']) {
@@ -206,20 +189,15 @@ class ThumbCreator
      * Resizes the image
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
-     * @param array $options Options for the thumbnail
+     * @param array<string, bool> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize
-     * @uses $arguments
-     * @uses $callbacks
      */
     public function resize(?int $width = null, ?int $heigth = null, array $options = [])
     {
         $options += ['aspectRatio' => true, 'upsize' => true];
 
-        //Adds arguments
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-
-        //Adds the callback
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->resize($width, $heigth, function (Constraint $constraint) use ($options) {
                 if ($options['aspectRatio']) {
@@ -242,20 +220,15 @@ class ThumbCreator
      *  pass a background color for the emerging area of the image
      * @param int|null $width Required width
      * @param int|null $heigth Required heigth
-     * @param array $options Options for the thumbnail
+     * @param array<string, mixed> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas
-     * @uses $arguments
-     * @uses $callbacks
      */
     public function resizeCanvas(?int $width, ?int $heigth = null, array $options = [])
     {
         $options += ['anchor' => 'center', 'relative' => false, 'bgcolor' => '#ffffff'];
 
-        //Adds arguments
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-
-        //Adds the callback
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
             return $imageInstance->resizeCanvas($width, $heigth, $options['anchor'], $options['relative'], $options['bgcolor']);
         };
@@ -265,17 +238,11 @@ class ThumbCreator
 
     /**
      * Saves the thumbnail and returns its path
-     * @param array $options Options for saving
+     * @param array<string, mixed> $options Options for saving
      * @return string Thumbnail path
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
      * @throws \BadMethodCallException
      * @throws \Tools\Exception\NotWritableException
-     * @uses getDefaultSaveOptions()
-     * @uses getImageInstance()
-     * @uses $arguments
-     * @uses $callbacks
-     * @uses $path
-     * @uses $target
      */
     public function save(array $options = []): string
     {
