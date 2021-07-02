@@ -27,7 +27,9 @@ if (!in_array(THUMBER_DRIVER, ['imagick', 'gd'])) {
 if (!defined('THUMBER_TARGET')) {
     define('THUMBER_TARGET', Filesystem::instance()->concatenate(defined('TMP') ? TMP : sys_get_temp_dir(), 'php-thumber', 'thumbs'));
 }
-@mkdir(THUMBER_TARGET, 0777, true);
-if (!is_writeable(THUMBER_TARGET)) {
-    trigger_error(sprintf('Directory `%s` not writeable', THUMBER_TARGET), E_USER_ERROR);
+if (!file_exists(THUMBER_TARGET)) {
+    mkdir(THUMBER_TARGET, 0777, true);
+}
+if (!is_dir(THUMBER_TARGET) || !is_writeable(THUMBER_TARGET)) {
+    trigger_error(sprintf('The directory `%s` is not writable or is not a directory', THUMBER_TARGET), E_USER_ERROR);
 }
