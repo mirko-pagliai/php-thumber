@@ -146,7 +146,7 @@ class ThumbCreator
     public function crop(int $width, int $heigth = 0, array $options = []): ThumbCreator
     {
         $heigth = $heigth ?: $width;
-        $options += ['x' => null, 'y' => null];
+        $options += ['x' => 0, 'y' => 0];
         Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), \InvalidArgumentException::class);
 
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
