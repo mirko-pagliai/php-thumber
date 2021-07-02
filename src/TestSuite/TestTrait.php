@@ -65,7 +65,8 @@ trait TestTrait
 
         $expectedCopy = self::createCopy($expected);
         $actualCopy = self::createCopy($actual);
-        self::assertFileEquals($expectedCopy, $actualCopy, $message);
+        $message = $message ?: sprintf('The file `%s` is not what you expected', $expected);
+        self::assertSame(md5_file($expectedCopy), md5_file($actualCopy), $message);
 
         $Filesystem->remove([$expectedCopy, $actualCopy]);
     }

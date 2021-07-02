@@ -4,6 +4,7 @@
 * all methods from `ThumbCreator` (`crop()`, `fit()`, `resize()`, `resizeCanvas()`)
     now only accept integers for width and height (and no longer `null`). The
     height is still optional;
+* improved the error message for `assertImageFileEquals()` method;
 * increased the level of `phpstan`;
 * fixed bootstrap, `mkdir` errors are no longer suppressed
     (see [issue 18](//github.com/mirko-pagliai/php-thumber/issues/18));
