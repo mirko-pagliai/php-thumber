@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined static method Tools\\\\Exceptionist\\:\\:isInt\\(\\)\\.$#"
-			count: 2
-			path: src/ThumbCreator.php
-
-		-
 			message: "#^Else branch is unreachable because ternary operator condition is always true\\.$#"
 			count: 1
 			path: tests/TestCase/TestSuite/TestTraitTest.php
