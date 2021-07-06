@@ -1,6 +1,6 @@
 # 1.x branch
-## 1.3 branch
-### 1.3.1
+## 1.4 branch
+### 1.4.0
 * all methods from `ThumbCreator` (`crop()`, `fit()`, `resize()`, `resizeCanvas()`)
     now only accept integers for width and height (and no longer `null`). The
     height is still optional;
@@ -11,6 +11,7 @@
     (see [issue 18](//github.com/mirko-pagliai/php-thumber/issues/18));
 * some little fixes, improvement of descriptions and tags.
 
+## 1.3 branch
 ### 1.3.0
 * `UnsupportedImageTypeException::getImageType()` was deprecated and has now been
     removed. Use `getValue()` instead;
