@@ -45,7 +45,7 @@ class ThumbManagerTest extends TestCase
      * Test for `clear()` method
      * @ŧest
      */
-    public function testClear()
+    public function testClear(): void
     {
         $this->assertEquals(2, $this->ThumbManager->clear(THUMBER_EXAMPLE_DIR . '400x400.jpg'));
 
@@ -57,7 +57,7 @@ class ThumbManagerTest extends TestCase
      * Test for `clearAll()` method
      * @ŧest
      */
-    public function testClearAll()
+    public function testClearAll(): void
     {
         $this->assertEquals(3, $this->ThumbManager->clearAll());
         $this->assertEmpty($this->ThumbManager->getAll());
@@ -67,7 +67,7 @@ class ThumbManagerTest extends TestCase
      * Test for `get()` method
      * @ŧest
      */
-    public function testGet()
+    public function testGet(): void
     {
         $this->assertCount(2, $this->ThumbManager->get(THUMBER_EXAMPLE_DIR . '400x400.jpg'));
         $this->assertCount(1, $this->ThumbManager->get(THUMBER_EXAMPLE_DIR . '400x400.png'));
@@ -82,7 +82,7 @@ class ThumbManagerTest extends TestCase
      * Test for `getAll()` method
      * @ŧest
      */
-    public function testGetAll()
+    public function testGetAll(): void
     {
         $result = $this->ThumbManager->getAll();
         $this->assertCount(3, $result);

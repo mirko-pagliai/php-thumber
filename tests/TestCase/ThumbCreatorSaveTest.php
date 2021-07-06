@@ -30,7 +30,7 @@ class ThumbCreatorSaveTest extends TestCase
      * Test for `save()` method
      * @test
      */
-    public function testSave()
+    public function testSave(): void
     {
         $extensions = [
             'gif' => 'image/gif',
@@ -73,7 +73,7 @@ class ThumbCreatorSaveTest extends TestCase
      * @requires OS Linux
      * @test
      */
-    public function testSaveUnableToCreateFile()
+    public function testSaveUnableToCreateFile(): void
     {
         $this->expectException(NotWritableException::class);
         $this->expectExceptionMessage('Unable to create file `' . DS . 'noExisting`');
@@ -89,7 +89,7 @@ class ThumbCreatorSaveTest extends TestCase
      *  different suffix
      * @test
      */
-    public function testSaveSameFileDifferentArguments()
+    public function testSaveSameFileDifferentArguments(): void
     {
         $firstThumb = explode('_', basename($this->getThumbCreatorInstance()->resize(200)->save()));
         $secondThumb = explode('_', basename($this->getThumbCreatorInstance()->resize(300)->save()));
@@ -102,7 +102,7 @@ class ThumbCreatorSaveTest extends TestCase
      *  does not exist
      * @test
      */
-    public function testSaveReturnsExistingThumb()
+    public function testSaveReturnsExistingThumb(): void
     {
         //Creates the thumbnail and gets the creation time
         $time = filemtime($this->getThumbCreatorInstance()->resize(200)->save());
@@ -123,7 +123,7 @@ class ThumbCreatorSaveTest extends TestCase
      * Test for `save()` method, using the `quality` option
      * @ŧest
      */
-    public function testSaveWithQuality()
+    public function testSaveWithQuality(): void
     {
         $this->assertThumbPath($this->getThumbCreatorInstance()->resize(200)->save(['quality' => 10]));
 
@@ -137,7 +137,7 @@ class ThumbCreatorSaveTest extends TestCase
      * @group imageEquals
      * @ŧest
      */
-    public function testSaveWithQualityImageEquals()
+    public function testSaveWithQualityImageEquals(): void
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['quality' => 10]);
         $this->assertImageFileEquals('resize_w200_h200_quality_10.jpg', $thumb);
@@ -147,7 +147,7 @@ class ThumbCreatorSaveTest extends TestCase
      * Test for `save()` method, using the `target` option
      * @ŧest
      */
-    public function testSaveWithTarget()
+    public function testSaveWithTarget(): void
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['target' => 'thumb.png']);
         $this->assertEquals(Filesystem::instance()->concatenate(THUMBER_TARGET, 'thumb.png'), $thumb);
@@ -162,7 +162,7 @@ class ThumbCreatorSaveTest extends TestCase
      * Test for `save()` method, using similar format names, as `jpeg` or `tif`
      * @test
      */
-    public function testSaveWithSimilarFormat()
+    public function testSaveWithSimilarFormat(): void
     {
         $file = $this->getThumbCreatorInstance()->resize(200)->save(['format' => 'jpeg']);
         $this->assertFileExtension('jpg', $file);
@@ -180,7 +180,7 @@ class ThumbCreatorSaveTest extends TestCase
      * Test for `save()` method, without a valid method called before
      * @test
      */
-    public function testSaveWithoutCallbacks()
+    public function testSaveWithoutCallbacks(): void
     {
         $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('No valid method called before the `save()` method');

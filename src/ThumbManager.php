@@ -25,7 +25,7 @@ class ThumbManager
 {
     /**
      * Supported formats
-     * @var array
+     * @var array<string>
      */
     protected const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
 
@@ -38,9 +38,9 @@ class ThumbManager
      */
     protected function _clear(array $filenames): int
     {
-        $Filesystem = new Filesystem();
-        array_walk($filenames, function (string $filename) use ($Filesystem): void {
-            $Filesystem->remove(Exceptionist::isReadable($Filesystem->concatenate(THUMBER_TARGET, $filename)));
+        array_walk($filenames, function (string $filename): void {
+            $filename = Exceptionist::isReadable(Filesystem::instance()->concatenate(THUMBER_TARGET, $filename));
+            Filesystem::instance()->remove($filename);
         });
 
         return count($filenames);
