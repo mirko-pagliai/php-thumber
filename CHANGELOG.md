@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.4 branch
+### 1.4.1
+* fixed little bug for `ThumbCreator::fit()` method.
+
 ### 1.4.0
 * all methods from `ThumbCreator` (`crop()`, `fit()`, `resize()`, `resizeCanvas()`)
     now only accept integers for width and height (and no longer `null`). The
