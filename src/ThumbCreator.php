@@ -165,17 +165,18 @@ class ThumbCreator
      * Resizes the image, combining cropping and resizing to format image in a
      *  smart way. It will find the best fitting aspect ratio on the current
      *  image automatically, cut it out and resize it to the given dimension
-     * @param int $width Required width
+     * @param int $width Required width. If not specified, the height will be used
      * @param int $heigth Required heigth. If not specified, the width will be used
      * @param array<string, mixed> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
      */
-    public function fit(int $width, int $heigth = 0, array $options = [])
+    public function fit(int $width = 0, int $heigth = 0, array $options = [])
     {
+        $width = $width ?: $heigth;
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
         $heigth = $heigth ?: $width;
         $options += ['position' => 'center', 'upsize' => true];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
 
         $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
         $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
