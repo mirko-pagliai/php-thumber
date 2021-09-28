@@ -14,7 +14,7 @@ jobs:
       matrix:
         php-version: ['7.2', '7.3', '7.4', '8.0']
         prefer-lowest: ['']
-        thumber-driver: ['gd']
+        thumber-driver: ['imagick', 'gd']
         include:
           - php-version: '7.2'
             prefer-lowest: 'prefer-lowest'
