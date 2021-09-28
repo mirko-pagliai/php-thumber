@@ -25,7 +25,7 @@ define('TMP', sys_get_temp_dir() . DS . 'php-thumber' . DS);
 @mkdir(TMP, 0777, true);
 
 //Default thumbnails driver
-if (!defined('THUMBER_DRIVER')) {
+if (!defined('THUMBER_DRIVER') && getenv('THUMBER_DRIVER')) {
     define('THUMBER_DRIVER', getenv('THUMBER_DRIVER'));
 }
 
