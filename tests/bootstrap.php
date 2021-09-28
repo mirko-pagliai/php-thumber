@@ -24,6 +24,11 @@ define('TMP', sys_get_temp_dir() . DS . 'php-thumber' . DS);
 
 @mkdir(TMP, 0777, true);
 
+//Default thumbnails driver
+if (!defined('THUMBER_DRIVER')) {
+    define('THUMBER_DRIVER', getenv('THUMBER_DRIVER'));
+}
+
 require_once 'config/bootstrap.php';
 
 define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
