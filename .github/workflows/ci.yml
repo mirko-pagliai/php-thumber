@@ -54,6 +54,8 @@ jobs:
           run: composer show
 
         - name: Run PHPUnit
+          env:
+            THUMBER_DRIVER: ${{ matrix.thumber-driver }}
           run: |
             if [[ ${{ matrix.php-version }} == '8.0' ]]; then
               export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
@@ -92,8 +94,6 @@ jobs:
           run: composer stan-setup
 
         - name: Run PHP CodeSniffer
-          env:
-            THUMBER_DRIVER: ${{ matrix.thumber-driver }}
           run: vendor/bin/phpcs -n -q --report=checkstyle | cs2pr
 
         - name: Run psalm
