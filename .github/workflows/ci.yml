@@ -14,7 +14,7 @@ jobs:
       matrix:
         php-version: ['7.2', '7.3', '7.4', '8.0']
         prefer-lowest: ['']
-        thumber-driver: ['']
+        thumber-driver: ['imagick', 'gd']
         include:
           - php-version: '7.2'
             prefer-lowest: 'prefer-lowest'
@@ -92,6 +92,8 @@ jobs:
           run: composer stan-setup
 
         - name: Run PHP CodeSniffer
+          env:
+            THUMBER_DRIVER: ${{ matrix.thumber-driver }}
           run: vendor/bin/phpcs -n -q --report=checkstyle | cs2pr
 
         - name: Run psalm
