@@ -18,12 +18,16 @@ jobs:
         include:
           - php-version: '7.2'
             prefer-lowest: 'prefer-lowest'
+            thumber-driver: 'imagick'
           - php-version: '7.3'
             prefer-lowest: 'prefer-lowest'
+            thumber-driver: 'imagick'
           - php-version: '7.4'
             prefer-lowest: 'prefer-lowest'
+            thumber-driver: 'imagick'
           - php-version: '8.0'
             prefer-lowest: 'prefer-lowest'
+            thumber-driver: 'imagick'
           - php-version: '7.2'
             thumber-driver: 'gd'
 
