@@ -57,10 +57,10 @@ jobs:
           env:
             THUMBER_DRIVER: ${{ matrix.thumber-driver }}
           run: |
-            if [[ ${{ matrix.php-version }} == '8.0' ]]; then
-              export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
-            elif  [[ ${{ matrix.thumber-driver }} == 'gd' ]]; then
+            if  [[ ${{ matrix.thumber-driver }} == 'gd' ]]; then
               vendor/bin/phpunit --exclude-group imageEquals
+            elif [[ ${{ matrix.php-version }} == '8.0' ]]; then
+              export CODECOVERAGE=1 && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
             else
               vendor/bin/phpunit
             fi
