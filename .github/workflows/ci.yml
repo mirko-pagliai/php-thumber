@@ -28,7 +28,12 @@ jobs:
           - php-version: '8.0'
             prefer-lowest: 'prefer-lowest'
             thumber-driver: 'imagick'
+          - php-version: '7.4'
+            thumber-driver: 'gd'
+        exclude:
           - php-version: '7.2'
+            thumber-driver: 'gd'
+          - php-version: '7.3'
             thumber-driver: 'gd'
 
     steps:
