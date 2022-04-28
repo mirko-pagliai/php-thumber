@@ -123,7 +123,7 @@ class ThumbCreator
         } catch (NotReadableException $e) {
             $newE = NotReadableImageException::class;
             $value = $this->Filesystem->rtr($this->path) ?: null;
-            if (string_starts_with($e->getMessage(), 'Unsupported image type')) {
+            if (str_starts_with($e->getMessage(), 'Unsupported image type')) {
                 $newE = UnsupportedImageTypeException::class;
                 $value = mime_content_type($this->path) ?: null;
             }
