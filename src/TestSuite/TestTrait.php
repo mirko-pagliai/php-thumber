@@ -110,10 +110,10 @@ trait TestTrait
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
-        $thumbCreator = $this->getThumbCreatorInstance($path);
-        $thumbCreator->resize(200)->save($options);
+        $ThumbCreator = $this->getThumbCreatorInstance($path);
+        $ThumbCreator->resize(200)->save($options);
 
-        return $thumbCreator;
+        return $ThumbCreator;
     }
 
     /**
