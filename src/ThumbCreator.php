@@ -39,12 +39,12 @@ class ThumbCreator
     /**
      * @var \Tools\Filesystem
      */
-    protected $Filesystem;
+    protected Filesystem $Filesystem;
 
     /**
      * @var \Intervention\Image\ImageManager
      */
-    public $ImageManager;
+    public ImageManager $ImageManager;
 
     /**
      * Arguments that will be used to generate the name of the thumbnail.
@@ -53,26 +53,26 @@ class ThumbCreator
      * arguments must be added to this array, including the name of that method.
      * @var array
      */
-    protected $arguments = [];
+    protected array $arguments = [];
 
     /**
      * Callbacks that will be called by the `save()` method to create the
      * thumbnail
      * @var array<callable>
      */
-    protected $callbacks = [];
+    protected array $callbacks = [];
 
     /**
      * Path of the file from which the thumbnail will be generated
      * @var string
      */
-    protected $path;
+    protected string $path;
 
     /**
      * Path of the generated thumbnail
      * @var string
      */
-    protected $target;
+    protected string $target;
 
     /**
      * Construct.
@@ -171,7 +171,7 @@ class ThumbCreator
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
      */
-    public function fit(int $width = 0, int $heigth = 0, array $options = [])
+    public function fit(int $width = 0, int $heigth = 0, array $options = []): ThumbCreator
     {
         $width = $width ?: $heigth;
         Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
@@ -198,7 +198,7 @@ class ThumbCreator
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize
      */
-    public function resize(int $width, int $heigth = 0, array $options = [])
+    public function resize(int $width, int $heigth = 0, array $options = []): ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $options += ['aspectRatio' => true, 'upsize' => true];
@@ -231,7 +231,7 @@ class ThumbCreator
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas
      */
-    public function resizeCanvas(int $width, int $heigth = 0, array $options = [])
+    public function resizeCanvas(int $width, int $heigth = 0, array $options = []): ThumbCreator
     {
         $heigth = $heigth ?: $width;
         $options += ['anchor' => 'center', 'relative' => false, 'bgcolor' => '#ffffff'];
