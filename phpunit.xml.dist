@@ -6,14 +6,16 @@
          bootstrap="./tests/bootstrap.php"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
-    <coverage>
-        <include>
-            <directory suffix=".php">./src/</directory>
-        </include>
-    </coverage>
     <testsuites>
         <testsuite name="php-thumber Test Cases">
             <directory>./tests/TestCase</directory>
         </testsuite>
     </testsuites>
+
+    <!-- configure code coverage -->
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/</directory>
+        </whitelist>
+    </filter>
 </phpunit>
