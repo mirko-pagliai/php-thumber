@@ -15,12 +15,14 @@ Please consider the possibility of making [a donation](//paypal.me/mirkopagliai)
 [![Make a donation](https://www.paypalobjects.com/webstatic/mktg/logo-center/logo_paypal_carte.jpg)](//paypal.me/mirkopagliai)
 
 ***
-
-*   [Requirements and supported formats](#requirements-and-supported-formats)
-*   [Installation and configuration](#installation-and-configuration)
-*   [How to use](#how-to-use)
-*   [Testing](#testing)
-*   [Versioning](#versioning)
+  * [Requirements and supported formats](#requirements-and-supported-formats)
+  * [Installation and configuration](#installation-and-configuration)
+    + [Installation on older PHP versions](#installation-on-older-php-versions)
+      - [For PHP 7.2 or later](#for-php-72-or-later)
+      - [For PHP 5.6 or later](#for-php-56-or-later)
+  * [How to use](#how-to-use)
+  * [Testing](#testing)
+  * [Versioning](#versioning)
 
 ## Requirements and supported formats
 *php-thumber* requires GD Library (>=2.0) **or** Imagick PHP extension
@@ -59,8 +61,25 @@ define('THUMBER_TARGET', '/tmp/php-thumber');
 Otherwise, you can include/require the [`config/bootstrap.php`](https://github.com/mirko-pagliai/php-thumber/blob/master/config/bootstrap.php) file, which will auto-determine the driver to use and set a temporary directory where to create thumbnails (on Unix environment, it will be `/tmp/php-thumber`).
 
 ### Installation on older PHP versions
-Recent packages and the master branch require at least PHP 7.
-Instead, the [php5.6](//github.com/mirko-pagliai/php-thumber/tree/php5.6) branch
+Recent packages and the master branch require at least PHP 7.4 and the current
+development of the code is based on these and later versions of PHP.
+However, there are still some branches compatible with previous versions of PHP.
+
+#### For PHP 7.2 or later
+The [php7.2](//github.com/mirko-pagliai/php-thumber/tree/php7.2) branch
+requires at least PHP 7.2.
+
+In this case, you can install the package as well:
+```bash
+$ composer require --prefer-dist mirko-pagliai/php-thumber:dev-php7.2
+```
+
+Note that the `php7.2` branch will no longer be updated as of April 28, 2022,
+except for security patches, and it matches the
+[1.4.3](https://github.com/mirko-pagliai/php-thumber/releases/tag/1.4.3) version.
+
+#### For PHP 5.6 or later
+The [php5.6](//github.com/mirko-pagliai/php-thumber/tree/php5.6) branch
 requires at least PHP 5.6.
 
 In this case, you can install the package as well:

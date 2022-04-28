@@ -6,7 +6,8 @@
 
 ## 1.4 branch
 ### 1.4.3
-* added tests for PHP 8.1.
+* added tests for PHP 8.1;
+* little fixes.
 
 ### 1.4.2
 * migration to github actions.
