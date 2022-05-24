@@ -29,7 +29,7 @@ if (!defined('THUMBER_DRIVER') && getenv('THUMBER_DRIVER')) {
     define('THUMBER_DRIVER', getenv('THUMBER_DRIVER'));
 }
 
-require_once 'config/bootstrap.php';
+require_once ROOT . 'config/bootstrap.php';
 
 define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
 define('THUMBER_COMPARING_DIR', THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . THUMBER_DRIVER . DS);
