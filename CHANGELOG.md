@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.5 branch
+### 1.5.1
+* little fixes for `phpstan`, `psalm` and for the `composer.json` file.
+
 ### 1.5.0
 * requires at least PHP 7.4 and PHPUnit 9.1. Updated the code with the new
     features introduced by php 7.4.

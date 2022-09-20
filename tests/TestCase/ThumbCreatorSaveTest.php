@@ -42,14 +42,10 @@ class ThumbCreatorSaveTest extends TestCase
         //Adds some extensions only for the `imagick` driver
         $extensions += THUMBER_DRIVER == 'imagick' ? [
             'bmp' => 'image/x-ms-bmp',
-            'ico' => 'image/x-icon',
             'psd' => 'image/vnd.adobe.photoshop',
             'tif' => 'image/tiff',
             'tiff' => 'image/tiff',
         ] : [];
-        if (version_compare(PHP_VERSION, '7.4', '>=')) {
-            unset($extensions['ico']);
-        }
 
         foreach ($extensions as $extension => $expectedMimetype) {
             $thumb = $this->getThumbCreatorInstance('400x400.' . $extension)->resize(200)->save();
