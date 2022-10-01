@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace Thumber\Test;
 
 use Thumber\TestSuite\TestCase;
 use Thumber\ThumbManager;
@@ -26,7 +26,7 @@ class ThumbManagerTest extends TestCase
     /**
      * @var \Thumber\ThumbManager
      */
-    protected $ThumbManager;
+    protected ThumbManager $ThumbManager;
 
     /**
      * Called before every test method
@@ -36,14 +36,14 @@ class ThumbManagerTest extends TestCase
     {
         parent::setUp();
 
-        $this->ThumbManager = $this->ThumbManager ?: new ThumbManager();
+        $this->ThumbManager ??= new ThumbManager();
 
         $this->createSomeThumbs();
     }
 
     /**
      * Test for `clear()` method
-     * @ŧest
+     * @test
      */
     public function testClear(): void
     {
@@ -55,7 +55,7 @@ class ThumbManagerTest extends TestCase
 
     /**
      * Test for `clearAll()` method
-     * @ŧest
+     * @test
      */
     public function testClearAll(): void
     {
@@ -65,7 +65,7 @@ class ThumbManagerTest extends TestCase
 
     /**
      * Test for `get()` method
-     * @ŧest
+     * @test
      */
     public function testGet(): void
     {
@@ -80,7 +80,7 @@ class ThumbManagerTest extends TestCase
 
     /**
      * Test for `getAll()` method
-     * @ŧest
+     * @test
      */
     public function testGetAll(): void
     {

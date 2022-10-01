@@ -39,6 +39,7 @@ trait TestTrait
     /**
      * Internal method to create some thumbs
      * @return void
+     * @throws \Tools\Exception\NotWritableException
      */
     protected function createSomeThumbs(): void
     {
@@ -90,6 +91,7 @@ trait TestTrait
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
      *  or a remote url
      * @return \Thumber\ThumbCreator
+     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException
      */
     protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
@@ -107,6 +109,7 @@ trait TestTrait
      *  It can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
+     * @throws \Tools\Exception\NotWritableException
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
@@ -117,7 +120,7 @@ trait TestTrait
     }
 
     /**
-     * Skips the test if you running the designated driver
+     * Skips the test if you're running the designated driver
      * @param string $driver Driver name
      * @param string $message The message to display
      * @return bool

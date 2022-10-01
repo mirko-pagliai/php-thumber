@@ -249,9 +249,8 @@ class ThumbCreator
      * Saves the thumbnail and returns its path
      * @param array<string, mixed> $options Options for saving
      * @return string Thumbnail path
+     * @throws \BadMethodCallException|\Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
-     * @throws \BadMethodCallException
-     * @throws \Tools\Exception\NotWritableException
      */
     public function save(array $options = []): string
     {

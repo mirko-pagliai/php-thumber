@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace Thumber\Test;
 
 use BadMethodCallException;
 use Intervention\Image\Exception\InvalidArgumentException;
@@ -119,7 +119,7 @@ class ThumbCreatorSaveTest extends TestCase
 
     /**
      * Test for `save()` method, using the `quality` option
-     * @ŧest
+     * @test
      */
     public function testSaveWithQuality(): void
     {
@@ -133,7 +133,7 @@ class ThumbCreatorSaveTest extends TestCase
     /**
      * Test for `save()` method, using the `quality` option, equating images
      * @group imageEquals
-     * @ŧest
+     * @test
      */
     public function testSaveWithQualityImageEquals(): void
     {
@@ -143,7 +143,7 @@ class ThumbCreatorSaveTest extends TestCase
 
     /**
      * Test for `save()` method, using the `target` option
-     * @ŧest
+     * @test
      */
     public function testSaveWithTarget(): void
     {

@@ -24,7 +24,7 @@ class NotReadableImageExceptionTest extends TestCase
 {
     /**
      * Test for the exception
-     * @ŧest
+     * @test
      */
     public function testException(): void
     {

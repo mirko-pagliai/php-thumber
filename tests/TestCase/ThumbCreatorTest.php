@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace Thumber\Test;
 
 use Intervention\Image\Exception\NotReadableException as InterventionNotReadableException;
 use Intervention\Image\ImageManager;
@@ -38,7 +38,7 @@ class ThumbCreatorTest extends TestCase
 
     /**
      * Test for `getImageInstance()` method, with a not readable image
-     * @ŧest
+     * @test
      */
     public function testGetImageInstanceNotReadableImageException(): void
     {
@@ -55,7 +55,7 @@ class ThumbCreatorTest extends TestCase
 
     /**
      * Test for `getImageInstance()` method, with unsupported image type for GD driver
-     * @ŧest
+     * @test
      */
     public function testGetImageInstanceUnsupportedImageType(): void
     {
@@ -64,7 +64,7 @@ class ThumbCreatorTest extends TestCase
         $exception = new InterventionNotReadableException('Unsupported image type. GD driver is only able to decode JPG, PNG, GIF or WebP files.');
         $thumbCreator = $this->getThumbCreatorInstance();
         $thumbCreator->ImageManager = $this->getMockBuilder(ImageManager::class)
-            ->setMethods(['make'])
+            ->onlyMethods(['make'])
             ->getMock();
         $thumbCreator->ImageManager->method('make')->will($this->throwException($exception));
         $this->invokeMethod($thumbCreator, 'getImageInstance');
@@ -72,7 +72,7 @@ class ThumbCreatorTest extends TestCase
 
     /**
      * Test for `$path` property
-     * @ŧest
+     * @test
      */
     public function testPath(): void
     {

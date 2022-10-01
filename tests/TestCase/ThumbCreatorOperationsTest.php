@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace Thumber\Test;
 
 use InvalidArgumentException;
 use Thumber\TestSuite\TestCase;
@@ -24,7 +24,7 @@ class ThumbCreatorOperationsTest extends TestCase
 {
     /**
      * Test for `crop()` method
-     * @ŧest
+     * @test
      */
     public function testCrop(): void
     {
@@ -61,7 +61,7 @@ class ThumbCreatorOperationsTest extends TestCase
 
     /**
      * Test for `fit()` method
-     * @ŧest
+     * @test
      */
     public function testFit(): void
     {
@@ -94,7 +94,7 @@ class ThumbCreatorOperationsTest extends TestCase
 
     /**
      * Test for `resize()` method
-     * @ŧest
+     * @test
      */
     public function testResize(): void
     {
@@ -149,7 +149,7 @@ class ThumbCreatorOperationsTest extends TestCase
 
     /**
      * Test for `resizeCanvas()` method
-     * @ŧest
+     * @test
      */
     public function testResizeCanvas(): void
     {
