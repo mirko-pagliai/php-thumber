@@ -22,7 +22,9 @@ define('ROOT', dirname(__DIR__) . DS);
 define('TESTS', ROOT . 'tests' . DS);
 define('TMP', sys_get_temp_dir() . DS . 'php-thumber' . DS);
 
-@mkdir(TMP, 0777, true);
+if (!file_exists(TMP)) {
+    mkdir(TMP, 0777, true);
+}
 
 //Default thumbnails driver
 if (!defined('THUMBER_DRIVER') && getenv('THUMBER_DRIVER')) {
