@@ -26,6 +26,7 @@ trait TestTrait
      * Internal method to create a copy of an image file
      * @param string $path Image file path
      * @return string
+     * @throws \Throwable
      */
     protected static function createCopy(string $path): string
     {
@@ -39,7 +40,7 @@ trait TestTrait
     /**
      * Internal method to create some thumbs
      * @return void
-     * @throws \Tools\Exception\NotWritableException
+     * @throws \BadMethodCallException|\Tools\Exception\FileNotExistsException|\Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
      */
     protected function createSomeThumbs(): void
     {
@@ -56,6 +57,7 @@ trait TestTrait
      * @param string $message The failure message that will be appended to the
      *  generated message
      * @return void
+     * @throws \Throwable
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
@@ -91,7 +93,7 @@ trait TestTrait
      *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
      *  or a remote url
      * @return \Thumber\ThumbCreator
-     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException
+     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
      */
     protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
@@ -109,7 +111,7 @@ trait TestTrait
      *  It can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
-     * @throws \Tools\Exception\NotWritableException
+     * @throws \BadMethodCallException|\Tools\Exception\FileNotExistsException|\Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {

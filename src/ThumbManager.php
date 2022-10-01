@@ -33,8 +33,7 @@ class ThumbManager
      * Internal method to clear thumbnails
      * @param array<string> $filenames Filenames
      * @return int Number of thumbnails deleted
-     * @throws \Tools\Exception\FileNotExistsException
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
      */
     protected function _clear(array $filenames): int
     {
@@ -51,6 +50,7 @@ class ThumbManager
      * @param string $pattern A pattern (a regexp, a glob, or a string)
      * @param bool $sort Whether results should be sorted
      * @return array<string, string> Filenames
+     * @throws \Throwable
      */
     protected function _find(string $pattern = '', bool $sort = false): array
     {
@@ -64,8 +64,7 @@ class ThumbManager
      * Clears all thumbnails that have been generated from an image path
      * @param string $path Path of the original image
      * @return int Number of thumbnails deleted
-     * @throws \Tools\Exception\FileNotExistsException
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
      */
     public function clear(string $path): int
     {
@@ -75,8 +74,7 @@ class ThumbManager
     /**
      * Clears all thumbnails
      * @return int Number of thumbnails deleted
-     * @throws \Tools\Exception\FileNotExistsException
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
      */
     public function clearAll(): int
     {
@@ -88,8 +86,7 @@ class ThumbManager
      * @param string $path Path of the original image
      * @param bool $sort Whether results should be sorted
      * @return array<string, string>
-     * @throws \Tools\Exception\FileNotExistsException
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
      */
     public function get(string $path, bool $sort = false): array
     {
@@ -102,6 +99,7 @@ class ThumbManager
      * Gets all thumbnails
      * @param bool $sort Whether results should be sorted
      * @return array<string, string>
+     * @throws \Throwable
      */
     public function getAll(bool $sort = false): array
     {

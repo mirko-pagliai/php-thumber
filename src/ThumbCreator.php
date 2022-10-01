@@ -79,8 +79,7 @@ class ThumbCreator
      * It sets the file path and extension.
      * @param string $path Path of the image from which to create the
      *  thumbnail. It can be a full path or a remote url
-     * @throws \Tools\Exception\FileNotExistsException
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
      */
     public function __construct(string $path)
     {
@@ -113,8 +112,7 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \Thumber\Exception\NotReadableImageException
-     * @throws \Thumber\Exception\UnsupportedImageTypeException
+     * @throws \Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
      */
     protected function getImageInstance(): Image
     {

@@ -31,6 +31,7 @@ class NotReadableImageException extends NotReadableException
      * @param int $lineno The line number where the exception is thrown
      * @param \Exception|null $previous The previous exception used for the exception chaining
      * @param string|null $path Path of the not readable image
+     * @throws \Throwable
      */
     public function __construct(string $message = '', int $code = 0, int $severity = E_ERROR, string $filename = '__FILE__', int $lineno = __LINE__, ?Exception $previous = null, ?string $path = null)
     {
