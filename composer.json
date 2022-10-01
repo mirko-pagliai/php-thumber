@@ -14,7 +14,7 @@
         "php": ">=7.4",
         "ext-fileinfo": "*",
         "intervention/image": "^2.4",
-        "mirko-pagliai/php-tools": "~1.6"
+        "mirko-pagliai/php-tools": "~1.6.3"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^4.0",
