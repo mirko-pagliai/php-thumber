@@ -34,8 +34,6 @@ class ThumbCreatorOperationsTest extends TestCase
         //Only width
         $thumb = $this->getThumbCreatorInstance()->crop(200)->save();
         $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->crop(200, 0)->save();
-        $this->assertImageSize(200, 200, $thumb);
 
         //In this case, the width will be the original size
         $thumb = $this->getThumbCreatorInstance()->crop(400, 200)->save();
@@ -73,8 +71,6 @@ class ThumbCreatorOperationsTest extends TestCase
         //Only width
         $thumb = $this->getThumbCreatorInstance()->fit(200)->save();
         $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->fit(200, 0)->save();
-        $this->assertImageSize(200, 200, $thumb);
 
         //Using the `position` option
         $thumb = $this->getThumbCreatorInstance()->fit(200, 200, ['position' => 'top'])->save();
@@ -93,7 +89,7 @@ class ThumbCreatorOperationsTest extends TestCase
         //Without parameters
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('You have to set at least the width for the `Thumber\ThumbCreator::fit()` method');
-        $this->getThumbCreatorInstance()->fit(0)->save();
+        $this->getThumbCreatorInstance()->fit()->save();
     }
 
     /**
@@ -107,8 +103,6 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Only width
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save();
-        $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->resize(200, 0)->save();
         $this->assertImageSize(200, 200, $thumb);
 
         //Using  the `aspectRatio` option
@@ -164,8 +158,6 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Only width
         $thumb = $this->getThumbCreatorInstance()->resizeCanvas(200)->save();
-        $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->resizeCanvas(200, 0)->save();
         $this->assertImageSize(200, 200, $thumb);
 
         //Using the `anchor` option
