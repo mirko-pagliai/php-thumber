@@ -14,7 +14,6 @@ declare(strict_types=1);
  */
 namespace Thumber\TestSuite;
 
-use Thumber\TestSuite\TestTrait;
 use Tools\Filesystem;
 use Tools\TestSuite\TestCase as BaseTestCase;
 
