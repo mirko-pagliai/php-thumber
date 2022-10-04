@@ -1,5 +1,9 @@
 # 1.x branch
 ## 1.5 branch
+### 1.5.2
+* small and numerous improvements of descriptions, tags and code suggested
+  by PhpStorm.
+
 ### 1.5.1
 * little fixes for `phpstan`, `psalm` and for the `composer.json` file.
 
