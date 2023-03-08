@@ -1,7 +1,8 @@
 # 1.x branch
 ## 1.5 branch
 ### 1.5.3
-* `NotReadableImageException` and `UnsupportedImageTypeException` have been simplified.
+* `NotReadableImageException` and `UnsupportedImageTypeException` have been simplified;
+* updated for php-tools 1.7.1.
 
 ### 1.5.2
 * small and numerous improvements of descriptions, tags and code suggested
