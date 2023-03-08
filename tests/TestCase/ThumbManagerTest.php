@@ -42,8 +42,8 @@ class ThumbManagerTest extends TestCase
     }
 
     /**
-     * Test for `clear()` method
      * @test
+     * @uses \Thumber\ThumbManager::clear()
      */
     public function testClear(): void
     {
@@ -54,8 +54,8 @@ class ThumbManagerTest extends TestCase
     }
 
     /**
-     * Test for `clearAll()` method
      * @test
+     * @uses \Thumber\ThumbManager::clearAll()
      */
     public function testClearAll(): void
     {
@@ -64,8 +64,8 @@ class ThumbManagerTest extends TestCase
     }
 
     /**
-     * Test for `get()` method
      * @test
+     * @uses \Thumber\ThumbManager::get()
      */
     public function testGet(): void
     {
@@ -74,13 +74,13 @@ class ThumbManagerTest extends TestCase
 
         //With a no existing file
         $this->expectException(NotReadableException::class);
-        $this->expectExceptionMessage('File or directory `noExisting` does not exist');
+        $this->expectExceptionMessage('File or directory `noExisting` is not readable');
         $this->ThumbManager->get('noExisting');
     }
 
     /**
-     * Test for `getAll()` method
      * @test
+     * @uses \Thumber\ThumbManager::getAll()
      */
     public function testGetAll(): void
     {

@@ -14,7 +14,6 @@ declare(strict_types=1);
  */
 namespace Thumber\Test;
 
-use BadMethodCallException;
 use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotSupportedException;
 use Thumber\TestSuite\TestCase;
@@ -27,8 +26,8 @@ use Tools\Filesystem;
 class ThumbCreatorSaveTest extends TestCase
 {
     /**
-     * Test for `save()` method
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSave(): void
     {
@@ -68,22 +67,21 @@ class ThumbCreatorSaveTest extends TestCase
      * Test for `save()` method, if unable to create file
      * @requires OS Linux
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveUnableToCreateFile(): void
     {
         $this->expectException(NotWritableException::class);
         $this->expectExceptionMessage('Unable to create file `' . DS . 'noExisting`');
-        $this->getThumbCreatorInstance('400x400.jpg')
-            ->resize(200)
-            ->save(['target' => DS . 'noExisting']);
+        $this->getThumbCreatorInstance('400x400.jpg')->resize(200)->save(['target' => DS . 'noExisting']);
     }
 
     /**
      * Test for `save()` method, using the same file with different arguments.
      *
-     * So the two thumbnails will have the same prefix in the name, but a
-     *  different suffix
+     * So the two thumbnails will have the same prefix in the name, but a different suffix
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveSameFileDifferentArguments(): void
     {
@@ -94,9 +92,9 @@ class ThumbCreatorSaveTest extends TestCase
     }
 
     /**
-     * Test for `save()` method. It tests the thumbnails is created only if it
-     *  does not exist
+     * Test for `save()` method. It tests the thumbnails is created only if it does not exist
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveReturnsExistingThumb(): void
     {
@@ -107,8 +105,7 @@ class ThumbCreatorSaveTest extends TestCase
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save();
         $this->assertEquals($time, filemtime($thumb));
 
-        //Deletes the thumbnail and wait 1 second, then tries to create again
-        //  the same thumbnail. Now the creation time is different
+        //Deletes and waits 1 second, then tries to create again the same thumbnail. Now the creation time is different
         if (is_writable($thumb)) {
             unlink($thumb);
         }
@@ -120,6 +117,7 @@ class ThumbCreatorSaveTest extends TestCase
     /**
      * Test for `save()` method, using the `quality` option
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveWithQuality(): void
     {
@@ -134,6 +132,7 @@ class ThumbCreatorSaveTest extends TestCase
      * Test for `save()` method, using the `quality` option, equating images
      * @group imageEquals
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveWithQualityImageEquals(): void
     {
@@ -144,6 +143,7 @@ class ThumbCreatorSaveTest extends TestCase
     /**
      * Test for `save()` method, using the `target` option
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveWithTarget(): void
     {
@@ -159,6 +159,7 @@ class ThumbCreatorSaveTest extends TestCase
     /**
      * Test for `save()` method, using similar format names, as `jpeg` or `tif`
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveWithSimilarFormat(): void
     {
@@ -177,10 +178,10 @@ class ThumbCreatorSaveTest extends TestCase
     /**
      * Test for `save()` method, without a valid method called before
      * @test
+     * @uses \Thumber\ThumbCreator::save()
      */
     public function testSaveWithoutCallbacks(): void
     {
-        $this->expectException(BadMethodCallException::class);
         $this->expectExceptionMessage('No valid method called before the `save()` method');
         $this->getThumbCreatorInstance()->save();
     }
