@@ -2,6 +2,7 @@
 ## 1.5 branch
 ### 1.5.3
 * `NotReadableImageException` and `UnsupportedImageTypeException` have been simplified;
+* updated comparing files for `imagick` driver;
 * updated for php-tools 1.7.1.
 
 ### 1.5.2
