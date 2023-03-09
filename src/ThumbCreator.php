@@ -89,10 +89,11 @@ class ThumbCreator
      * Internal method to get default options for the `save()` method
      * @param array<string, mixed> $options Passed options
      * @param string $path Path to use
-     * @return array<string, mixed> Passed options with default options
+     * @return array{format: string, quality: int, target: false|string} Passed options with default options
      */
-    protected function getDefaultSaveOptions(array $options = [], string $path = ''): array
+    protected function getDefaultSaveOptions(array $options, string $path = ''): array
     {
+        /** @var array{format: string, quality: int, target: false|string} $options */
         $options += [
             'format' => $this->Filesystem->getExtension($path ?: $this->path) ?: '',
             'quality' => 90,
@@ -100,7 +101,7 @@ class ThumbCreator
         ];
 
         //Fixes some formats
-        $options['format'] = preg_replace(['/^jpeg$/', '/^tif$/'], ['jpg', 'tiff'], $options['format']);
+        $options['format'] = preg_replace(['/^jpeg$/', '/^tif$/'], ['jpg', 'tiff'], $options['format']) ?: $options['format'];
 
         return $options;
     }
@@ -108,12 +109,14 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \Thumber\Exception\NotReadableImageException|\ErrorException
+     * @throws \ErrorException
+     * @throws \Thumber\Exception\NotReadableImageException
+     * @throws \Thumber\Exception\UnsupportedImageTypeException
      */
     protected function getImageInstance(): Image
     {
         try {
-            $imageInstance = $this->ImageManager->make($this->path);
+            $ImageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
             if (str_starts_with($e->getMessage(), 'Unsupported image type')) {
                 $type = mime_content_type($this->path) ?: null;
@@ -123,7 +126,7 @@ class ThumbCreator
             throw new NotReadableImageException($path ? 'Unable to read image from `' . $path . '`' : 'Unable to read image from file');
         }
 
-        return $imageInstance;
+        return $ImageInstance;
     }
 
     /**
@@ -143,7 +146,7 @@ class ThumbCreator
         Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__));
 
         $this->arguments[] = [__FUNCTION__, $width, $height, $options];
-        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance->crop(
+        $this->callbacks[] = fn(Image $ImageInstance): Image => $ImageInstance->crop(
             $width,
             $height,
             Exceptionist::isInt($options['x'], 'The `x` option must be an integer'),
@@ -170,7 +173,7 @@ class ThumbCreator
         $options += ['position' => 'center', 'upsize' => true];
 
         $this->arguments[] = [__FUNCTION__, $width, $height, $options];
-        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance
+        $this->callbacks[] = fn(Image $ImageInstance): Image => $ImageInstance
             ->fit($width, $height, function (Constraint $constraint) use ($options): void {
                 if ($options['upsize']) {
                     $constraint->upsize();
@@ -195,7 +198,7 @@ class ThumbCreator
         Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__));
 
         $this->arguments[] = [__FUNCTION__, $width, $height, $options];
-        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance
+        $this->callbacks[] = fn(Image $ImageInstance): Image => $ImageInstance
             ->resize($width, $height, function (Constraint $constraint) use ($options): void {
                 if ($options['aspectRatio']) {
                     $constraint->aspectRatio();
@@ -225,7 +228,7 @@ class ThumbCreator
         Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__));
 
         $this->arguments[] = [__FUNCTION__, $width, $height, $options];
-        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance
+        $this->callbacks[] = fn(Image $ImageInstance): Image => $ImageInstance
             ->resizeCanvas($width, $height, $options['anchor'], $options['relative'], $options['bgcolor']);
 
         return $this;
@@ -256,15 +259,15 @@ class ThumbCreator
         //Creates the thumbnail, if this does not exist
         $target = $this->Filesystem->makePathAbsolute($target, THUMBER_TARGET);
         if (!file_exists($target)) {
-            $imageInstance = $this->getImageInstance();
+            $ImageInstance = $this->getImageInstance();
 
             //Calls each callback
             foreach ($this->callbacks as $callback) {
-                call_user_func($callback, $imageInstance);
+                call_user_func($callback, $ImageInstance);
             }
 
-            $content = $imageInstance->encode($format, $options['quality']);
-            $imageInstance->destroy();
+            $content = $ImageInstance->encode($format, $options['quality']);
+            $ImageInstance->destroy();
             try {
                 $this->Filesystem->dumpFile($target, (string)$content);
             } catch (IOException $e) {
