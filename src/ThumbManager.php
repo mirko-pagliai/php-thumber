@@ -25,7 +25,7 @@ class ThumbManager
 {
     /**
      * Supported formats
-     * @var array<string>
+     * @var string[]
      */
     protected const SUPPORTED_FORMATS = ['bmp', 'gif', 'ico', 'jpg', 'png', 'psd', 'tiff'];
 
@@ -33,7 +33,7 @@ class ThumbManager
      * Internal method to clear thumbnails
      * @param array<string> $filenames Filenames
      * @return int Number of thumbnails deleted
-     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
+     * @throws \Tools\Exception\NotReadableException
      */
     protected function _clear(array $filenames): int
     {
@@ -50,7 +50,7 @@ class ThumbManager
      * @param string $pattern A pattern (a regexp, a glob, or a string)
      * @param bool $sort Whether results should be sorted
      * @return array<string, string> Filenames
-     * @throws \Throwable
+     * @throws \Tools\Exception\MethodNotExistsException
      */
     protected function _find(string $pattern = '', bool $sort = false): array
     {
@@ -86,7 +86,7 @@ class ThumbManager
      * @param string $path Path of the original image
      * @param bool $sort Whether results should be sorted
      * @return array<string, string>
-     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
+     * @throws \Tools\Exception\MethodNotExistsException|\Tools\Exception\NotReadableException
      */
     public function get(string $path, bool $sort = false): array
     {
@@ -99,7 +99,7 @@ class ThumbManager
      * Gets all thumbnails
      * @param bool $sort Whether results should be sorted
      * @return array<string, string>
-     * @throws \Throwable
+     * @throws \Tools\Exception\MethodNotExistsException
      */
     public function getAll(bool $sort = false): array
     {

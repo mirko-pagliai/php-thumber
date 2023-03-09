@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -25,8 +26,25 @@ use Tools\Filesystem;
 class TestCaseTest extends TestCase
 {
     /**
-     * Test for `assertImageFileEquals()` method
+     * @var \Thumber\TestSuite\TestCase
+     */
+    protected $TestCase;
+
+    /**
+     * This method is called before each test
+     * @return void
+     */
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->TestCase = new class extends TestCase {
+        };
+    }
+
+    /**
      * @test
+     * @uses \Thumber\TestSuite\TestCase::assertImageFileEquals()
      */
     public function testAssertImageFileEquals(): void
     {
@@ -34,28 +52,28 @@ class TestCaseTest extends TestCase
 
         $original = THUMBER_EXAMPLE_DIR . '400x400.jpg';
         $copy = $this->createCopy($original);
-        $this->assertImageFileEquals($original, $copy);
+        $this->TestCase->assertImageFileEquals($original, $copy);
 
         $Filesystem->remove($copy);
         $this->expectException(ExpectationFailedException::class);
-        $this->assertImageFileEquals($original, $Filesystem->createTmpFile());
+        $this->TestCase->assertImageFileEquals($original, $Filesystem->createTmpFile());
     }
 
     /**
-     * Test for `getThumbCreatorInstance()` method
      * @test
+     * @uses \Thumber\TestSuite\TestCase::getThumbCreatorInstance()
      */
     public function testGetThumbCreatorInstance(): void
     {
-        $this->assertInstanceOf(ThumbCreator::class, $this->getThumbCreatorInstance());
+        $this->assertInstanceOf(ThumbCreator::class, $this->TestCase->getThumbCreatorInstance());
     }
 
     /**
-     * Test for `getThumbCreatorInstanceWithSave()` method
      * @test
+     * @uses \Thumber\TestSuite\TestCase::getThumbCreatorInstanceWithSave()
      */
     public function testGetThumbCreatorInstanceWithSave(): void
     {
-        $this->assertInstanceOf(ThumbCreator::class, $this->getThumbCreatorInstanceWithSave());
+        $this->assertInstanceOf(ThumbCreator::class, $this->TestCase->getThumbCreatorInstanceWithSave());
     }
 }

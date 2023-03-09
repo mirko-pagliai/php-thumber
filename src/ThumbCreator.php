@@ -54,7 +54,7 @@ class ThumbCreator
 
     /**
      * Callbacks that will be called by the `save()` method to create the thumbnail
-     * @var array<callable>
+     * @var callable[]
      */
     protected array $callbacks = [];
 
@@ -72,9 +72,10 @@ class ThumbCreator
 
     /**
      * Construct.
+     *
      * It sets the file path and extension.
      * @param string $path Path of the image from which to create the thumbnail. It can be a full path or a remote url
-     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
+     * @throws \Tools\Exception\NotReadableException
      */
     public function __construct(string $path)
     {
@@ -107,7 +108,7 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
+     * @throws \Thumber\Exception\NotReadableImageException|\ErrorException
      */
     protected function getImageInstance(): Image
     {
@@ -234,7 +235,9 @@ class ThumbCreator
      * Saves the thumbnail and returns its path
      * @param array<string, mixed> $options Options for saving
      * @return string Thumbnail path
-     * @throws \BadMethodCallException|\Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
+     * @throws \Tools\Exception\NotWritableException
+     * @throws \Thumber\Exception\NotReadableImageException
+     * @throws \ErrorException
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
      */
     public function save(array $options = []): string

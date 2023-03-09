@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -124,18 +125,12 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Using `aspectRatio` and `upsize` options
         //In this case, the thumbnail will keep the ratio and the original dimensions
-        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, [
-            'aspectRatio' => true,
-            'upsize' => true,
-        ])->save();
+        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, ['aspectRatio' => true, 'upsize' => true])->save();
         $this->assertImageSize(400, 400, $thumb);
 
         //Using `aspectRatio` and `upsize` options
         //In this case, the thumbnail will not keep the ratio and the original dimensions
-        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, [
-            'aspectRatio' => false,
-            'upsize' => false,
-        ])->save();
+        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, ['aspectRatio' => false, 'upsize' => false])->save();
         $this->assertImageSize(500, 600, $thumb);
 
         //Without parameters

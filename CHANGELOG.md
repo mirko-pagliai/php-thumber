@@ -3,6 +3,7 @@
 ### 1.5.3
 * `ThumbCreator` has been updated;
 * `NotReadableImageException` and `UnsupportedImageTypeException` have been simplified;
+* minor code, test, and documentation improvements;
 * updated comparing files for `imagick` driver;
 * updated for php-tools 1.7.1.
 

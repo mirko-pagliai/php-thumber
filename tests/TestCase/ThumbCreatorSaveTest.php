@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -77,9 +78,8 @@ class ThumbCreatorSaveTest extends TestCase
     }
 
     /**
-     * Test for `save()` method, using the same file with different arguments.
-     *
-     * So the two thumbnails will have the same prefix in the name, but a different suffix
+     * Test for `save()` method, using the same file with different arguments, so the two thumbnails will have the same
+     *  prefix in the name, but a different suffix
      * @test
      * @uses \Thumber\ThumbCreator::save()
      */

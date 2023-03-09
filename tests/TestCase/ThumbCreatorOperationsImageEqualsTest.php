@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -22,8 +23,8 @@ use Thumber\TestSuite\TestCase;
 class ThumbCreatorOperationsImageEqualsTest extends TestCase
 {
     /**
-     * Test for `crop()` method
      * @group imageEquals
+     * @uses \Thumber\ThumbCreator::crop()
      * @test
      */
     public function testCrop(): void
@@ -41,8 +42,8 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
     }
 
     /**
-     * Test for `fit()` method
      * @group imageEquals
+     * @uses \Thumber\ThumbCreator::fit()
      * @test
      */
     public function testFit(): void
@@ -76,8 +77,8 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
     }
 
     /**
-     * Test for `resize()` method
      * @group imageEquals
+     * @uses \Thumber\ThumbCreator::resize()
      * @test
      */
     public function testResize(): void
@@ -107,24 +108,18 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
 
         //Using `aspectRatio` and `upsize` options
         //In this case, the thumbnail will keep the ratio and the original dimensions
-        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, [
-            'aspectRatio' => true,
-            'upsize' => true,
-        ])->save();
+        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, ['aspectRatio' => true, 'upsize' => true])->save();
         $this->assertImageFileEquals('resize_w400_h400.jpg', $thumb);
 
         //Using `aspectRatio` and `upsize` options
         //In this case, the thumbnail will not keep the ratio and the original dimensions
-        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, [
-            'aspectRatio' => false,
-            'upsize' => false,
-        ])->save();
+        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, ['aspectRatio' => false, 'upsize' => false])->save();
         $this->assertImageFileEquals('resize_w500_h600_noAspectRatio_noUpsize.jpg', $thumb);
     }
 
     /**
-     * Test for `resizeCanvas()` method
      * @group imageEquals
+     * @uses \Thumber\ThumbCreator::resizeCanvas()
      * @test
      */
     public function testResizeCanvas(): void
@@ -147,9 +142,10 @@ class ThumbCreatorOperationsImageEqualsTest extends TestCase
     }
 
     /**
-     * Test for several methods called in sequence on the same image (eg.,
-     *  `crop()` and `resize()`
+     * Test for several methods called in sequence on the same image (eg., `crop()` and `resize()`
      * @group imageEquals
+     * @uses \Thumber\ThumbCreator::crop()
+     * @uses \Thumber\ThumbCreator::resize()
      * @test
      */
     public function testSeveralMethods(): void

@@ -26,7 +26,7 @@ trait TestTrait
      * Internal method to create a copy of an image file
      * @param string $path Image file path
      * @return string
-     * @throws \Throwable
+     * @throws \ErrorException
      */
     protected static function createCopy(string $path): string
     {
@@ -40,7 +40,7 @@ trait TestTrait
     /**
      * Internal method to create some thumbs
      * @return void
-     * @throws \BadMethodCallException|\Tools\Exception\FileNotExistsException|\Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
+     * @throws \Tools\Exception\NotReadableException|\Throwable
      */
     protected function createSomeThumbs(): void
     {
@@ -50,14 +50,12 @@ trait TestTrait
     }
 
     /**
-     * Asserts that the contents of one image file is equal to the contents of
-     *  another image file
+     * Asserts that the contents of one image file is equal to the contents of another image file
      * @param string $expected Expected file
      * @param string $actual Actual file
-     * @param string $message The failure message that will be appended to the
-     *  generated message
+     * @param string $message The failure message that will be appended to the generated message
      * @return void
-     * @throws \Throwable
+     * @throws \ErrorException
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
@@ -77,8 +75,7 @@ trait TestTrait
     /**
      * Asserts for a valid thumbnail path
      * @param string $path Thumbnail path
-     * @param string $message The failure message that will be appended to the
-     *  generated message
+     * @param string $message The failure message that will be appended to the generated message
      * @return void
      */
     public function assertThumbPath(string $path, string $message = ''): void
@@ -89,11 +86,10 @@ trait TestTrait
 
     /**
      * Returns an instance of `ThumbCreator`
-     * @param string $path Path of the image from which to create the
-     *  thumbnail. It can be a relative path (to APP/webroot/img), a full path
-     *  or a remote url
+     * @param string $path Path of the image from which to create the thumbnail. It can be a relative path (to
+     *  `APP/webroot/img`), a full path or a remote url
      * @return \Thumber\ThumbCreator
-     * @throws \Tools\Exception\FileNotExistsException|\Tools\Exception\NotReadableException|\Throwable
+     * @throws \Tools\Exception\NotReadableException
      */
     protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
@@ -103,15 +99,13 @@ trait TestTrait
     }
 
     /**
-     * Returns an instance of `ThumbCreator`, after calling `resize()` and
-     *  `save()` methods.
+     * Returns an instance of `ThumbCreator`, after calling `resize()` and `save()` methods.
      *
      * It can be called passing only the array of options as first argument.
-     * @param string $path Path of the image from which to create the thumbnail.
-     *  It can be a full path or a remote url
+     * @param string $path Path of the image from which to create the thumbnail. t can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
-     * @throws \BadMethodCallException|\Tools\Exception\FileNotExistsException|\Thumber\Exception\NotReadableImageException|\Thumber\Exception\UnsupportedImageTypeException|\Throwable
+     * @throws \Tools\Exception\NotReadableException|\Throwable
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
