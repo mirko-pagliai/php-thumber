@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#3 \\$options of method Thumber\\\\ThumbCreator\\:\\:crop\\(\\) expects array\\<string, int\\>, array\\<string, int\\|string\\> given\\.$#"
+			count: 1
+			path: tests/TestCase/ThumbCreatorOperationsTest.php
+
+		-
+			message: "#^Parameter \\#3 \\$options of method Thumber\\\\ThumbCreator\\:\\:crop\\(\\) expects array\\<string, int\\>, array\\<string, string\\> given\\.$#"
+			count: 1
+			path: tests/TestCase/ThumbCreatorOperationsTest.php
