@@ -12,8 +12,9 @@
     ],
     "require": {
         "php": ">=7.4",
+        "ext-fileinfo": "*",
         "intervention/image": "^2.4",
-        "mirko-pagliai/php-tools": "~1.6"
+        "mirko-pagliai/php-tools": "~1.7.1"
     },
     "require-dev": {
         "cakephp/cakephp-codesniffer": "^4.0",
@@ -35,14 +36,13 @@
         "check": [
             "@cs-check",
             "@update-lowest",
-            "@test",
+            "phpunit",
             "@composer update",
-            "@test",
+            "phpunit",
             "@stan"
         ],
         "cs-check": "phpcs --standard=phpcs.xml.dist",
         "cs-fix": "phpcbf --standard=phpcs.xml.dist",
-        "test": "rm -f -r /tmp/cake* && phpunit",
         "coverage": "XDEBUG_MODE=coverage phpunit --coverage-html=coverage",
         "phpstan": "phpstan.phar analyse",
         "psalm": "psalm.phar --php-version=8.0",

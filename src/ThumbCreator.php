@@ -14,12 +14,10 @@ declare(strict_types=1);
  */
 namespace Thumber;
 
-use BadMethodCallException;
 use Intervention\Image\Constraint;
 use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
-use InvalidArgumentException;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
@@ -30,8 +28,7 @@ use Tools\Filesystem;
 /**
  * Utility to create a thumb.
  *
- * Please, refer to the `README` file to know how to use the utility and to
- * see examples.
+ * Please, refer to the `README` file to know how to use the utility and to see examples.
  * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails
  */
 class ThumbCreator
@@ -49,16 +46,15 @@ class ThumbCreator
     /**
      * Arguments that will be used to generate the name of the thumbnail.
      *
-     * Every time you call a method that alters the final thumbnail, its
-     * arguments must be added to this array, including the name of that method.
+     * Every time you call a method that alters the final thumbnail, its arguments must be added to this array,
+     *  including the name of that method.
      * @var array
      */
     protected array $arguments = [];
 
     /**
-     * Callbacks that will be called by the `save()` method to create the
-     * thumbnail
-     * @var array<callable>
+     * Callbacks that will be called by the `save()` method to create the thumbnail
+     * @var callable[]
      */
     protected array $callbacks = [];
 
@@ -76,10 +72,9 @@ class ThumbCreator
 
     /**
      * Construct.
+     *
      * It sets the file path and extension.
-     * @param string $path Path of the image from which to create the
-     *  thumbnail. It can be a full path or a remote url
-     * @throws \Tools\Exception\FileNotExistsException
+     * @param string $path Path of the image from which to create the thumbnail. It can be a full path or a remote url
      * @throws \Tools\Exception\NotReadableException
      */
     public function __construct(string $path)
@@ -113,21 +108,19 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \Thumber\Exception\NotReadableImageException
-     * @throws \Thumber\Exception\UnsupportedImageTypeException
+     * @throws \Thumber\Exception\NotReadableImageException|\ErrorException
      */
     protected function getImageInstance(): Image
     {
         try {
             $imageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
-            $newE = NotReadableImageException::class;
-            $value = $this->Filesystem->rtr($this->path) ?: null;
             if (str_starts_with($e->getMessage(), 'Unsupported image type')) {
-                $newE = UnsupportedImageTypeException::class;
-                $value = mime_content_type($this->path) ?: null;
+                $type = mime_content_type($this->path) ?: null;
+                throw new UnsupportedImageTypeException($type ? 'Image type `' . $type . '` is not supported by this driver' : 'Image type not supported by this driver');
             }
-            throw new $newE('', 0, E_ERROR, __FILE__, __LINE__, null, $value);
+            $path = $this->Filesystem->rtr($this->path) ?: null;
+            throw new NotReadableImageException($path ? 'Unable to read image from `' . $path . '`' : 'Unable to read image from file');
         }
 
         return $imageInstance;
@@ -136,56 +129,53 @@ class ThumbCreator
     /**
      * Crops the image, cutting out a rectangular part of the image.
      *
-     * You can define optional coordinates to move the top-left corner of the
-     *  cutout to a certain position.
+     * You can define optional coordinates to move the top-left corner of the cutout to a certain position.
      * @param int $width Required width
-     * @param int $heigth Required heigth. If not specified, the width will be used
+     * @param int $height Required height. If not specified, the width will be used
      * @param array<string, int> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#crop
      */
-    public function crop(int $width, int $heigth = 0, array $options = []): ThumbCreator
+    public function crop(int $width, int $height = 0, array $options = []): ThumbCreator
     {
-        $heigth = $heigth ?: $width;
+        $height = $height ?: $width;
         $options += ['x' => 0, 'y' => 0];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__));
 
-        $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
-            Exceptionist::isInt($options['x'], 'The `x` option must be an integer', InvalidArgumentException::class);
-            Exceptionist::isInt($options['y'], 'The `y` option must be an integer', InvalidArgumentException::class);
-
-            return $imageInstance->crop($width, $heigth, $options['x'], $options['y']);
-        };
+        $this->arguments[] = [__FUNCTION__, $width, $height, $options];
+        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance->crop(
+            $width,
+            $height,
+            Exceptionist::isInt($options['x'], 'The `x` option must be an integer'),
+            Exceptionist::isInt($options['y'], 'The `y` option must be an integer')
+        );
 
         return $this;
     }
 
     /**
-     * Resizes the image, combining cropping and resizing to format image in a
-     *  smart way. It will find the best fitting aspect ratio on the current
-     *  image automatically, cut it out and resize it to the given dimension
+     * Resizes the image, combining cropping and resizing to format image in a smart way. It will find the best fitting
+     *  aspect ratio on the current image automatically, cut it out and resize it to the given dimension
      * @param int $width Required width. If not specified, the height will be used
-     * @param int $heigth Required heigth. If not specified, the width will be used
+     * @param int $height Required height. If not specified, the width will be used
      * @param array<string, mixed> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#fit
      */
-    public function fit(int $width = 0, int $heigth = 0, array $options = []): ThumbCreator
+    public function fit(int $width = 0, int $height = 0, array $options = []): ThumbCreator
     {
-        $width = $width ?: $heigth;
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
-        $heigth = $heigth ?: $width;
+        $width = $width ?: $height;
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__));
+        $height = $height ?: $width;
         $options += ['position' => 'center', 'upsize' => true];
 
-        $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
-            return $imageInstance->fit($width, $heigth, function (Constraint $constraint) use ($options): void {
+        $this->arguments[] = [__FUNCTION__, $width, $height, $options];
+        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance
+            ->fit($width, $height, function (Constraint $constraint) use ($options): void {
                 if ($options['upsize']) {
                     $constraint->upsize();
                 }
             }, $options['position']);
-        };
 
         return $this;
     }
@@ -193,20 +183,20 @@ class ThumbCreator
     /**
      * Resizes the image
      * @param int $width Required width
-     * @param int $heigth Required heigth. If not specified, the width will be used
+     * @param int $height Required height. If not specified, the width will be used
      * @param array<string, bool> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resize
      */
-    public function resize(int $width, int $heigth = 0, array $options = []): ThumbCreator
+    public function resize(int $width, int $height = 0, array $options = []): ThumbCreator
     {
-        $heigth = $heigth ?: $width;
+        $height = $height ?: $width;
         $options += ['aspectRatio' => true, 'upsize' => true];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__));
 
-        $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
-            return $imageInstance->resize($width, $heigth, function (Constraint $constraint) use ($options): void {
+        $this->arguments[] = [__FUNCTION__, $width, $height, $options];
+        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance
+            ->resize($width, $height, function (Constraint $constraint) use ($options): void {
                 if ($options['aspectRatio']) {
                     $constraint->aspectRatio();
                 }
@@ -214,33 +204,29 @@ class ThumbCreator
                     $constraint->upsize();
                 }
             });
-        };
 
         return $this;
     }
 
     /**
-     * Resizes the boundaries of the current image to given width and height. An
-     *  anchor can be defined to determine from what point of the image the
-     *  resizing is going to happen. Set the mode to relative to add or subtract
-     *  the given width or height to the actual image dimensions. You can also
-     *  pass a background color for the emerging area of the image
+     * Resizes the boundaries of the current image to given width and height. An anchor can be defined to determine from
+     *  what point of the image the resizing is going to happen. Set the mode to relative to add or subtract the given
+     *  width or height to the actual image dimensions. You can also pass a background color for the emerging area of the image
      * @param int $width Required width
-     * @param int $heigth Required heigth. If not specified, the width will be used
+     * @param int $height Required height. If not specified, the width will be used
      * @param array<string, mixed> $options Options for the thumbnail
      * @return self
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#resizecanvas
      */
-    public function resizeCanvas(int $width, int $heigth = 0, array $options = []): ThumbCreator
+    public function resizeCanvas(int $width, int $height = 0, array $options = []): ThumbCreator
     {
-        $heigth = $heigth ?: $width;
+        $height = $height ?: $width;
         $options += ['anchor' => 'center', 'relative' => false, 'bgcolor' => '#ffffff'];
-        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__), InvalidArgumentException::class);
+        Exceptionist::isPositive($width, sprintf('You have to set at least the width for the `%s()` method', __METHOD__));
 
-        $this->arguments[] = [__FUNCTION__, $width, $heigth, $options];
-        $this->callbacks[] = function (Image $imageInstance) use ($width, $heigth, $options): Image {
-            return $imageInstance->resizeCanvas($width, $heigth, $options['anchor'], $options['relative'], $options['bgcolor']);
-        };
+        $this->arguments[] = [__FUNCTION__, $width, $height, $options];
+        $this->callbacks[] = fn(Image $imageInstance): Image => $imageInstance
+            ->resizeCanvas($width, $height, $options['anchor'], $options['relative'], $options['bgcolor']);
 
         return $this;
     }
@@ -249,13 +235,14 @@ class ThumbCreator
      * Saves the thumbnail and returns its path
      * @param array<string, mixed> $options Options for saving
      * @return string Thumbnail path
-     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
-     * @throws \BadMethodCallException
      * @throws \Tools\Exception\NotWritableException
+     * @throws \Thumber\Exception\NotReadableImageException
+     * @throws \ErrorException
+     * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
      */
     public function save(array $options = []): string
     {
-        Exceptionist::isTrue($this->callbacks, 'No valid method called before the `save()` method', BadMethodCallException::class);
+        Exceptionist::isTrue($this->callbacks, 'No valid method called before the `save()` method');
 
         $options = $this->getDefaultSaveOptions($options);
         $target = $options['target'];

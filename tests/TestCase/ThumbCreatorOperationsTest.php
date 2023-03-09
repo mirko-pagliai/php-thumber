@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -12,9 +13,9 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace Thumber\Test;
 
-use InvalidArgumentException;
+use ErrorException;
 use Thumber\TestSuite\TestCase;
 
 /**
@@ -23,8 +24,8 @@ use Thumber\TestSuite\TestCase;
 class ThumbCreatorOperationsTest extends TestCase
 {
     /**
-     * Test for `crop()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbCreator::crop()
      */
     public function testCrop(): void
     {
@@ -33,8 +34,6 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Only width
         $thumb = $this->getThumbCreatorInstance()->crop(200)->save();
-        $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->crop(200, 0)->save();
         $this->assertImageSize(200, 200, $thumb);
 
         //In this case, the width will be the original size
@@ -47,23 +46,21 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //With invalid `x` or `y` options
         $this->assertException(function () {
-            //@phpstan-ignore-next-line
             $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 'string'])->save();
-        }, InvalidArgumentException::class, 'The `x` option must be an integer');
+        }, ErrorException::class, 'The `x` option must be an integer');
         $this->assertException(function () {
-            //@phpstan-ignore-next-line
             $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 50, 'y' => 'string'])->save();
-        }, InvalidArgumentException::class, 'The `y` option must be an integer');
+        }, ErrorException::class, 'The `y` option must be an integer');
 
         //Without parameters
         $this->assertException(function () {
             $this->getThumbCreatorInstance()->crop(0)->save();
-        }, InvalidArgumentException::class, 'You have to set at least the width for the `Thumber\ThumbCreator::crop()` method');
+        }, ErrorException::class, 'You have to set at least the width for the `Thumber\ThumbCreator::crop()` method');
     }
 
     /**
-     * Test for `fit()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbCreator::fit()
      */
     public function testFit(): void
     {
@@ -72,8 +69,6 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Only width
         $thumb = $this->getThumbCreatorInstance()->fit(200)->save();
-        $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->fit(200, 0)->save();
         $this->assertImageSize(200, 200, $thumb);
 
         //Using the `position` option
@@ -91,14 +86,13 @@ class ThumbCreatorOperationsTest extends TestCase
         $this->assertImageSize(450, 450, $thumb);
 
         //Without parameters
-        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('You have to set at least the width for the `Thumber\ThumbCreator::fit()` method');
-        $this->getThumbCreatorInstance()->fit(0)->save();
+        $this->getThumbCreatorInstance()->fit()->save();
     }
 
     /**
-     * Test for `resize()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbCreator::resize()
      */
     public function testResize(): void
     {
@@ -107,8 +101,6 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Only width
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save();
-        $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->resize(200, 0)->save();
         $this->assertImageSize(200, 200, $thumb);
 
         //Using  the `aspectRatio` option
@@ -133,29 +125,22 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Using `aspectRatio` and `upsize` options
         //In this case, the thumbnail will keep the ratio and the original dimensions
-        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, [
-            'aspectRatio' => true,
-            'upsize' => true,
-        ])->save();
+        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, ['aspectRatio' => true, 'upsize' => true])->save();
         $this->assertImageSize(400, 400, $thumb);
 
         //Using `aspectRatio` and `upsize` options
         //In this case, the thumbnail will not keep the ratio and the original dimensions
-        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, [
-            'aspectRatio' => false,
-            'upsize' => false,
-        ])->save();
+        $thumb = $this->getThumbCreatorInstance()->resize(500, 600, ['aspectRatio' => false, 'upsize' => false])->save();
         $this->assertImageSize(500, 600, $thumb);
 
         //Without parameters
-        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('You have to set at least the width for the `Thumber\ThumbCreator::resize()` method');
         $this->getThumbCreatorInstance()->resize(0)->save();
     }
 
     /**
-     * Test for `resizeCanvas()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbCreator::resizeCanvas()
      */
     public function testResizeCanvas(): void
     {
@@ -164,8 +149,6 @@ class ThumbCreatorOperationsTest extends TestCase
 
         //Only width
         $thumb = $this->getThumbCreatorInstance()->resizeCanvas(200)->save();
-        $this->assertImageSize(200, 200, $thumb);
-        $thumb = $this->getThumbCreatorInstance()->resizeCanvas(200, 0)->save();
         $this->assertImageSize(200, 200, $thumb);
 
         //Using the `anchor` option
@@ -179,15 +162,15 @@ class ThumbCreatorOperationsTest extends TestCase
         $this->assertImageSize(700, 700, $thumb);
 
         //Without parameters
-        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('You have to set at least the width for the `Thumber\ThumbCreator::resizeCanvas()` method');
         $this->getThumbCreatorInstance()->resizeCanvas(0)->save();
     }
 
     /**
-     * Test for several methods called in sequence on the same image (eg.,
-     *  `crop()` and `resize()`
+     * Test for several methods called in sequence on the same image (eg., `crop()` and `resize()`
      * @test
+     * @uses \Thumber\ThumbCreator::crop()
+     * @uses \Thumber\ThumbCreator::resize()
      */
     public function testSeveralMethods(): void
     {

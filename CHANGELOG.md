@@ -1,5 +1,16 @@
 # 1.x branch
 ## 1.5 branch
+### 1.5.3
+* `ThumbCreator` has been updated;
+* `NotReadableImageException` and `UnsupportedImageTypeException` have been simplified;
+* minor code, test, and documentation improvements;
+* updated comparing files for `imagick` driver;
+* updated for php-tools 1.7.1.
+
+### 1.5.2
+* small and numerous improvements of descriptions, tags and code suggested
+  by PhpStorm.
+
 ### 1.5.1
 * little fixes for `phpstan`, `psalm` and for the `composer.json` file.
 
@@ -25,8 +36,7 @@
 * checks that the `x` and `y` options of the `ThumbCreator::crop()` are integers;
 * improved the error message for `assertImageFileEquals()` method;
 * increased the level of `phpstan`;
-* fixed bootstrap, `mkdir` errors are no longer suppressed
-    (see [issue 18](//github.com/mirko-pagliai/php-thumber/issues/18));
+* fixed bootstrap, `mkdir` errors are no longer suppressed (see [issue 18](http://github.com/mirko-pagliai/php-thumber/issues/18));
 * some little fixes, improvement of descriptions and tags.
 
 ## 1.3 branch
@@ -69,7 +79,7 @@
 ### 1.0.1
 * fixed lowest dependencies;
 * little fixes;
-* added [APIs](//mirko-pagliai.github.io/php-thumber).
+* added [APIs](http://mirko-pagliai.github.io/php-thumber).
 
 ### 1.0.0
 * first release.

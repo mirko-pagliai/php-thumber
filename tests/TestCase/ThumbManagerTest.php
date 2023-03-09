@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpDocMissingThrowsInspection,PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -12,7 +13,7 @@ declare(strict_types=1);
  * @link        https://github.com/mirko-pagliai/php-thumber
  * @license     https://opensource.org/licenses/mit-license.php MIT License
  */
-namespace Thumber\Test\TestCase;
+namespace Thumber\Test;
 
 use Thumber\TestSuite\TestCase;
 use Thumber\ThumbManager;
@@ -26,24 +27,24 @@ class ThumbManagerTest extends TestCase
     /**
      * @var \Thumber\ThumbManager
      */
-    protected $ThumbManager;
+    protected ThumbManager $ThumbManager;
 
     /**
      * Called before every test method
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
-        $this->ThumbManager = $this->ThumbManager ?: new ThumbManager();
+        $this->ThumbManager ??= new ThumbManager();
 
         $this->createSomeThumbs();
     }
 
     /**
-     * Test for `clear()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbManager::clear()
      */
     public function testClear(): void
     {
@@ -54,8 +55,8 @@ class ThumbManagerTest extends TestCase
     }
 
     /**
-     * Test for `clearAll()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbManager::clearAll()
      */
     public function testClearAll(): void
     {
@@ -64,8 +65,8 @@ class ThumbManagerTest extends TestCase
     }
 
     /**
-     * Test for `get()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbManager::get()
      */
     public function testGet(): void
     {
@@ -74,13 +75,13 @@ class ThumbManagerTest extends TestCase
 
         //With a no existing file
         $this->expectException(NotReadableException::class);
-        $this->expectExceptionMessage('File or directory `noExisting` does not exist');
+        $this->expectExceptionMessage('File or directory `noExisting` is not readable');
         $this->ThumbManager->get('noExisting');
     }
 
     /**
-     * Test for `getAll()` method
-     * @ŧest
+     * @test
+     * @uses \Thumber\ThumbManager::getAll()
      */
     public function testGetAll(): void
     {

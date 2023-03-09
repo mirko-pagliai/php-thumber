@@ -1,22 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Else branch is unreachable because ternary operator condition is always true\\.$#"
+			message: "#^Parameter \\#3 \\$options of method Thumber\\\\ThumbCreator\\:\\:crop\\(\\) expects array\\<string, int\\>, array\\<string, int\\|string\\> given\\.$#"
 			count: 1
-			path: tests/TestCase/TestSuite/TestTraitTest.php
+			path: tests/TestCase/ThumbCreatorOperationsTest.php
 
 		-
-			message: "#^Ternary operator condition is always true\\.$#"
+			message: "#^Parameter \\#3 \\$options of method Thumber\\\\ThumbCreator\\:\\:crop\\(\\) expects array\\<string, int\\>, array\\<string, string\\> given\\.$#"
 			count: 1
-			path: tests/TestCase/ThumbCreatorSaveTest.php
-
-		-
-			message: "#^If condition is always false\\.$#"
-			count: 1
-			path: tests/TestCase/ThumbCreatorTest.php
-
-		-
-			message: "#^Ternary operator condition is always true\\.$#"
-			count: 1
-			path: tests/TestCase/ThumbManagerTest.php
-
+			path: tests/TestCase/ThumbCreatorOperationsTest.php

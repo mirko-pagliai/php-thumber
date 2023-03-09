@@ -14,7 +14,6 @@ declare(strict_types=1);
  */
 namespace Thumber\TestSuite;
 
-use Thumber\TestSuite\TestTrait;
 use Tools\Filesystem;
 use Tools\TestSuite\TestCase as BaseTestCase;
 
@@ -28,8 +27,9 @@ abstract class TestCase extends BaseTestCase
     /**
      * Called after every test method
      * @return void
+     * @throws \Throwable
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Filesystem::instance()->unlinkRecursive(THUMBER_TARGET);
 
