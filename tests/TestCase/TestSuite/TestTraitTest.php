@@ -23,8 +23,8 @@ use Thumber\TestSuite\TestCase;
 class TestTraitTest extends TestCase
 {
     /**
-     * Test for `skipIfDriverIs()` method
      * @test
+     * @uses \Thumber\TestSuite\TestTrait::skipIfDriverIs()
      */
     public function testSkipIfDriverIs(): void
     {
