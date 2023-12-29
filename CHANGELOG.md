@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.5 branch
+### 1.5.4
+* no longer uses the `Exceptionist` class.
+
 ### 1.5.3
 * `ThumbCreator` has been updated;
 * `NotReadableImageException` and `UnsupportedImageTypeException` have been simplified;
