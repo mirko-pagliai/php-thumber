@@ -15,12 +15,12 @@ declare(strict_types=1);
 namespace Thumber\TestSuite;
 
 use Tools\Filesystem;
-use Tools\TestSuite\TestCase as BaseTestCase;
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 
 /**
  * TestCase class
  */
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends PHPUnitTestCase
 {
     use TestTrait;
 

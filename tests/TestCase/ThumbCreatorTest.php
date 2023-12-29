@@ -20,12 +20,15 @@ use Intervention\Image\ImageManager;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
 use Thumber\TestSuite\TestCase;
+use Tools\TestSuite\ReflectionTrait;
 
 /**
  * ThumbCreatorTest class
  */
 class ThumbCreatorTest extends TestCase
 {
+    use ReflectionTrait;
+
     /**
      * Test for `__construct()` method, passing a no existing file
      * @test

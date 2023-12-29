@@ -16,12 +16,15 @@ namespace Thumber\TestSuite;
 
 use Thumber\ThumbCreator;
 use Tools\Filesystem;
+use Tools\TestSuite\TestTrait as ToolsTestTrait;
 
 /**
  * TestCase trait
  */
 trait TestTrait
 {
+    use ToolsTestTrait;
+
     /**
      * Internal method to create a copy of an image file
      * @param string $path Image file path
@@ -40,7 +43,8 @@ trait TestTrait
     /**
      * Internal method to create some thumbs
      * @return void
-     * @throws \Tools\Exception\NotReadableException|\Throwable
+     * @throws \ErrorException
+     * @throws \Thumber\Exception\NotReadableImageException
      */
     protected function createSomeThumbs(): void
     {
@@ -89,7 +93,6 @@ trait TestTrait
      * @param string $path Path of the image from which to create the thumbnail. It can be a relative path (to
      *  `APP/webroot/img`), a full path or a remote url
      * @return \Thumber\ThumbCreator
-     * @throws \Tools\Exception\NotReadableException
      */
     protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
@@ -105,7 +108,8 @@ trait TestTrait
      * @param string $path Path of the image from which to create the thumbnail. t can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
-     * @throws \Tools\Exception\NotReadableException|\Throwable
+     * @throws \ErrorException
+     * @throws \Thumber\Exception\NotReadableImageException
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
@@ -123,6 +127,6 @@ trait TestTrait
      */
     public function skipIfDriverIs(string $driver, string $message = ''): bool
     {
-        return parent::skipIf($driver == THUMBER_DRIVER, $message);
+        return $this->skipIf($driver == THUMBER_DRIVER, $message);
     }
 }
