@@ -116,12 +116,11 @@ class ThumbCreator
         try {
             $ImageInstance = $this->ImageManager->make($this->path);
         } catch (NotReadableException $e) {
+            $path = $this->Filesystem->rtr($this->path) ?: null;
+            $message = $path ? 'Unable to read image from `' . $path . '`' : 'Unable to read image from file';
             if (str_starts_with($e->getMessage(), 'Unsupported image type')) {
                 $type = mime_content_type($this->path) ?: null;
                 $message = $type ? 'Image type `' . $type . '` is not supported by this driver' : 'Image type not supported by this driver';
-            } else {
-                $path = $this->Filesystem->rtr($this->path) ?: null;
-                $message = $path ? 'Unable to read image from `' . $path . '`' : 'Unable to read image from file';
             }
             throw new LogicException($message);
         }
