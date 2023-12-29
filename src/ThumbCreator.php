@@ -255,7 +255,6 @@ class ThumbCreator
      * Saves the thumbnail and returns its path
      * @param array $options Options for saving
      * @return string Thumbnail path
-     * @throws \Thumber\Exception\NotReadableImageException
      * @throws \ErrorException
      * @see https://github.com/mirko-pagliai/php-thumber/wiki/How-to-use-ThumbCreator-and-create-thumbnails#save-the-thumbnail
      */

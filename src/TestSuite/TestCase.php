@@ -14,8 +14,8 @@ declare(strict_types=1);
  */
 namespace Thumber\TestSuite;
 
-use Tools\Filesystem;
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
+use Tools\Filesystem;
 
 /**
  * TestCase class

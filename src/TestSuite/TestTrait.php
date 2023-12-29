@@ -44,7 +44,6 @@ trait TestTrait
      * Internal method to create some thumbs
      * @return void
      * @throws \ErrorException
-     * @throws \Thumber\Exception\NotReadableImageException
      */
     protected function createSomeThumbs(): void
     {
@@ -109,7 +108,6 @@ trait TestTrait
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
      * @throws \ErrorException
-     * @throws \Thumber\Exception\NotReadableImageException
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
