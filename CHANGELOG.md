@@ -1,6 +1,7 @@
 # 1.x branch
 ## 1.5 branch
 ### 1.5.4
+* updated for `php-tools` 1.8;
 * no longer uses the `Exceptionist` class.
 
 ### 1.5.3
