@@ -14,11 +14,11 @@ declare(strict_types=1);
  */
 namespace Thumber\Exception;
 
-use Tools\Exception\NotReadableException;
+use LogicException;
 
 /**
  * NotReadableImageException
  */
-class NotReadableImageException extends NotReadableException
+class NotReadableImageException extends LogicException
 {
 }
