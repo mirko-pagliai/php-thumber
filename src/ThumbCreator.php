@@ -118,10 +118,12 @@ class ThumbCreator
         } catch (NotReadableException $e) {
             if (str_starts_with($e->getMessage(), 'Unsupported image type')) {
                 $type = mime_content_type($this->path) ?: null;
-                throw new LogicException($type ? 'Image type `' . $type . '` is not supported by this driver' : 'Image type not supported by this driver');
+                $message = $type ? 'Image type `' . $type . '` is not supported by this driver' : 'Image type not supported by this driver';
+            } else {
+                $path = $this->Filesystem->rtr($this->path) ?: null;
+                $message = $path ? 'Unable to read image from `' . $path . '`' : 'Unable to read image from file';
             }
-            $path = $this->Filesystem->rtr($this->path) ?: null;
-            throw new LogicException($path ? 'Unable to read image from `' . $path . '`' : 'Unable to read image from file');
+            throw new LogicException($message);
         }
 
         return $ImageInstance;
