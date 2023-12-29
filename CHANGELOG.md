@@ -4,7 +4,8 @@
 * updated for `php-tools` 1.8;
 * `NotReadableImageException` and `UnsupportedImageTypeException` exceptions no longer exist, replaced with a generic
   `LogicException`;
-* no longer uses the `Exceptionist` class.
+* no longer uses the `Exceptionist` class;
+* added tests for PHP 8.2.
 
 ### 1.5.3
 * `ThumbCreator` has been updated;
