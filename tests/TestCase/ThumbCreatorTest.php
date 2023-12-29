@@ -34,7 +34,7 @@ class ThumbCreatorTest extends TestCase
      */
     public function testConstructNoExistingFile(): void
     {
-        $this->expectExceptionMessageMatches('/^File or directory `[\w\-\/\.\\:]+` is not readable$/');
+        $this->expectExceptionMessageMatches('/^File or directory `[\w\-\/\.\\\:]+` is not readable$/');
         $this->getThumbCreatorInstance('noExistingFile.gif');
     }
 
