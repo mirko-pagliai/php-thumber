@@ -15,7 +15,7 @@ declare(strict_types=1);
  */
 namespace Thumber\Test;
 
-use ErrorException;
+use LogicException;
 use Thumber\TestSuite\TestCase;
 
 /**
@@ -47,15 +47,14 @@ class ThumbCreatorOperationsTest extends TestCase
         //With invalid `x` or `y` options
         $this->assertException(function () {
             $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 'string'])->save();
-        }, ErrorException::class, 'The `x` option must be an integer');
+        }, LogicException::class, 'The `x` option must be an integer');
         $this->assertException(function () {
             $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 50, 'y' => 'string'])->save();
-        }, ErrorException::class, 'The `y` option must be an integer');
+        }, LogicException::class, 'The `y` option must be an integer');
 
         //Without parameters
-        $this->assertException(function () {
-            $this->getThumbCreatorInstance()->crop(0)->save();
-        }, ErrorException::class, 'You have to set at least the width for the `Thumber\ThumbCreator::crop()` method');
+        $this->expectExceptionMessage('You have to set at least the width for the `Thumber\ThumbCreator::crop()` method');
+        $this->getThumbCreatorInstance()->crop(0)->save();
     }
 
     /**

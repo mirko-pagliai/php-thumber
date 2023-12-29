@@ -20,7 +20,6 @@ use Intervention\Image\ImageManager;
 use Thumber\Exception\NotReadableImageException;
 use Thumber\Exception\UnsupportedImageTypeException;
 use Thumber\TestSuite\TestCase;
-use Tools\Exception\NotReadableException;
 
 /**
  * ThumbCreatorTest class
@@ -34,7 +33,7 @@ class ThumbCreatorTest extends TestCase
      */
     public function testConstructNoExistingFile(): void
     {
-        $this->expectException(NotReadableException::class);
+        $this->expectExceptionMessageMatches('/^File or directory `[\w\-\/\.]+` is not readable$/');
         $this->getThumbCreatorInstance('noExistingFile.gif');
     }
 
