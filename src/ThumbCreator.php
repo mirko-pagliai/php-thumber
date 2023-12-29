@@ -20,7 +20,6 @@ use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use LogicException;
 use Symfony\Component\Filesystem\Exception\IOException;
-use Thumber\Exception\UnsupportedImageTypeException;
 use Tools\Filesystem;
 
 /**
@@ -119,7 +118,7 @@ class ThumbCreator
         } catch (NotReadableException $e) {
             if (str_starts_with($e->getMessage(), 'Unsupported image type')) {
                 $type = mime_content_type($this->path) ?: null;
-                throw new UnsupportedImageTypeException($type ? 'Image type `' . $type . '` is not supported by this driver' : 'Image type not supported by this driver');
+                throw new LogicException($type ? 'Image type `' . $type . '` is not supported by this driver' : 'Image type not supported by this driver');
             }
             $path = $this->Filesystem->rtr($this->path) ?: null;
             throw new LogicException($path ? 'Unable to read image from `' . $path . '`' : 'Unable to read image from file');

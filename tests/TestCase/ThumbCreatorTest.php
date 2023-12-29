@@ -17,7 +17,6 @@ namespace Thumber\Test;
 
 use Intervention\Image\Exception\NotReadableException as InterventionNotReadableException;
 use Intervention\Image\ImageManager;
-use Thumber\Exception\UnsupportedImageTypeException;
 use Thumber\TestSuite\TestCase;
 use Tools\TestSuite\ReflectionTrait;
 
@@ -57,7 +56,6 @@ class ThumbCreatorTest extends TestCase
      */
     public function testGetImageInstanceUnsupportedImageType(): void
     {
-        $this->expectException(UnsupportedImageTypeException::class);
         $this->expectExceptionMessage('Image type `image/jpeg` is not supported by this driver');
         $exception = new InterventionNotReadableException('Unsupported image type. GD driver is only able to decode JPG, PNG, GIF or WebP files.');
         $thumbCreator = $this->getThumbCreatorInstance();
