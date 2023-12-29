@@ -14,9 +14,9 @@ declare(strict_types=1);
  */
 namespace Thumber;
 
+use LogicException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
-use Tools\Exceptionist;
 use Tools\Filesystem;
 
 /**
@@ -34,13 +34,16 @@ class ThumbManager
      * Internal method to clear thumbnails
      * @param string[] $filenames Filenames
      * @return int Number of thumbnails deleted
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \LogicException
      */
     protected function _clear(array $filenames): int
     {
         array_walk($filenames, function (string $filename): void {
             $filename = Filesystem::instance()->concatenate(THUMBER_TARGET, $filename);
-            Filesystem::instance()->remove(Exceptionist::isReadable($filename));
+            if (!is_readable($filename)) {
+                throw new LogicException('File or directory `' . $filename . '` is not readable');
+            }
+            Filesystem::instance()->remove($filename);
         });
 
         return count($filenames);
@@ -64,7 +67,7 @@ class ThumbManager
      * Clears all thumbnails that have been generated from an image path
      * @param string $path Path of the original image
      * @return int Number of thumbnails deleted
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \LogicException
      */
     public function clear(string $path): int
     {
@@ -74,7 +77,7 @@ class ThumbManager
     /**
      * Clears all thumbnails
      * @return int Number of thumbnails deleted
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \LogicException
      */
     public function clearAll(): int
     {
@@ -86,11 +89,14 @@ class ThumbManager
      * @param string $path Path of the original image
      * @param bool $sort Whether results should be sorted
      * @return string[]
-     * @throws \Tools\Exception\NotReadableException
+     * @throws \LogicException
      */
     public function get(string $path, bool $sort = false): array
     {
-        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5(Exceptionist::isReadable($path)), implode('|', self::SUPPORTED_FORMATS));
+        if (!is_readable($path)) {
+            throw new LogicException('File or directory `' . $path . '` is not readable');
+        }
+        $pattern = sprintf('/%s_[\d\w]{32}\.(%s)$/', md5($path), implode('|', self::SUPPORTED_FORMATS));
 
         return $this->_find($pattern, $sort);
     }
