@@ -29,7 +29,6 @@ trait TestTrait
      * Internal method to create a copy of an image file
      * @param string $path Image file path
      * @return string
-     * @throws \ErrorException
      */
     protected static function createCopy(string $path): string
     {
@@ -58,7 +57,6 @@ trait TestTrait
      * @param string $actual Actual file
      * @param string $message The failure message that will be appended to the generated message
      * @return void
-     * @throws \ErrorException
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {

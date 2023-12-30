@@ -25,9 +25,7 @@ abstract class TestCase extends PHPUnitTestCase
     use TestTrait;
 
     /**
-     * Called after every test method
-     * @return void
-     * @throws \Throwable
+     * @inheritDoc
      */
     protected function tearDown(): void
     {
