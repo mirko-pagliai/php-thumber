@@ -12,23 +12,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0', '8.1', 8.2]
+        php-version: ['8.1', 8.2, 8.3]
         prefer-lowest: ['']
         thumber-driver: ['imagick', 'gd']
         include:
-          - php-version: '7.4'
-            prefer-lowest: 'prefer-lowest'
-            thumber-driver: 'imagick'
-          - php-version: '8.0'
-            prefer-lowest: 'prefer-lowest'
-            thumber-driver: 'imagick'
           - php-version: '8.1'
             prefer-lowest: 'prefer-lowest'
             thumber-driver: 'imagick'
           - php-version: '8.2'
             prefer-lowest: 'prefer-lowest'
             thumber-driver: 'imagick'
-          - php-version: '7.4'
+          - php-version: '8.3'
+            prefer-lowest: 'prefer-lowest'
+            thumber-driver: 'imagick'
+          - php-version: '8.2'
             thumber-driver: 'gd'
 
     steps:
@@ -63,14 +60,14 @@ jobs:
           run: |
             if  [[ ${{ matrix.thumber-driver }} == 'gd' ]] || ${{ matrix.prefer-lowest == 'prefer-lowest' }}; then
               vendor/bin/phpunit --exclude-group imageEquals
-            elif [[ ${{ matrix.php-version }} == '8.0' ]]; then
+            elif [[ ${{ matrix.php-version }} == '8.2' ]]; then
              export XDEBUG_MODE=coverage && vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
             else
               vendor/bin/phpunit
             fi
 
         - name: Submit code coverage
-          if: matrix.php-version == '8.0'
+          if: matrix.php-version == '8.2'
           uses: codecov/codecov-action@v2
 
   cs-stan:
@@ -83,7 +80,7 @@ jobs:
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '8.0'
+            php-version: '8.2'
             coverage: none
             tools: cs2pr
 
@@ -102,7 +99,7 @@ jobs:
 
         - name: Run psalm
           if: success() || failure()
-          run: vendor/bin/psalm.phar --output-format=github --php-version=8.0
+          run: vendor/bin/psalm.phar --output-format=github --php-version=8.2
 
         - name: Run phpstan
           if: success() || failure()
