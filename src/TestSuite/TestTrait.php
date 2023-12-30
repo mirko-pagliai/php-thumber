@@ -16,17 +16,19 @@ namespace Thumber\TestSuite;
 
 use Thumber\ThumbCreator;
 use Tools\Filesystem;
+use Tools\TestSuite\TestTrait as ToolsTestTrait;
 
 /**
  * TestCase trait
  */
 trait TestTrait
 {
+    use ToolsTestTrait;
+
     /**
      * Internal method to create a copy of an image file
      * @param string $path Image file path
      * @return string
-     * @throws \ErrorException
      */
     protected static function createCopy(string $path): string
     {
@@ -40,7 +42,7 @@ trait TestTrait
     /**
      * Internal method to create some thumbs
      * @return void
-     * @throws \Tools\Exception\NotReadableException|\Throwable
+     * @throws \ErrorException
      */
     protected function createSomeThumbs(): void
     {
@@ -55,7 +57,6 @@ trait TestTrait
      * @param string $actual Actual file
      * @param string $message The failure message that will be appended to the generated message
      * @return void
-     * @throws \ErrorException
      */
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
@@ -89,7 +90,6 @@ trait TestTrait
      * @param string $path Path of the image from which to create the thumbnail. It can be a relative path (to
      *  `APP/webroot/img`), a full path or a remote url
      * @return \Thumber\ThumbCreator
-     * @throws \Tools\Exception\NotReadableException
      */
     protected function getThumbCreatorInstance(string $path = ''): ThumbCreator
     {
@@ -105,7 +105,7 @@ trait TestTrait
      * @param string $path Path of the image from which to create the thumbnail. t can be a full path or a remote url
      * @param array $options Options for saving
      * @return \Thumber\ThumbCreator
-     * @throws \Tools\Exception\NotReadableException|\Throwable
+     * @throws \ErrorException
      */
     protected function getThumbCreatorInstanceWithSave(string $path = '', array $options = []): ThumbCreator
     {
@@ -123,6 +123,6 @@ trait TestTrait
      */
     public function skipIfDriverIs(string $driver, string $message = ''): bool
     {
-        return parent::skipIf($driver == THUMBER_DRIVER, $message);
+        return $this->skipIf($driver == THUMBER_DRIVER, $message);
     }
 }

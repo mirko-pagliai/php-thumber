@@ -14,20 +14,18 @@ declare(strict_types=1);
  */
 namespace Thumber\TestSuite;
 
+use PHPUnit\Framework\TestCase as PHPUnitTestCase;
 use Tools\Filesystem;
-use Tools\TestSuite\TestCase as BaseTestCase;
 
 /**
  * TestCase class
  */
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends PHPUnitTestCase
 {
     use TestTrait;
 
     /**
-     * Called after every test method
-     * @return void
-     * @throws \Throwable
+     * @inheritDoc
      */
     protected function tearDown(): void
     {

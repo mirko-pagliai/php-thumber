@@ -18,7 +18,6 @@ namespace Thumber\Test;
 use Intervention\Image\Exception\InvalidArgumentException;
 use Intervention\Image\Exception\NotSupportedException;
 use Thumber\TestSuite\TestCase;
-use Tools\Exception\NotWritableException;
 use Tools\Filesystem;
 
 /**
@@ -72,7 +71,6 @@ class ThumbCreatorSaveTest extends TestCase
      */
     public function testSaveUnableToCreateFile(): void
     {
-        $this->expectException(NotWritableException::class);
         $this->expectExceptionMessage('Unable to create file `' . DS . 'noExisting`');
         $this->getThumbCreatorInstance('400x400.jpg')->resize(200)->save(['target' => DS . 'noExisting']);
     }
