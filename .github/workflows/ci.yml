@@ -99,20 +99,20 @@ jobs:
 
         - name: Run psalm
           if: success() || failure()
-          run: vendor/bin/psalm.phar --output-format=github --php-version=8.2
+          run: vendor/bin/psalm --output-format=github --php-version=8.2
 
         - name: Run phpstan
           if: success() || failure()
-          run: vendor/bin/phpstan.phar analyse --error-format=github
+          run: vendor/bin/phpstan analyse --error-format=github
 
 
   testsuite-windows:
     runs-on: windows-2019
-    name: Windows - PHP 7.4
+    name: Windows - PHP 8.2
 
     env:
       EXTENSIONS: mbstring, intl, gd
-      PHP_VERSION: '7.4'
+      PHP_VERSION: '8.2'
 
     steps:
     - uses: actions/checkout@v3
