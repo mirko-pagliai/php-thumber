@@ -43,16 +43,34 @@ class ThumbCreatorOperationsTest extends TestCase
         //Using `x` and `y` options
         $thumb = $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 50, 'y' => 50])->save();
         $this->assertImageSize(200, 200, $thumb);
+    }
 
-        //With invalid `x` or `y` options
-        $this->assertException(function () {
-            $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 'string'])->save();
-        }, LogicException::class, 'The `x` option must be an integer');
-        $this->assertException(function () {
-            $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 50, 'y' => 'string'])->save();
-        }, LogicException::class, 'The `y` option must be an integer');
+    /**
+     * @test
+     * @uses \Thumber\ThumbCreator::crop()
+     */
+    public function testCropInvalidXOption(): void
+    {
+        $this->expectExceptionMessage('The `x` option must be an integer');
+        $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 'string'])->save();
+    }
 
-        //Without parameters
+    /**
+     * @test
+     * @uses \Thumber\ThumbCreator::crop()
+     */
+    public function testCropInvalidYOption(): void
+    {
+        $this->expectExceptionMessage('The `y` option must be an integer');
+        $this->getThumbCreatorInstance()->crop(200, 200, ['x' => 50, 'y' => 'string'])->save();
+    }
+
+    /**
+     * @test
+     * @uses \Thumber\ThumbCreator::crop()
+     */
+    public function testCropWithoutParameters(): void
+    {
         $this->expectExceptionMessage('You have to set at least the width for the `Thumber\ThumbCreator::crop()` method');
         $this->getThumbCreatorInstance()->crop(0)->save();
     }

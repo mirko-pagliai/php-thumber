@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.5 branch
+### 1.5.5
+* no longer uses `assertException()` method.
+
 ### 1.5.4
 * updated for `php-tools` 1.8;
 * `NotReadableImageException` and `UnsupportedImageTypeException` exceptions no longer exist, replaced with a generic
