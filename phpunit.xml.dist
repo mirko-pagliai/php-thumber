@@ -5,18 +5,19 @@
   processIsolation="false"
   stopOnFailure="false"
   bootstrap="./tests/bootstrap.php"
-  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
 >
-
-  <coverage>
-    <include>
-      <directory suffix=".php">./src/</directory>
-    </include>
-  </coverage>
+  <coverage/>
 
   <testsuites>
     <testsuite name="php-thumber Test Cases">
       <directory>./tests/TestCase</directory>
     </testsuite>
   </testsuites>
+
+  <source>
+    <include>
+      <directory suffix=".php">./src/</directory>
+    </include>
+  </source>
 </phpunit>
