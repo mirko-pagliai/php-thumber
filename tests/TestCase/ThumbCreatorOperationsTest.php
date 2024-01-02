@@ -15,7 +15,6 @@ declare(strict_types=1);
  */
 namespace Thumber\Test;
 
-use LogicException;
 use Thumber\TestSuite\TestCase;
 
 /**
