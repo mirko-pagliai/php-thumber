@@ -37,7 +37,7 @@ class TestCaseTest extends TestCase
     {
         parent::setUp();
 
-        $this->TestCase = new class extends TestCase {
+        $this->TestCase = new class ('myTest') extends TestCase {
         };
     }
 
