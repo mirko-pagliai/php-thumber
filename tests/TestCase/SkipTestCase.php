@@ -23,19 +23,23 @@ class SkipTestCase extends TestCase
 {
     /**
      * Test that a test is marked as skipped if the driver is `gd`
-     * @return void
+     * @test
+     * @uses \Thumber\TestSuite\TestTrait::skipIfDriverIs()
      */
     public function testSkipIfDriverIsGd(): void
     {
         $this->skipIfDriverIs('gd');
+        $this->assertTrue(true);
     }
 
     /**
      * Test that a test is marked as skipped if the driver is `imagick`
-     * @return void
+     * @test
+     * @uses \Thumber\TestSuite\TestTrait::skipIfDriverIs()
      */
     public function testSkipIfDriverIsImagick(): void
     {
         $this->skipIfDriverIs('imagick');
+        $this->assertTrue(true);
     }
 }
