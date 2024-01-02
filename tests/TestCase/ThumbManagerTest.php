@@ -17,6 +17,7 @@ namespace Thumber\Test;
 
 use Thumber\TestSuite\TestCase;
 use Thumber\ThumbManager;
+use Tools\Filesystem;
 
 /**
  * ThumbManagerTest class
@@ -29,12 +30,13 @@ class ThumbManagerTest extends TestCase
     protected ThumbManager $ThumbManager;
 
     /**
-     * Called before every test method
-     * @return void
+     * @inheritDoc
      */
     protected function setUp(): void
     {
         parent::setUp();
+
+        Filesystem::instance()->unlinkRecursive(THUMBER_TARGET);
 
         $this->ThumbManager ??= new ThumbManager();
 

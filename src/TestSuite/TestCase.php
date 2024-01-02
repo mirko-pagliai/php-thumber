@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Thumber\TestSuite;
 
 use PHPUnit\Framework\TestCase as PHPUnitTestCase;
-use Tools\Filesystem;
 
 /**
  * TestCase class
@@ -23,14 +22,4 @@ use Tools\Filesystem;
 abstract class TestCase extends PHPUnitTestCase
 {
     use TestTrait;
-
-    /**
-     * @inheritDoc
-     */
-    protected function tearDown(): void
-    {
-        Filesystem::instance()->unlinkRecursive(THUMBER_TARGET);
-
-        parent::tearDown();
-    }
 }

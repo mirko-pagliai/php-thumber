@@ -31,8 +31,7 @@ class TestCaseTest extends TestCase
     protected $TestCase;
 
     /**
-     * This method is called before each test
-     * @return void
+     * @inheritDoc
      */
     public function setUp(): void
     {
