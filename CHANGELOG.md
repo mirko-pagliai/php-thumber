@@ -1,7 +1,10 @@
 # 1.x branch
 ## 1.6 branch
+### 1.6.1-RC2
+* requires at least PHPUnit 10.
+
 ### 1.6.0-RC1
-* requires at least PHP 8.1 and PHPUnit 10;
+* requires at least PHP 8.1;
 * updated for `php-tools` 1.9;
 * added tests for PHP 8.3;
 * updated `cakephp-codesniffer`, `phpstan` and `psalm` packages.
