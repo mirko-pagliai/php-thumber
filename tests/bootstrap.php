@@ -19,7 +19,7 @@ if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
 }
 define('ROOT', dirname(__DIR__) . DS);
-define('TESTS', ROOT . 'tests' . DS);
+const TESTS = ROOT . 'tests' . DS;
 define('TMP', sys_get_temp_dir() . DS . 'php-thumber' . DS);
 
 if (!file_exists(TMP)) {
@@ -33,6 +33,6 @@ if (!defined('THUMBER_DRIVER') && getenv('THUMBER_DRIVER')) {
 
 require_once ROOT . 'config/bootstrap.php';
 
-define('THUMBER_EXAMPLE_DIR', TESTS . 'examples' . DS);
-define('THUMBER_COMPARING_DIR', THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . THUMBER_DRIVER . DS);
+const THUMBER_EXAMPLE_DIR = TESTS . 'examples' . DS;
+const THUMBER_COMPARING_DIR = THUMBER_EXAMPLE_DIR . 'comparing_files' . DS . THUMBER_DRIVER . DS;
 echo 'Running tests for "' . THUMBER_DRIVER . '" driver ' . PHP_EOL;

@@ -45,6 +45,7 @@ class ThumbCreatorTest extends TestCase
     public function testGetImageInstanceNotReadableImageException(): void
     {
         $this->expectExceptionMessage(THUMBER_DRIVER != 'imagick' ? 'Image type `text/x-php` is not supported by this driver' : 'Unable to read image from `tests/bootstrap.php`');
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->getThumbCreatorInstanceWithSave(TESTS . 'bootstrap.php');
     }
 
@@ -60,6 +61,7 @@ class ThumbCreatorTest extends TestCase
         $thumbCreator = $this->getThumbCreatorInstance();
         $thumbCreator->ImageManager = $this->createPartialMock(ImageManager::class, ['make']);
         $thumbCreator->ImageManager->method('make')->willThrowException($exception);
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->invokeMethod($thumbCreator, 'getImageInstance');
     }
 }

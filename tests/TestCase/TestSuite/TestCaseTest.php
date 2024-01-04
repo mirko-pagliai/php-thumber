@@ -72,6 +72,7 @@ class TestCaseTest extends TestCase
      */
     public function testGetThumbCreatorInstanceWithSave(): void
     {
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->assertInstanceOf(ThumbCreator::class, $this->TestCase->getThumbCreatorInstanceWithSave());
     }
 }
