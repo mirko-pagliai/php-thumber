@@ -109,7 +109,6 @@ class ThumbCreator
     /**
      * Gets an `Image` instance
      * @return \Intervention\Image\Image
-     * @throws \ErrorException
      */
     protected function getImageInstance(): Image
     {
@@ -286,7 +285,7 @@ class ThumbCreator
             $ImageInstance->destroy();
             try {
                 $this->Filesystem->dumpFile($target, (string)$content);
-            } catch (IOException $e) {
+            } catch (IOException) {
                 throw new LogicException(sprintf('Unable to create file `%s`', $target ? $this->Filesystem->rtr($target) : ''));
             }
         }
