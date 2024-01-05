@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpDocMissingThrowsInspection,PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -40,6 +39,7 @@ class ThumbManagerTest extends TestCase
 
         $this->ThumbManager ??= new ThumbManager();
 
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->createSomeThumbs();
     }
 
@@ -51,6 +51,7 @@ class ThumbManagerTest extends TestCase
     {
         $this->assertEquals(2, $this->ThumbManager->clear(THUMBER_EXAMPLE_DIR . '400x400.jpg'));
 
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->createSomeThumbs();
         $this->assertEquals(1, $this->ThumbManager->clear(THUMBER_EXAMPLE_DIR . '400x400.png'));
     }

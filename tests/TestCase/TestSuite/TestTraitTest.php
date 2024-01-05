@@ -14,6 +14,8 @@ declare(strict_types=1);
  */
 namespace Thumber\Test\TestSuite;
 
+use PHPUnit\Framework\TestStatus\Skipped;
+use PHPUnit\Framework\TestStatus\Success;
 use Thumber\Test\SkipTestCase;
 use Thumber\TestSuite\TestCase;
 
@@ -28,11 +30,12 @@ class TestTraitTest extends TestCase
      */
     public function testSkipIfDriverIs(): void
     {
-        $expected = THUMBER_DRIVER === 'imagick' ? ['gd' => 0, 'imagick' => 1] : ['imagick' => 0, 'gd' => 1];
+        $expected = THUMBER_DRIVER === 'imagick' ? ['gd' => false, 'imagick' => true] : ['imagick' => false, 'gd' => true];
 
-        foreach ($expected as $driver => $skippedCount) {
-            $test = new SkipTestCase('testSkipIfDriverIs' . ucfirst($driver));
-            $this->assertSame($skippedCount, $test->run()->skippedCount());
+        foreach ($expected as $driver => $expectedIsSkipped) {
+            $Test = (new SkipTestCase('testSkipIfDriverIs' . ucfirst($driver)));
+            $Test->run();
+            $this->assertInstanceOf($expectedIsSkipped ? Skipped::class : Success::class, $Test->status());
         }
     }
 }

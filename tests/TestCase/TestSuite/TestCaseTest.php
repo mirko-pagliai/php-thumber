@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpUnhandledExceptionInspection */
 declare(strict_types=1);
 
 /**
@@ -37,7 +36,7 @@ class TestCaseTest extends TestCase
     {
         parent::setUp();
 
-        $this->TestCase = new class extends TestCase {
+        $this->TestCase = new class ('myTest') extends TestCase {
         };
     }
 
@@ -73,6 +72,7 @@ class TestCaseTest extends TestCase
      */
     public function testGetThumbCreatorInstanceWithSave(): void
     {
+        /** @noinspection PhpUnhandledExceptionInspection */
         $this->assertInstanceOf(ThumbCreator::class, $this->TestCase->getThumbCreatorInstanceWithSave());
     }
 }
