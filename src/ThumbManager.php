@@ -40,8 +40,8 @@ class ThumbManager
     {
         array_walk($filenames, function (string $filename): void {
             $filename = Filesystem::instance()->concatenate(THUMBER_TARGET, $filename);
-            if (!is_readable($filename)) {
-                throw new LogicException('File or directory `' . $filename . '` is not readable');
+            if (!is_writable($filename)) {
+                throw new LogicException('File or directory `' . $filename . '` is not writable'); // @codeCoverageIgnore
             }
             Filesystem::instance()->remove($filename);
         });
