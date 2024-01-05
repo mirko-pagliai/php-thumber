@@ -1,6 +1,6 @@
 # 1.x branch
 ## 1.6 branch
-### 1.6.1-RC2
+### 1.6.1
 * requires at least PHPUnit 10.
 
 ### 1.6.0-RC1
