@@ -61,6 +61,7 @@ trait TestTrait
     public static function assertImageFileEquals(string $expected, string $actual, string $message = ''): void
     {
         $Filesystem = new Filesystem();
+
         $expected = $Filesystem->makePathAbsolute($expected, THUMBER_COMPARING_DIR);
         self::assertFileExists($expected, $message);
         self::assertFileExists($actual, $message);
@@ -71,6 +72,22 @@ trait TestTrait
         self::assertSame(md5_file($expectedCopy), md5_file($actualCopy), $message);
 
         $Filesystem->remove([$expectedCopy, $actualCopy]);
+    }
+
+    /**
+     * Asserts that an image file has `$expectedWidth` and `$expectedHeight`
+     * @param int $expectedWidth Expected image width
+     * @param int $expectedHeight Expected mage height
+     * @param string $filename Path to the tested file
+     * @param string $message The failure message that will be appended to the generated message
+     * @return void
+     */
+    public static function assertImageSize(int $expectedWidth, int $expectedHeight, string $filename, string $message = ''): void
+    {
+        self::assertFileExists($filename);
+        [$actualWidth, $actualHeight] = getimagesize($filename) ?: [0 => 0, 1 => 0];
+        self::assertEquals($actualWidth, $expectedWidth, $message);
+        self::assertEquals($actualHeight, $expectedHeight, $message);
     }
 
     /**
