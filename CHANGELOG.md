@@ -1,5 +1,8 @@
 # 1.x branch
 ## 1.6 branch
+### 1.6.2
+* updated for `php-tools` 1.9.4 and 1.10.x.
+
 ### 1.6.1
 * requires at least PHPUnit 10.
 
