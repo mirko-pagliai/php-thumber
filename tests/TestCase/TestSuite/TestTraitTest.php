@@ -35,9 +35,11 @@ class TestTraitTest extends TestCase
         if (!$resource instanceof GdImage) {
             $this->fail('Unable to create a valid resource image');
         }
-        imagejpeg($resource, TMP . 'pic.jpg');
-        $TestCase = new class ('myTest') extends TestCase {
-        };
+        imagejpeg($resource, TMP . 'pic.jpg');git
+        $TestCase = $this->getMockBuilder(TestCase::class)
+            ->setConstructorArgs(['myTest'])
+            ->onlyMethods([])
+            ->getMock();
         $TestCase->assertImageSize(120, 20, TMP . 'pic.jpg');
     }
 
