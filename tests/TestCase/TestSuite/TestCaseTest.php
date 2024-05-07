@@ -27,7 +27,7 @@ class TestCaseTest extends TestCase
     /**
      * @var \Thumber\TestSuite\TestCase
      */
-    protected $TestCase;
+    protected TestCase $TestCase;
 
     /**
      * @inheritDoc
@@ -36,8 +36,10 @@ class TestCaseTest extends TestCase
     {
         parent::setUp();
 
-        $this->TestCase = new class ('myTest') extends TestCase {
-        };
+        $this->TestCase ??= $this->getMockBuilder(TestCase::class)
+            ->setConstructorArgs(['myTest'])
+            ->onlyMethods([])
+            ->getMock();
     }
 
     /**
