@@ -82,7 +82,7 @@ trait TestTrait
      * @param string $message The failure message that will be appended to the generated message
      * @return void
      */
-    public static function assertImageSize(int $expectedWidth, int $expectedHeight, string $filename, string $message = ''): void
+    public function assertImageSize(int $expectedWidth, int $expectedHeight, string $filename, string $message = ''): void
     {
         self::assertFileExists($filename);
         [$actualWidth, $actualHeight] = getimagesize($filename) ?: [0 => 0, 1 => 0];
