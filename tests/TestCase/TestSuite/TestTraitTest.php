@@ -37,7 +37,8 @@ class TestTraitTest extends TestCase
         }
         imagejpeg($resource, TMP . 'pic.jpg');
         $TestCase = new class ('MyTest') extends TestCase {
-            public function testSomeMethod() {
+            public function testSomeMethod(): void
+            {
             }
         };
 
