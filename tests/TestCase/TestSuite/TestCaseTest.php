@@ -36,9 +36,10 @@ class TestCaseTest extends TestCase
     {
         parent::setUp();
 
-        $this->TestCase ??= $this->getMockBuilder(TestCase::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->TestCase = new class ('MyTest') extends TestCase {
+            public function testSomeMethod() {
+            }
+        };
     }
 
     /**
