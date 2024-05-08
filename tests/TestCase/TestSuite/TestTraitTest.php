@@ -36,9 +36,11 @@ class TestTraitTest extends TestCase
             $this->fail('Unable to create a valid resource image');
         }
         imagejpeg($resource, TMP . 'pic.jpg');
-        $TestCase = $this->getMockBuilder(TestCase::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $TestCase = new class ('MyTest') extends TestCase {
+            public function testSomeMethod() {
+            }
+        };
+
         $TestCase->assertImageSize(120, 20, TMP . 'pic.jpg');
     }
 
