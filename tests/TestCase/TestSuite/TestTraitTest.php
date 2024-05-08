@@ -14,6 +14,7 @@ declare(strict_types=1);
  */
 namespace Thumber\Test\TestSuite;
 
+use GdImage;
 use PHPUnit\Framework\TestStatus\Skipped;
 use PHPUnit\Framework\TestStatus\Success;
 use Thumber\Test\SkipTestCase;
@@ -24,6 +25,26 @@ use Thumber\TestSuite\TestCase;
  */
 class TestTraitTest extends TestCase
 {
+    /**
+     * @test
+     * @uses \Thumber\TestSuite\TestTrait::assertImageSize()
+     */
+    public function testAssertImageSize(): void
+    {
+        $resource = imagecreatetruecolor(120, 20);
+        if (!$resource instanceof GdImage) {
+            $this->fail('Unable to create a valid resource image');
+        }
+        imagejpeg($resource, TMP . 'pic.jpg');
+        $TestCase = new class ('MyTest') extends TestCase {
+            public function testSomeMethod(): void
+            {
+            }
+        };
+
+        $TestCase->assertImageSize(120, 20, TMP . 'pic.jpg');
+    }
+
     /**
      * @test
      * @uses \Thumber\TestSuite\TestTrait::skipIfDriverIs()

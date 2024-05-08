@@ -49,17 +49,17 @@ class ThumbCreatorSaveTest extends TestCase
         foreach ($extensions as $extension => $expectedMimetype) {
             $thumb = $this->getThumbCreatorInstance('400x400.' . $extension)->resize(200)->save();
             $this->assertThumbPath($thumb);
-            $this->assertFileMime($expectedMimetype, $thumb);
+            $this->assertSame($expectedMimetype, mime_content_type($thumb));
 
             //Using `format` option
             $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['format' => $extension]);
             $this->assertThumbPath($thumb);
-            $this->assertFileMime($expectedMimetype, $thumb);
+            $this->assertSame($expectedMimetype, mime_content_type($thumb));
 
             //Using `target` option
             $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['target' => 'image.' . $extension]);
             $this->assertEquals(Filesystem::instance()->concatenate(THUMBER_TARGET, 'image.' . $extension), $thumb);
-            $this->assertFileMime($expectedMimetype, $thumb);
+            $this->assertSame($expectedMimetype, mime_content_type($thumb));
         }
     }
 
@@ -147,7 +147,7 @@ class ThumbCreatorSaveTest extends TestCase
     {
         $thumb = $this->getThumbCreatorInstance()->resize(200)->save(['target' => 'thumb.png']);
         $this->assertEquals(Filesystem::instance()->concatenate(THUMBER_TARGET, 'thumb.png'), $thumb);
-        $this->assertFileMime('image/png', $thumb);
+        $this->assertSame('image/png', mime_content_type($thumb));
 
         //With an invalid file format
         $this->expectException(NotSupportedException::class);
@@ -161,12 +161,14 @@ class ThumbCreatorSaveTest extends TestCase
      */
     public function testSaveWithSimilarFormat(): void
     {
+        $Filesystem = new Filesystem();
+
         $file = $this->getThumbCreatorInstance()->resize(200)->save(['format' => 'jpeg']);
-        $this->assertFileExtension('jpg', $file);
+        $this->assertSame('jpg', $Filesystem->getExtension($file));
 
         $this->skipIfDriverIs('gd');
         $file = $this->getThumbCreatorInstance()->resize(200)->save(['format' => 'tif']);
-        $this->assertFileExtension('tiff', $file);
+        $this->assertSame('tiff', $Filesystem->getExtension($file));
 
         //Using the `target` option with an invalid file
         $this->expectException(NotSupportedException::class);

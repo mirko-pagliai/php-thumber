@@ -17,6 +17,7 @@
         "mirko-pagliai/php-tools": "~1.9.2"
     },
     "require-dev": {
+        "ext-gd": "*",
         "cakephp/cakephp-codesniffer": "^5.0",
         "phpunit/phpunit": "^10.1.0 <=10.5.3",
         "phpstan/phpstan": "^1.10.38",
